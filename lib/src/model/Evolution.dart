@@ -45,9 +45,10 @@ class Evolution {
 
   factory Evolution.fromJson(Map<String, dynamic> json) {
     List<EvolutionNode> _evolutionTree = [];
-    if (json[JsonHelper.evolutionTree] != null)
+    if (json[JsonHelper.evolutionTree] != null) {
       json[JsonHelper.evolutionTree]
           .forEach((node) => _evolutionTree.add(EvolutionNode.fromJson(node)));
+    }
     return Evolution(
       stage: json[JsonHelper.stage],
       evolutionTree: _evolutionTree,

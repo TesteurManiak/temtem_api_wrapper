@@ -5,7 +5,7 @@ class Weakness {
   Weakness({this.name, this.weaknesses});
 
   factory Weakness.fromJson(Map<String, dynamic> json, name) {
-    Map<String, double> _weaknesses = Map();
+    Map<String, double> _weaknesses = {};
     json.forEach((key, weakness) =>
         _weaknesses[key] = double.parse(weakness.toString()));
     return Weakness(name: name, weaknesses: _weaknesses);

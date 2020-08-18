@@ -73,29 +73,34 @@ class Temtem {
 
   factory Temtem.fromJson(Map<String, dynamic> json) {
     List<String> _types = [];
-    if (json[JsonHelper.types] != null)
+    if (json[JsonHelper.types] != null) {
       json[JsonHelper.types].forEach((item) => _types.add(item));
+    }
 
     List<String> _traits = [];
-    if (json[JsonHelper.traits] != null)
+    if (json[JsonHelper.traits] != null) {
       json[JsonHelper.traits].forEach((item) => _traits.add(item));
+    }
 
     List<Map<String, dynamic>> _techniques = [];
-    if (json[JsonHelper.techniques] != null)
+    if (json[JsonHelper.techniques] != null) {
       json[JsonHelper.techniques].forEach((item) => _techniques.add({
             JsonHelper.name: item[JsonHelper.name],
             JsonHelper.source: item[JsonHelper.source],
             JsonHelper.levels: item[JsonHelper.levels],
           }));
+    }
 
     List<String> _trivia = [];
-    if (json[JsonHelper.trivia] != null)
+    if (json[JsonHelper.trivia] != null) {
       json[JsonHelper.trivia].forEach((item) => _trivia.add(item));
+    }
 
     List<TemLocation> _locations = [];
-    if (json[JsonHelper.locations] != null)
+    if (json[JsonHelper.locations] != null) {
       json[JsonHelper.locations]
           .forEach((item) => _locations.add(TemLocation.fromJson(item)));
+    }
 
     return Temtem(
       number: json[JsonHelper.number],
