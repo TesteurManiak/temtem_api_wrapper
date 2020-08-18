@@ -1,4 +1,4 @@
-import 'package:temtem_api_wrapper/src/JsonHelper.dart';
+import 'package:temtem_api_wrapper/src/json_helper.dart';
 
 class TemLocation {
   final String location;
