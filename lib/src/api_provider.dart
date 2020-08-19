@@ -48,6 +48,8 @@ abstract class ApiProvider {
 
   Future<http.Response> calculateWeaknesses(
       String attacking, List<String> defending);
+
+  Future<http.Response> getBreeding();
 }
 
 class HttpProvider implements ApiProvider {
@@ -160,7 +162,11 @@ class HttpProvider implements ApiProvider {
   @override
   Future<http.Response> calculateWeaknesses(
           String attacking, List<String> defending) =>
-      _get('$_baseUrl');
+      _get(
+          '$_baseUrl/weaknesses/calculate?attacking=$attacking&defending=${defending.join(",")}');
+
+  @override
+  Future<http.Response> getBreeding() => _get('$_baseUrl/breeding');
 
   Future<http.Response> _get(String request) async {
     try {
