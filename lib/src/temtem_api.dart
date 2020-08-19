@@ -6,6 +6,7 @@ import 'package:temtem_api_wrapper/src/model/temtem_api_gear.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_item.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_quest.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_rewards.dart';
+import 'package:temtem_api_wrapper/src/model/temtem_api_saipark.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_technique.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_tem.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_training_course.dart';
@@ -128,6 +129,14 @@ class TemTemApi {
     final parsedData = response as List;
     return parsedData
         .map<TemTemApiCharacter>((e) => TemTemApiCharacter.fromJson(e))
+        .toList();
+  }
+
+  Future<List<TemTemApiSaipark>> getSaiparks() async {
+    final response = await _provider.getSaiparks();
+    final parsedData = response as List;
+    return parsedData
+        .map<TemTemApiSaipark>((e) => TemTemApiSaipark.fromJson(e))
         .toList();
   }
 }
