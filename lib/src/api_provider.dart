@@ -29,6 +29,25 @@ abstract class ApiProvider {
   Future<http.Response> getItems();
 
   Future<http.Response> getGears();
+
+  Future<http.Response> getQuests();
+
+  Future<http.Response> getCharacters();
+
+  Future<http.Response> getSaiparks();
+
+  Future<http.Response> getLocations();
+
+  Future<http.Response> getCosmetics();
+
+  Future<http.Response> getDyes();
+
+  Future<http.Response> getPatches();
+
+  Future<http.Response> getWeaknesses();
+
+  Future<http.Response> calculateWeaknesses(
+      String attacking, List<String> defending);
 }
 
 class HttpProvider implements ApiProvider {
@@ -114,26 +133,36 @@ class HttpProvider implements ApiProvider {
   @override
   Future<http.Response> getGears() => _get('$_baseUrl/gear');
 
-  static Future<http.Response> getQuests() => _get('$_baseUrl/quests');
+  @override
+  Future<http.Response> getQuests() => _get('$_baseUrl/quests');
 
-  static Future<http.Response> getAllCharacters() =>
-      _get('$_baseUrl/characters');
+  @override
+  Future<http.Response> getCharacters() => _get('$_baseUrl/characters');
 
-  static Future<http.Response> getSaipark() => _get('$_baseUrl/saipark');
+  @override
+  Future<http.Response> getSaiparks() => _get('$_baseUrl/saipark');
 
-  static Future<http.Response> getLocations() => _get('$_baseUrl/locations');
+  @override
+  Future<http.Response> getLocations() => _get('$_baseUrl/locations');
 
-  static Future<http.Response> getCosmetics() => _get('$_baseUrl/cosmetics');
+  @override
+  Future<http.Response> getCosmetics() => _get('$_baseUrl/cosmetics');
 
-  static Future<http.Response> getDyes() => _get('$_baseUrl/dyes');
+  @override
+  Future<http.Response> getDyes() => _get('$_baseUrl/dyes');
 
-  static Future<http.Response> getPatches() => _get('$_baseUrl/patches');
+  @override
+  Future<http.Response> getPatches() => _get('$_baseUrl/patches');
 
-  static Future<http.Response> getWeaknesses() => _get('$_baseUrl/weaknesses');
+  @override
+  Future<http.Response> getWeaknesses() => _get('$_baseUrl/weaknesses');
 
-  static Future<http.Response> calculateWeaknesses() => _get('$_baseUrl');
+  @override
+  Future<http.Response> calculateWeaknesses(
+          String attacking, List<String> defending) =>
+      _get('$_baseUrl');
 
-  static Future<http.Response> _get(String request) async {
+  Future<http.Response> _get(String request) async {
     try {
       final response = await http.get(request);
       if (response.statusCode == 200) {
