@@ -1,3 +1,5 @@
+import 'package:example/pages/all_rewards.dart';
+import 'package:example/pages/all_temtems.dart';
 import 'package:flutter/material.dart';
 import 'package:temtem_api_wrapper/temtem_api_wrapper.dart';
 
@@ -19,6 +21,13 @@ class MyApp extends StatelessWidget {
   }
 }
 
+class TabItem {
+  final String label;
+  final Widget page;
+
+  TabItem(this.label, this.page);
+}
+
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
@@ -28,39 +37,37 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage>
+    with SingleTickerProviderStateMixin {
   final TemTemApi _api = TemTemApi();
+  List<TabItem> _items;
 
-  List<TemTemApiTem> _responseContent;
+  TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _items = <TabItem>[
+      TabItem('Temtems', AllTemtems(_api)),
+      TabItem('Rewards', AllRewards(_api)),
+    ];
+    _tabController = TabController(length: _items.length, vsync: this);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.title)),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            RaisedButton(
-              child: const Text('Load All TemTems'),
-              onPressed: () {
-                _api
-                    .getTemTems()
-                    .then((value) => setState(() => _responseContent = value));
-              },
-            ),
-            Expanded(
-              child: ListView.builder(
-                  itemCount:
-                      _responseContent == null ? 0 : _responseContent.length,
-                  itemBuilder: (context, index) => ListTile(
-                        leading: Image.network(
-                            _responseContent[index].portraitWikiUrl),
-                        title: Text(_responseContent[index].name),
-                      )),
-            ),
-          ],
+      appBar: AppBar(
+        title: Text(widget.title),
+        bottom: TabBar(
+          isScrollable: true,
+          controller: _tabController,
+          tabs: _items.map<Tab>((e) => Tab(text: e.label)).toList(),
         ),
+      ),
+      body: TabBarView(
+        controller: _tabController,
+        children: _items.map<Widget>((e) => e.page).toList(),
       ),
     );
   }
