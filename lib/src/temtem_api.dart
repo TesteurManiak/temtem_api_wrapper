@@ -5,6 +5,7 @@ import 'package:temtem_api_wrapper/src/model/temtem_api_freetem.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_rewards.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_technique.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_tem.dart';
+import 'package:temtem_api_wrapper/src/model/temtem_api_training_course.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_type.dart';
 
 class TemTemApi {
@@ -65,6 +66,17 @@ class TemTemApi {
     final response =
         await ApiProvider.getTechniques(names: names, fields: fields);
     final parsedData = jsonDecode(response.body) as List;
-    return parsedData.map((e) => TemTemApiTechnique.fromJson(e)).toList();
+    return parsedData
+        .map<TemTemApiTechnique>((e) => TemTemApiTechnique.fromJson(e))
+        .toList();
+  }
+
+  Future<List<TemTemApiTrainingCourse>> getTrainingCourses() async {
+    final response = await ApiProvider.getTrainingCourses();
+    final parsedData = jsonDecode(response.body) as List;
+    return parsedData
+        .map<TemTemApiTrainingCourse>(
+            (e) => TemTemApiTrainingCourse.fromJson(e))
+        .toList();
   }
 }
