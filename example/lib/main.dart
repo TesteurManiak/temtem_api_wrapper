@@ -1,5 +1,6 @@
 import 'package:example/pages/all_rewards.dart';
 import 'package:example/pages/all_temtems.dart';
+import 'package:example/pages/all_types.dart';
 import 'package:flutter/material.dart';
 import 'package:temtem_api_wrapper/temtem_api_wrapper.dart';
 
@@ -50,6 +51,7 @@ class _MyHomePageState extends State<MyHomePage>
     _items = <TabItem>[
       TabItem('Temtems', AllTemtems(_api)),
       TabItem('Rewards', AllRewards(_api)),
+      TabItem('Types', AllTypes(_api)),
     ];
     _tabController = TabController(length: _items.length, vsync: this);
   }
