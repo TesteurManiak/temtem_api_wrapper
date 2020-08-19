@@ -3,6 +3,7 @@ import 'package:temtem_api_wrapper/src/api_provider.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_freetem.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_rewards.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_tem.dart';
+import 'package:temtem_api_wrapper/src/model/temtem_api_type.dart';
 
 class TemTemApi {
   Future<List<TemTemApiTem>> getTemTems({
@@ -38,6 +39,14 @@ class TemTemApi {
     final parsedData = jsonDecode(response.body) as List;
     return parsedData
         .map<TemTemApiRewards>((e) => TemTemApiRewards.fromJson(e))
+        .toList();
+  }
+
+  Future<List<TemTemApiType>> getTypes() async {
+    final response = await ApiProvider.getTypes();
+    final parsedData = jsonDecode(response.body) as List;
+    return parsedData
+        .map<TemTemApiType>((e) => TemTemApiType.fromJson(e))
         .toList();
   }
 }
