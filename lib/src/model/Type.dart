@@ -1,5 +1,3 @@
-import 'package:temtem_api_wrapper/src/json_helper.dart';
-
 class TemType {
   final String name;
   final String icon;
@@ -7,5 +5,5 @@ class TemType {
   TemType({this.name, this.icon});
 
   factory TemType.fromJson(Map<String, dynamic> json) =>
-      TemType(name: json[JsonHelper.name], icon: json[JsonHelper.icon]);
+      TemType(name: json['name'], icon: json['icon']);
 }

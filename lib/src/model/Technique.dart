@@ -1,4 +1,3 @@
-import 'package:temtem_api_wrapper/src/json_helper.dart';
 import 'package:temtem_api_wrapper/src/model/SynergyEffects.dart';
 
 class Technique {
@@ -32,20 +31,20 @@ class Technique {
 
   factory Technique.fromJson(Map<String, dynamic> json) {
     return Technique(
-      name: json[JsonHelper.name],
-      wikiUrl: json[JsonHelper.wikiUrl],
-      type: json[JsonHelper.type],
-      classTouch: json[JsonHelper.classTouch],
-      damage: json[JsonHelper.damage],
-      staminaCost: json[JsonHelper.staminaCost],
-      hold: json[JsonHelper.hold],
-      priority: json[JsonHelper.priority],
-      synergy: json[JsonHelper.synergy],
-      synergyEffects: (json[JsonHelper.synergyEffects] as List)
+      name: json['name'],
+      wikiUrl: json['wikiUrl'],
+      type: json['type'],
+      classTouch: json['classTouch'],
+      damage: json['damage'],
+      staminaCost: json['staminaCost'],
+      hold: json['hold'],
+      priority: json['priority'],
+      synergy: json['synergy'],
+      synergyEffects: (json['synergyEffects'] as List)
           .map((item) => SynergyEffects.fromJson(item))
           .toList(),
-      targets: json[JsonHelper.targets].toString(),
-      description: json[JsonHelper.description].toString().replaceAll('\n', ''),
+      targets: json['targets'].toString(),
+      description: json['description'].toString().replaceAll('\n', ''),
     );
   }
 }

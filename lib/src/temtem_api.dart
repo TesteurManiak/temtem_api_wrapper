@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:temtem_api_wrapper/src/api_provider.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_tem.dart';
 
@@ -15,5 +14,12 @@ class TemTemApi {
     return parsedData
         .map<TemTemApiTem>((e) => TemTemApiTem.fromJson(e))
         .toList();
+  }
+
+  Future<TemTemApiTem> getTemTem(int number,
+      {List<String> fields = const [], List<String> expand = const []}) async {
+    final response =
+        await ApiProvider.getTemtem(number, fields: fields, expand: expand);
+    return TemTemApiTem.fromJson(jsonDecode(response.body));
   }
 }

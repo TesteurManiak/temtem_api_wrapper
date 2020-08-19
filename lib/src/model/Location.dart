@@ -1,5 +1,3 @@
-import 'package:temtem_api_wrapper/src/json_helper.dart';
-
 class LocationElem {
   final String name;
   final String wikiUrl;
@@ -9,9 +7,9 @@ class LocationElem {
 
   factory LocationElem.fromJson(Map<String, dynamic> json) {
     return LocationElem(
-      name: json[JsonHelper.name],
-      wikiUrl: json[JsonHelper.wikiUrl],
-      type: json[JsonHelper.type],
+      name: json['name'],
+      wikiUrl: json['wikiUrl'],
+      type: json['type'],
     );
   }
 }
@@ -47,23 +45,22 @@ class Location {
 
   factory Location.fromJson(Map<String, dynamic> json) {
     return Location(
-      name: json[JsonHelper.name],
-      wikiUrl: json[JsonHelper.wikiUrl],
-      description: json[JsonHelper.description],
-      temtemTypes: List<String>.from(json[JsonHelper.temtemTypes] as List),
-      type: json[JsonHelper.type],
-      imageWikiThumbnail: json[JsonHelper.imageWikiThumbnail],
-      imageWikiFile: json[JsonHelper.imageWikiFile],
-      routes: List<LocationElem>.generate(json[JsonHelper.routes].length,
-          (index) => LocationElem.fromJson(json[JsonHelper.routes][index])),
+      name: json['name'],
+      wikiUrl: json['wikiUrl'],
+      description: json['description'],
+      temtemTypes: List<String>.from(json['temtemTypes'] as List),
+      type: json['type'],
+      imageWikiThumbnail: json['imageWikiThumbnail'],
+      imageWikiFile: json['imageWikiFile'],
+      routes: List<LocationElem>.generate(json['routes'].length,
+          (index) => LocationElem.fromJson(json['routes'][index])),
       townsAndVillages: List<LocationElem>.generate(
-          json[JsonHelper.townsAndVillages].length,
-          (index) =>
-              LocationElem.fromJson(json[JsonHelper.townsAndVillages][index])),
-      landmarks: List<LocationElem>.generate(json[JsonHelper.landmarks].length,
-          (index) => LocationElem.fromJson(json[JsonHelper.landmarks][index])),
-      temtem: List<String>.from(json[JsonHelper.temtem] as List),
-      trivia: List<String>.from(json[JsonHelper.trivia] as List),
+          json['townsAndVillages'].length,
+          (index) => LocationElem.fromJson(json[townsAndVillages][index])),
+      landmarks: List<LocationElem>.generate(json['landmarks'].length,
+          (index) => LocationElem.fromJson(json[landmarks][index])),
+      temtem: List<String>.from(json['temtem'] as List),
+      trivia: List<String>.from(json['trivia'] as List),
     );
   }
 }

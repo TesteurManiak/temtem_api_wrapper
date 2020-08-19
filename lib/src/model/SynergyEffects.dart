@@ -1,5 +1,3 @@
-import 'package:temtem_api_wrapper/src/json_helper.dart';
-
 class SynergyEffects {
   final String effect;
   final String type;
@@ -9,9 +7,9 @@ class SynergyEffects {
 
   factory SynergyEffects.fromJson(Map<String, dynamic> json) {
     return SynergyEffects(
-      effect: json[JsonHelper.effect],
-      type: json[JsonHelper.type],
-      damage: json[JsonHelper.damage],
+      effect: json['effect'],
+      type: json['type'],
+      damage: json['damage'],
     );
   }
 }

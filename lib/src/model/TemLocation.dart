@@ -1,5 +1,3 @@
-import 'package:temtem_api_wrapper/src/json_helper.dart';
-
 class TemLocation {
   final String location;
   final String island;
@@ -10,10 +8,10 @@ class TemLocation {
 
   factory TemLocation.fromJson(Map<String, dynamic> json) {
     return TemLocation(
-      location: json[JsonHelper.location],
-      island: json[JsonHelper.island],
-      frequency: json[JsonHelper.frequency],
-      level: json[JsonHelper.level],
+      location: json['location'],
+      island: json['island'],
+      frequency: json['frequency'],
+      level: json['level'],
     );
   }
 }

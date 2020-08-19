@@ -1,5 +1,3 @@
-import 'package:temtem_api_wrapper/src/json_helper.dart';
-
 class Traits {
   final String name;
   final String wikiUrl;
@@ -9,9 +7,9 @@ class Traits {
 
   factory Traits.fromJson(Map<String, dynamic> json) {
     return Traits(
-      name: json[JsonHelper.name],
-      wikiUrl: json[JsonHelper.wikiUrl],
-      description: json[JsonHelper.description],
+      name: json['name'],
+      wikiUrl: json['wikiUrl'],
+      description: json['description'],
     );
   }
 }

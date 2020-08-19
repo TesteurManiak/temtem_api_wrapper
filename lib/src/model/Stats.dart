@@ -1,5 +1,3 @@
-import 'package:temtem_api_wrapper/src/json_helper.dart';
-
 class Stats {
   final int hp;
   final int sta;
@@ -23,27 +21,27 @@ class Stats {
 
   factory Stats.fromJson(Map<String, dynamic> json) {
     return Stats(
-      hp: json[JsonHelper.hp],
-      sta: json[JsonHelper.sta],
-      spd: json[JsonHelper.spd],
-      atk: json[JsonHelper.atk],
-      def: json[JsonHelper.def],
-      spatk: json[JsonHelper.spatk],
-      spdef: json[JsonHelper.spdef],
-      total: json[JsonHelper.total],
+      hp: json['hp'],
+      sta: json['sta'],
+      spd: json['spd'],
+      atk: json['atk'],
+      def: json['def'],
+      spatk: json['spatk'],
+      spdef: json['spdef'],
+      total: json['total'],
     );
   }
 
   factory Stats.fromTvYieldsJson(Map<String, dynamic> json) {
     return Stats(
-      hp: json[JsonHelper.hp],
-      sta: json[JsonHelper.sta],
-      spd: json[JsonHelper.spd],
-      atk: json[JsonHelper.atk],
-      def: json[JsonHelper.def],
-      spatk: json[JsonHelper.spatk],
-      spdef: json[JsonHelper.spdef],
-      total: json[JsonHelper.total],
+      hp: json['hp'],
+      sta: json['sta'],
+      spd: json['spd'],
+      atk: json['atk'],
+      def: json['def'],
+      spatk: json['spatk'],
+      spdef: json['spdef'],
+      total: json['total'],
     );
   }
 }

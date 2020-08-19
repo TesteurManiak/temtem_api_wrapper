@@ -1,5 +1,3 @@
-import 'package:temtem_api_wrapper/src/json_helper.dart';
-
 class EvolutionNode {
   final int number;
   final String name;
@@ -19,12 +17,12 @@ class EvolutionNode {
 
   factory EvolutionNode.fromJson(Map<String, dynamic> json) {
     return EvolutionNode(
-      number: json[JsonHelper.number],
-      name: json[JsonHelper.name],
-      stage: json[JsonHelper.stage],
-      levels: json[JsonHelper.levels],
-      trading: json[JsonHelper.trading],
-      traitMapping: json[JsonHelper.traitMapping],
+      number: json['number'],
+      name: json['name'],
+      stage: json['stage'],
+      levels: json['levels'],
+      trading: json['trading'],
+      traitMapping: json['traitMapping'],
     );
   }
 }
@@ -45,16 +43,16 @@ class Evolution {
 
   factory Evolution.fromJson(Map<String, dynamic> json) {
     List<EvolutionNode> _evolutionTree = [];
-    if (json[JsonHelper.evolutionTree] != null) {
-      json[JsonHelper.evolutionTree]
+    if (json['evolutionTree'] != null) {
+      json['evolutionTree']
           .forEach((node) => _evolutionTree.add(EvolutionNode.fromJson(node)));
     }
     return Evolution(
-      stage: json[JsonHelper.stage],
+      stage: json['stage'],
       evolutionTree: _evolutionTree,
-      evolves: json[JsonHelper.evolves],
-      type: json[JsonHelper.type],
-      description: json[JsonHelper.description],
+      evolves: json['evolves'],
+      type: json['type'],
+      description: json['description'],
     );
   }
 }

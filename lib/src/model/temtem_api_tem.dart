@@ -1,4 +1,3 @@
-import 'package:temtem_api_wrapper/src/json_helper.dart';
 import 'package:temtem_api_wrapper/src/model/Details.dart';
 import 'package:temtem_api_wrapper/src/model/Evolution.dart';
 import 'package:temtem_api_wrapper/src/model/GenderRatio.dart';
@@ -73,57 +72,57 @@ class TemTemApiTem {
 
   factory TemTemApiTem.fromJson(Map<String, dynamic> json) {
     List<String> _types = [];
-    if (json[JsonHelper.types] != null) {
-      json[JsonHelper.types].forEach((item) => _types.add(item));
+    if (json['types'] != null) {
+      json['types'].forEach((item) => _types.add(item));
     }
 
     List<String> _traits = [];
-    if (json[JsonHelper.traits] != null) {
-      json[JsonHelper.traits].forEach((item) => _traits.add(item));
+    if (json['traits'] != null) {
+      json['traits'].forEach((item) => _traits.add(item));
     }
 
     List<Map<String, dynamic>> _techniques = [];
-    if (json[JsonHelper.techniques] != null) {
-      json[JsonHelper.techniques].forEach((item) => _techniques.add({
-            JsonHelper.name: item[JsonHelper.name],
-            JsonHelper.source: item[JsonHelper.source],
-            JsonHelper.levels: item[JsonHelper.levels],
+    if (json['techniques'] != null) {
+      json['techniques'].forEach((item) => _techniques.add({
+            'name': item['name'],
+            'source': item['source'],
+            'levels': item['levels'],
           }));
     }
 
     List<String> _trivia = [];
-    if (json[JsonHelper.trivia] != null) {
-      json[JsonHelper.trivia].forEach((item) => _trivia.add(item));
+    if (json['trivia'] != null) {
+      json['trivia'].forEach((item) => _trivia.add(item));
     }
 
     List<TemLocation> _locations = [];
-    if (json[JsonHelper.locations] != null) {
-      json[JsonHelper.locations]
+    if (json['locations'] != null) {
+      json['locations']
           .forEach((item) => _locations.add(TemLocation.fromJson(item)));
     }
 
     return TemTemApiTem(
-      number: json[JsonHelper.number],
-      name: json[JsonHelper.name],
+      number: json['number'],
+      name: json['name'],
       types: _types,
-      portraitWikiUrl: json[JsonHelper.portraitWikiUrl],
-      lumaPortraitWikiUrl: json[JsonHelper.lumaPortraitWikiUrl],
-      wikiUrl: json[JsonHelper.wikiUrl],
-      stats: Stats.fromJson(json[JsonHelper.stats]),
+      portraitWikiUrl: json['portraitWikiUrl'],
+      lumaPortraitWikiUrl: json['lumaPortraitWikiUrl'],
+      wikiUrl: json['wikiUrl'],
+      stats: Stats.fromJson(json['stats']),
       traits: _traits,
-      details: Details.fromJson(json[JsonHelper.details]),
+      details: Details.fromJson(json['details']),
       techniques: _techniques,
       trivia: _trivia,
-      evolution: Evolution.fromJson(json[JsonHelper.evolution]),
-      wikiPortraitUrlLarge: json[JsonHelper.wikiPortraitUrlLarge],
-      lumaWikiPortraitUrlLarge: json[JsonHelper.lumaWikiPortraitUrlLarge],
+      evolution: Evolution.fromJson(json['evolution']),
+      wikiPortraitUrlLarge: json['wikiPortraitUrlLarge'],
+      lumaWikiPortraitUrlLarge: json['lumaWikiPortraitUrlLarge'],
       locations: _locations,
-      icon: json[JsonHelper.icon],
-      lumaIcon: json[JsonHelper.lumaIcon],
-      genderRatio: GenderRatio.fromJson(json[JsonHelper.genderRatio]),
-      catchRate: json[JsonHelper.catchRate],
-      tvYields: Stats.fromTvYieldsJson(json[JsonHelper.tvYields]),
-      gameDescription: json[JsonHelper.gameDescription],
+      icon: json['icon'],
+      lumaIcon: json['lumaIcon'],
+      genderRatio: GenderRatio.fromJson(json['genderRatio']),
+      catchRate: json['catchRate'],
+      tvYields: Stats.fromTvYieldsJson(json['tvYields']),
+      gameDescription: json['gameDescription'],
     );
   }
 }
