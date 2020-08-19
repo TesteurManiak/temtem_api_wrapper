@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:temtem_api_wrapper/temtem_api_wrapper.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,12 +9,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'temtem_api_wrapper Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'temtem_api_wrapper Demo'),
     );
   }
 }
@@ -28,9 +29,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  final TemTemApi _api = TemTemApi();
 
-  void _incrementCounter() => setState(() => _counter++);
+  String _responseContent = '';
 
   @override
   Widget build(BuildContext context) {
@@ -40,18 +41,16 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+            RaisedButton(
+              child: const Text('Load All TemTems'),
+              onPressed: () {
+                _api.getTemTems().then(
+                    (value) => setState(() => _responseContent = '$value'));
+              },
             ),
+            Text(_responseContent),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
       ),
     );
   }

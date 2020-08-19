@@ -23,6 +23,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  temtem_api_wrapper:
+    path: ../
 
 
   # The following adds the Cupertino Icons font to your application.

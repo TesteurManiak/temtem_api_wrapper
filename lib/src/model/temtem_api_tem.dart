@@ -5,7 +5,7 @@ import 'package:temtem_api_wrapper/src/model/GenderRatio.dart';
 import 'package:temtem_api_wrapper/src/model/Stats.dart';
 import 'package:temtem_api_wrapper/src/model/TemLocation.dart';
 
-class Temtem {
+class TemTemApiTem {
   final int number;
   final String name;
   final List<String> types;
@@ -38,7 +38,7 @@ class Temtem {
 
   bool owned;
 
-  Temtem({
+  TemTemApiTem({
     this.number,
     this.name,
     this.types,
@@ -71,7 +71,7 @@ class Temtem {
     this.renderAnimatedLumaImage,
   });
 
-  factory Temtem.fromJson(Map<String, dynamic> json) {
+  factory TemTemApiTem.fromJson(Map<String, dynamic> json) {
     List<String> _types = [];
     if (json[JsonHelper.types] != null) {
       json[JsonHelper.types].forEach((item) => _types.add(item));
@@ -102,7 +102,7 @@ class Temtem {
           .forEach((item) => _locations.add(TemLocation.fromJson(item)));
     }
 
-    return Temtem(
+    return TemTemApiTem(
       number: json[JsonHelper.number],
       name: json[JsonHelper.name],
       types: _types,

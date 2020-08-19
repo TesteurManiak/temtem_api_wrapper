@@ -3,11 +3,34 @@ import 'package:http/http.dart' as http;
 class ApiProvider {
   static const _baseUrl = 'https://temtem-api.mael.tech/api';
 
-  static Future<http.Response> getTemtems(
-          {List<String> names = const [], List<String> fields = const []}) =>
-      _get('$_baseUrl/temtems');
-  static Future<http.Response> getTemtem(int id) =>
-      _get('$_baseUrl/temtems/$id');
+  static Future<http.Response> getTemtems({
+    List<String> names = const [],
+    List<String> fields = const [],
+    List<String> expand = const [],
+  }) {
+    String url = '$_baseUrl/temtems?';
+    if (names.isNotEmpty) url += 'name=${names.join(",")}';
+    if (fields.isNotEmpty) {
+      if (names.isNotEmpty) url += '&';
+      url += 'fields=${fields.join(",")}';
+    }
+    if (expand.isNotEmpty) {
+      if (names.isNotEmpty || fields.isNotEmpty) url += '&';
+      url += 'expand=${expand.join(",")}';
+    }
+    return _get(url);
+  }
+
+  static Future<http.Response> getTemtem(int id,
+      {List<String> fields = const [], List<String> expand = const []}) {
+    String url = '$_baseUrl/temtems/$id?';
+    if (fields.isNotEmpty) url += 'fields=${fields.join(",")}';
+    if (expand.isNotEmpty) {
+      if (fields.isNotEmpty) url += '&';
+      url += 'expand=${expand.join(",")}';
+    }
+    return _get(url);
+  }
 
   static Future<http.Response> getFreetem(String name, int level) =>
       _get('$_baseUrl/freetem/$name/$level');
