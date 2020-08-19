@@ -35,8 +35,6 @@ class TemTemApiTem {
   final String renderAnimatedImage;
   final String renderAnimatedLumaImage;
 
-  bool owned;
-
   TemTemApiTem({
     this.number,
     this.name,
@@ -58,7 +56,6 @@ class TemTemApiTem {
     this.genderRatio,
     this.catchRate,
     this.tvYields,
-    this.owned = false,
     this.gameDescription,
     this.wikiRenderStaticUrl,
     this.wikiRenderAnimatedUrl,
@@ -71,16 +68,6 @@ class TemTemApiTem {
   });
 
   factory TemTemApiTem.fromJson(Map<String, dynamic> json) {
-    List<String> _types = [];
-    if (json['types'] != null) {
-      json['types'].forEach((item) => _types.add(item));
-    }
-
-    List<String> _traits = [];
-    if (json['traits'] != null) {
-      json['traits'].forEach((item) => _traits.add(item));
-    }
-
     List<Map<String, dynamic>> _techniques = [];
     if (json['techniques'] != null) {
       json['techniques'].forEach((item) => _techniques.add({
@@ -88,11 +75,6 @@ class TemTemApiTem {
             'source': item['source'],
             'levels': item['levels'],
           }));
-    }
-
-    List<String> _trivia = [];
-    if (json['trivia'] != null) {
-      json['trivia'].forEach((item) => _trivia.add(item));
     }
 
     List<TemLocation> _locations = [];
@@ -104,15 +86,15 @@ class TemTemApiTem {
     return TemTemApiTem(
       number: json['number'],
       name: json['name'],
-      types: _types,
+      types: List<String>.from(json['types']),
       portraitWikiUrl: json['portraitWikiUrl'],
       lumaPortraitWikiUrl: json['lumaPortraitWikiUrl'],
       wikiUrl: json['wikiUrl'],
       stats: Stats.fromJson(json['stats']),
-      traits: _traits,
+      traits: List<String>.from(json['traits']),
       details: Details.fromJson(json['details']),
       techniques: _techniques,
-      trivia: _trivia,
+      trivia: List<String>.from(json['trivia']),
       evolution: Evolution.fromJson(json['evolution']),
       wikiPortraitUrlLarge: json['wikiPortraitUrlLarge'],
       lumaWikiPortraitUrlLarge: json['lumaWikiPortraitUrlLarge'],
