@@ -1,9 +1,43 @@
 import 'package:http/http.dart' as http;
 
-class ApiProvider {
+abstract class ApiProvider {
+  Future<http.Response> getTemtems({
+    List<String> names = const [],
+    List<String> fields = const [],
+    List<String> expand = const [],
+  });
+
+  Future<http.Response> getTemtem(int id,
+      {List<String> fields = const [], List<String> expand = const []});
+
+  Future<http.Response> getFreetem(String name, int level);
+
+  Future<http.Response> getFreetemRewards();
+
+  Future<http.Response> getTypes();
+
+  Future<http.Response> getConditions();
+
+  Future<http.Response> getTechniques(
+      {List<String> names = const [], List<String> fields = const []});
+
+  Future<http.Response> getTrainingCourses();
+
+  Future<http.Response> getTraits(
+      {List<String> names = const [], List<String> fields = const []});
+
+  Future<http.Response> getItems();
+
+  Future<http.Response> getGears();
+}
+
+class HttpProvider implements ApiProvider {
   static const _baseUrl = 'https://temtem-api.mael.tech/api';
 
-  static Future<http.Response> getTemtems({
+  const HttpProvider();
+
+  @override
+  Future<http.Response> getTemtems({
     List<String> names = const [],
     List<String> fields = const [],
     List<String> expand = const [],
@@ -21,7 +55,8 @@ class ApiProvider {
     return _get(url);
   }
 
-  static Future<http.Response> getTemtem(int id,
+  @override
+  Future<http.Response> getTemtem(int id,
       {List<String> fields = const [], List<String> expand = const []}) {
     String url = '$_baseUrl/temtems/$id?';
     if (fields.isNotEmpty) url += 'fields=${fields.join(",")}';
@@ -32,17 +67,22 @@ class ApiProvider {
     return _get(url);
   }
 
-  static Future<http.Response> getFreetem(String name, int level) =>
+  @override
+  Future<http.Response> getFreetem(String name, int level) =>
       _get('$_baseUrl/freetem/$name/$level');
 
-  static Future<http.Response> getFreetemRewards() =>
+  @override
+  Future<http.Response> getFreetemRewards() =>
       _get('$_baseUrl/freetem/rewards');
 
-  static Future<http.Response> getTypes() => _get('$_baseUrl/types');
+  @override
+  Future<http.Response> getTypes() => _get('$_baseUrl/types');
 
-  static Future<http.Response> getConditions() => _get('$_baseUrl/conditions');
+  @override
+  Future<http.Response> getConditions() => _get('$_baseUrl/conditions');
 
-  static Future<http.Response> getTechniques(
+  @override
+  Future<http.Response> getTechniques(
       {List<String> names = const [], List<String> fields = const []}) {
     String url = '$_baseUrl/techniques?';
     if (names.isNotEmpty) url += 'names=${names.join(",")}';
@@ -53,10 +93,12 @@ class ApiProvider {
     return _get(url);
   }
 
-  static Future<http.Response> getTrainingCourses() =>
+  @override
+  Future<http.Response> getTrainingCourses() =>
       _get('$_baseUrl/training-courses');
 
-  static Future<http.Response> getTraits(
+  @override
+  Future<http.Response> getTraits(
       {List<String> names = const [], List<String> fields = const []}) {
     String url = '$_baseUrl/traits?';
     for (int index = 0; index < names.length; index++) {
@@ -66,9 +108,11 @@ class ApiProvider {
     return _get(url);
   }
 
-  static Future<http.Response> getItems() => _get('$_baseUrl/items');
+  @override
+  Future<http.Response> getItems() => _get('$_baseUrl/items');
 
-  static Future<http.Response> getGears() => _get('$_baseUrl/gear');
+  @override
+  Future<http.Response> getGears() => _get('$_baseUrl/gear');
 
   static Future<http.Response> getQuests() => _get('$_baseUrl/quests');
 
