@@ -6,6 +6,7 @@ import 'package:temtem_api_wrapper/src/model/temtem_api_rewards.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_technique.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_tem.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_training_course.dart';
+import 'package:temtem_api_wrapper/src/model/temtem_api_traits.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_type.dart';
 
 class TemTemApi {
@@ -77,6 +78,15 @@ class TemTemApi {
     return parsedData
         .map<TemTemApiTrainingCourse>(
             (e) => TemTemApiTrainingCourse.fromJson(e))
+        .toList();
+  }
+
+  Future<List<TemTemApiTraits>> getTraits(
+      {List<String> names = const [], List<String> fields = const []}) async {
+    final response = await ApiProvider.getTraits(names: names, fields: fields);
+    final parsedData = jsonDecode(response.body) as List;
+    return parsedData
+        .map<TemTemApiTraits>((e) => TemTemApiTraits.fromJson(e))
         .toList();
   }
 }

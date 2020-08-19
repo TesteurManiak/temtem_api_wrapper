@@ -1,12 +1,12 @@
-class Traits {
+class TemTemApiTraits {
   final String name;
   final String wikiUrl;
   final String description;
 
-  Traits({this.name, this.wikiUrl, this.description});
+  TemTemApiTraits({this.name, this.wikiUrl, this.description});
 
-  factory Traits.fromJson(Map<String, dynamic> json) {
-    return Traits(
+  factory TemTemApiTraits.fromJson(Map<String, dynamic> json) {
+    return TemTemApiTraits(
       name: json['name'],
       wikiUrl: json['wikiUrl'],
       description: json['description'],
