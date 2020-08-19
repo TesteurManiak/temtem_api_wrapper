@@ -31,7 +31,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final TemTemApi _api = TemTemApi();
 
-  String _responseContent = '';
+  List<TemTemApiTem> _responseContent;
 
   @override
   Widget build(BuildContext context) {
@@ -44,11 +44,21 @@ class _MyHomePageState extends State<MyHomePage> {
             RaisedButton(
               child: const Text('Load All TemTems'),
               onPressed: () {
-                _api.getTemTems().then(
-                    (value) => setState(() => _responseContent = '$value'));
+                _api
+                    .getTemTems()
+                    .then((value) => setState(() => _responseContent = value));
               },
             ),
-            Text(_responseContent),
+            Expanded(
+              child: ListView.builder(
+                  itemCount:
+                      _responseContent == null ? 0 : _responseContent.length,
+                  itemBuilder: (context, index) => ListTile(
+                        leading: Image.network(
+                            _responseContent[index].portraitWikiUrl),
+                        title: Text(_responseContent[index].name),
+                      )),
+            ),
           ],
         ),
       ),

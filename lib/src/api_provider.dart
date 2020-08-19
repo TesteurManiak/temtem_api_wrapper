@@ -34,6 +34,7 @@ class ApiProvider {
 
   static Future<http.Response> getFreetem(String name, int level) =>
       _get('$_baseUrl/freetem/$name/$level');
+  
   static Future<http.Response> getFreetemRewards() =>
       _get('$_baseUrl/freetem/rewards');
 
@@ -70,6 +71,7 @@ class ApiProvider {
   static Future<http.Response> getLocations() => _get('$_baseUrl/locations');
 
   static Future<http.Response> getCosmetics() => _get('$_baseUrl/cosmetics');
+  
   static Future<http.Response> getDyes() => _get('$_baseUrl/dyes');
 
   static Future<http.Response> getPatches() => _get('$_baseUrl/patches');

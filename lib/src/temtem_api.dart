@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'package:temtem_api_wrapper/src/api_provider.dart';
+import 'package:temtem_api_wrapper/src/model/temtem_api_freetem.dart';
+import 'package:temtem_api_wrapper/src/model/temtem_api_rewards.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_tem.dart';
 
 class TemTemApi {
@@ -18,8 +20,24 @@ class TemTemApi {
 
   Future<TemTemApiTem> getTemTem(int number,
       {List<String> fields = const [], List<String> expand = const []}) async {
+    assert(number != null);
     final response =
         await ApiProvider.getTemtem(number, fields: fields, expand: expand);
     return TemTemApiTem.fromJson(jsonDecode(response.body));
+  }
+
+  Future<TemTemApiFreeTem> getFreeTem(String name, int level) async {
+    assert(name != null);
+    assert(level != null);
+    final response = await ApiProvider.getFreetem(name, level);
+    return TemTemApiFreeTem.fromJson(jsonDecode(response.body));
+  }
+
+  Future<List<TemTemApiRewards>> getFreeTemRewards() async {
+    final response = await ApiProvider.getFreetemRewards();
+    final parsedData = jsonDecode(response.body) as List;
+    return parsedData
+        .map<TemTemApiRewards>((e) => TemTemApiRewards.fromJson(e))
+        .toList();
   }
 }
