@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:temtem_api_wrapper/src/api_provider.dart';
+import 'package:temtem_api_wrapper/src/model/temtem_api_character.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_condition.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_freetem.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_gear.dart';
@@ -119,6 +120,14 @@ class TemTemApi {
     final parsedData = jsonDecode(response.body) as List;
     return parsedData
         .map<TemTemApiQuest>((e) => TemTemApiQuest.fromJson(e))
+        .toList();
+  }
+
+  Future<List<TemTemApiCharacter>> getCharacters() async {
+    final response = await _provider.getCharacters();
+    final parsedData = jsonDecode(response.body) as List;
+    return parsedData
+        .map<TemTemApiCharacter>((e) => TemTemApiCharacter.fromJson(e))
         .toList();
   }
 }
