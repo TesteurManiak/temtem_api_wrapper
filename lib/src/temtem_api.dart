@@ -4,6 +4,7 @@ import 'package:temtem_api_wrapper/src/model/temtem_api_condition.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_freetem.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_gear.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_item.dart';
+import 'package:temtem_api_wrapper/src/model/temtem_api_quest.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_rewards.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_technique.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_tem.dart';
@@ -110,6 +111,14 @@ class TemTemApi {
     final parsedData = jsonDecode(response.body) as List;
     return parsedData
         .map<TemTemApiGear>((e) => TemTemApiGear.fromJson(e))
+        .toList();
+  }
+
+  Future<List<TemTemApiQuest>> getQuests() async {
+    final response = await _provider.getQuests();
+    final parsedData = jsonDecode(response.body) as List;
+    return parsedData
+        .map<TemTemApiQuest>((e) => TemTemApiQuest.fromJson(e))
         .toList();
   }
 }
