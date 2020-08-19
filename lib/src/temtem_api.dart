@@ -1,6 +1,7 @@
 import 'package:temtem_api_wrapper/src/api_provider.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_character.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_condition.dart';
+import 'package:temtem_api_wrapper/src/model/temtem_api_cosmetic.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_freetem.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_gear.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_item.dart';
@@ -146,6 +147,14 @@ class TemTemApi {
     final parsedData = response as List;
     return parsedData
         .map<TemTemApiLocation>((e) => TemTemApiLocation.fromJson(e))
+        .toList();
+  }
+
+  Future<List<TemTemApiCosmetic>> getCosmetics() async {
+    final response = await _provider.getCosmetics();
+    final parsedData = response as List;
+    return parsedData
+        .map<TemTemApiCosmetic>((e) => TemTemApiCosmetic.fromJson(e))
         .toList();
   }
 }
