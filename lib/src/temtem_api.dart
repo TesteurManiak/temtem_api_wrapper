@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'package:temtem_api_wrapper/src/api_provider.dart';
+import 'package:temtem_api_wrapper/src/model/temtem_api_condition.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_freetem.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_rewards.dart';
+import 'package:temtem_api_wrapper/src/model/temtem_api_technique.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_tem.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_type.dart';
 
@@ -48,5 +50,21 @@ class TemTemApi {
     return parsedData
         .map<TemTemApiType>((e) => TemTemApiType.fromJson(e))
         .toList();
+  }
+
+  Future<List<TemTemApiCondition>> getConditions() async {
+    final response = await ApiProvider.getConditions();
+    final parsedData = jsonDecode(response.body) as List;
+    return parsedData
+        .map<TemTemApiCondition>((e) => TemTemApiCondition.fromJson(e))
+        .toList();
+  }
+
+  Future<List<TemTemApiTechnique>> getTechniques(
+      {List<String> names = const [], List<String> fields = const []}) async {
+    final response =
+        await ApiProvider.getTechniques(names: names, fields: fields);
+    final parsedData = jsonDecode(response.body) as List;
+    return parsedData.map((e) => TemTemApiTechnique.fromJson(e)).toList();
   }
 }

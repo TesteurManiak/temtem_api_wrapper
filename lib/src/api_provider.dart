@@ -34,7 +34,7 @@ class ApiProvider {
 
   static Future<http.Response> getFreetem(String name, int level) =>
       _get('$_baseUrl/freetem/$name/$level');
-  
+
   static Future<http.Response> getFreetemRewards() =>
       _get('$_baseUrl/freetem/rewards');
 
@@ -42,7 +42,16 @@ class ApiProvider {
 
   static Future<http.Response> getConditions() => _get('$_baseUrl/conditions');
 
-  static Future<http.Response> getTechniques() => _get('$_baseUrl/techniques');
+  static Future<http.Response> getTechniques(
+      {List<String> names = const [], List<String> fields = const []}) {
+    String url = '$_baseUrl/techniques?';
+    if (names.isNotEmpty) url += 'names=${names.join(",")}';
+    if (fields.isNotEmpty) {
+      if (names.isNotEmpty) url += '&';
+      url += 'fields=${fields.join(",")}';
+    }
+    return _get(url);
+  }
 
   static Future<http.Response> getTrainingCourses() =>
       _get('$_baseUrl/training-courses');
@@ -71,7 +80,7 @@ class ApiProvider {
   static Future<http.Response> getLocations() => _get('$_baseUrl/locations');
 
   static Future<http.Response> getCosmetics() => _get('$_baseUrl/cosmetics');
-  
+
   static Future<http.Response> getDyes() => _get('$_baseUrl/dyes');
 
   static Future<http.Response> getPatches() => _get('$_baseUrl/patches');
