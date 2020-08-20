@@ -2,10 +2,12 @@ import 'package:temtem_api_wrapper/src/api_provider.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_character.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_condition.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_cosmetic.dart';
+import 'package:temtem_api_wrapper/src/model/temtem_api_dye.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_freetem.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_gear.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_item.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_location.dart';
+import 'package:temtem_api_wrapper/src/model/temtem_api_patch.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_quest.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_rewards.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_saipark.dart';
@@ -14,6 +16,8 @@ import 'package:temtem_api_wrapper/src/model/temtem_api_tem.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_training_course.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_traits.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_type.dart';
+import 'package:temtem_api_wrapper/src/model/temtem_api_weakness.dart';
+import 'package:temtem_api_wrapper/src/model/temtem_api_weakness_calc.dart';
 import 'package:temtem_api_wrapper/src/provider/http_provider.dart';
 
 class TemTemApi {
@@ -156,5 +160,39 @@ class TemTemApi {
     return parsedData
         .map<TemTemApiCosmetic>((e) => TemTemApiCosmetic.fromJson(e))
         .toList();
+  }
+
+  Future<List<TemTemApiDye>> getDyes() async {
+    final response = await _provider.getDyes();
+    final parsedData = response as List;
+    return parsedData
+        .map<TemTemApiDye>((e) => TemTemApiDye.fromJson(e))
+        .toList();
+  }
+
+  Future<List<TemTemApiPatch>> getPatches() async {
+    final response = await _provider.getPatches();
+    final parsedData = response as List;
+    return parsedData
+        .map<TemTemApiPatch>((e) => TemTemApiPatch.fromJson(e))
+        .toList();
+  }
+
+  Future<TemTemApiWeakness> getWeaknesses() async {
+    final response = await _provider.getWeaknesses();
+    return TemTemApiWeakness.fromJson(response);
+  }
+
+  Future<TemTemApiWeaknessCalc> calculateWeakness(
+      String attacking, List<String> defending) async {
+    assert(attacking != null);
+    assert(defending != null && defending.isNotEmpty);
+    final response = await _provider.calculateWeaknesses(attacking, defending);
+    return TemTemApiWeaknessCalc.fromJson(response);
+  }
+
+  Future<List> getBreeding() async {
+    final response = await _provider.getBreeding();
+    return response as List;
   }
 }
