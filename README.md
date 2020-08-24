@@ -1,5 +1,11 @@
 # temtem_api_wrapper
 
+[![Issues](https://img.shields.io/github/issues/TesteurManiak/temtem_api_wrapper)](https://github.com/TesteurManiak/temtem_api_wrapper/issues)
+[![Forks](https://img.shields.io/github/forks/TesteurManiak/temtem_api_wrapper)](https://github.com/TesteurManiak/temtem_api_wrapper/network/members)
+[![Stars](https://img.shields.io/github/stars/TesteurManiak/temtem_api_wrapper)](https://github.com/TesteurManiak/temtem_api_wrapper/stargazers)
+[![Pub Version](https://img.shields.io/pub/v/temtem_api_wrapper?color=blue&logo=dart)](https://pub.dev/packages/temtem_api_wrapper)
+[![License](https://img.shields.io/github/license/TesteurManiak/temtem_api_wrapper)]()
+
 Wrapper for the [unofficial Temtem API](https://temtem-api.mael.tech/).
 
 ## How to use
