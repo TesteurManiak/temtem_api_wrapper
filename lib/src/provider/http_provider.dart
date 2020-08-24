@@ -109,9 +109,11 @@ class HttpProvider implements ApiProvider {
 
   @override
   Future<dynamic> calculateWeaknesses(
-          String attacking, List<String> defending) =>
-      _get(
-          '$_baseUrl/weaknesses/calculate?attacking=$attacking&defending=${defending.join(",")}');
+      String attacking, List<String> defending) {
+    final baseRequest = '/weaknesses/calculate?attacking=';
+    return _get(
+        '$_baseUrl$baseRequest$attacking&defending=${defending.join(",")}');
+  }
 
   @override
   Future<dynamic> getBreeding() => _get('$_baseUrl/breeding');
