@@ -20,12 +20,23 @@ import 'package:temtem_api_wrapper/src/model/temtem_api_weakness.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_weakness_calc.dart';
 import 'package:temtem_api_wrapper/src/provider/http_provider.dart';
 
+/// Base class used to manage all requests. You can pass a parameter [provider]
+/// if you've made your own implementation of [ApiProvider].
 class TemTemApi {
   final ApiProvider _provider;
 
   TemTemApi({ApiProvider provider = const HttpProvider()})
       : _provider = provider;
 
+  /// Get informations for all available Temtems on the API.
+  /// 
+  /// [names] : A list of the Temtem names that you want information about.
+  /// 
+  /// [fields] : A list of fields you want returned.
+  /// 
+  /// [expand] : A list of fields you want extended.
+  /// You can extend the trait, technique, and type fields, which then means
+  /// they will return an array of data in the shape returned by the endpoints.
   Future<List<TemTemApiTem>> getTemTems({
     List<String> names = const [],
     List<String> fields = const [],
@@ -39,6 +50,13 @@ class TemTemApi {
         .toList();
   }
 
+  /// Get informations for a specific Temtem, specified by its [number].
+  /// 
+  /// [fields] : A list of fields you want returned.
+  /// 
+  /// [expand] : A list of fields you want extended.
+  /// You can extend the trait, technique, and type fields, which then means
+  /// they will return an array of data in the shape returned by the endpoints.
   Future<TemTemApiTem> getTemTem(int number,
       {List<String> fields = const [], List<String> expand = const []}) async {
     assert(number != null);
@@ -47,6 +65,9 @@ class TemTemApi {
     return TemTemApiTem.fromJson(response);
   }
 
+  /// Calculates the Freetem! reward for catching a specific Temtem at a certain
+  /// [level]. The Temtem parameter is the [name] of the temtem, it is case
+  /// insensitive.
   Future<TemTemApiFreeTem> getFreeTem(String name, int level) async {
     assert(name != null);
     assert(level != null);
