@@ -1,5 +1,6 @@
 library temtem_api_wrapper;
 
+export 'src/api_provider.dart';
 export 'src/model/temtem_api_character.dart';
 export 'src/model/temtem_api_condition.dart';
 export 'src/model/temtem_api_cosmetic.dart';

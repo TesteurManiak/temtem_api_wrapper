@@ -1,3 +1,4 @@
+/// Astract class to use if you need to implement your own provider.
 abstract class ApiProvider {
   Future<dynamic> getTemtems({
     List<String> names = const [],
