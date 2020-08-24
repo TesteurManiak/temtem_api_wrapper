@@ -7,13 +7,4 @@ void main() {
     final TemTemApiTem temtem = TemTemApiTem.fromJson(oreeJSON);
     expect(temtem, isNotNull);
   });
-
-  test('TemTemApiTem the method [] was called on null', () {
-    List<Location> locations;
-    for (final e in oreeJSON['locations']) {
-      locations ??= [];
-      locations.add(Location.fromJson(e));
-    }
-    expect(locations, isNull);
-  });
 }

@@ -132,15 +132,17 @@ class _FreeTem {
 
   _FreeTem({this.minLevel, this.maxLevel, this.minPansuns, this.maxPansuns});
 
-  factory _FreeTem.fromJson(Map<String, dynamic> json) => _FreeTem(
-        minLevel: json['minLevel'],
-        maxLevel: json['maxLevel'],
-        minPansuns: json['minPansuns'],
-        maxPansuns: json['maxPansuns'],
-      );
+  factory _FreeTem.fromJson(Map<String, dynamic> json) {
+    return _FreeTem(
+      minLevel: json['minLevel'],
+      maxLevel: json['maxLevel'],
+      minPansuns: json['minPansuns'],
+      maxPansuns: json['maxPansuns'],
+    );
+  }
 }
 
-class Location {
+class _Location {
   final String location;
   final String place;
   final String note;
@@ -149,7 +151,7 @@ class Location {
   final String level;
   final _FreeTem freeTem;
 
-  Location({
+  _Location({
     this.location,
     this.place,
     this.note,
@@ -159,15 +161,15 @@ class Location {
     this.freeTem,
   });
 
-  factory Location.fromJson(Map<String, dynamic> json) {
-    return Location(
+  factory _Location.fromJson(Map<String, dynamic> json) {
+    return _Location(
       location: json['location'],
       place: json['place'],
       note: json['note'],
       island: json['island'],
       frequency: json['frequency'],
       level: json['level'],
-      freeTem: _FreeTem.fromJson(json['freeTem']),
+      freeTem: _FreeTem.fromJson(json['freetem']),
     );
   }
 }
@@ -199,7 +201,7 @@ class TemTemApiTem {
   final _Evolution evolution;
   final String wikiPortraitUrlLarge;
   final String lumaWikiPortraitUrlLarge;
-  final List<Location> locations;
+  final List<_Location> locations;
   final String icon;
   final String lumaIcon;
   final _GenderRatio genderRatio;
@@ -248,12 +250,6 @@ class TemTemApiTem {
   });
 
   factory TemTemApiTem.fromJson(Map<String, dynamic> json) {
-    List<Location> locations;
-    for (final e in json['locations']) {
-      locations ??= [];
-      locations.add(Location.fromJson(e));
-    }
-
     return TemTemApiTem(
       number: json['number'],
       name: json['name'],
@@ -270,7 +266,8 @@ class TemTemApiTem {
       evolution: _Evolution.fromJson(json['evolution']),
       wikiPortraitUrlLarge: json['wikiPortraitUrlLarge'],
       lumaWikiPortraitUrlLarge: json['lumaWikiPortraitUrlLarge'],
-      locations: locations,
+      locations: Iterable<_Location>.generate(json['locations'].length,
+          (index) => _Location.fromJson(json['locations'][index])).toList(),
       icon: json['icon'],
       lumaIcon: json['lumaIcon'],
       genderRatio: _GenderRatio.fromJson(json['genderRatio']),

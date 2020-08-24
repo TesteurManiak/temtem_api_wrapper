@@ -26,7 +26,7 @@ class _AllTemtemsState extends State<AllTemtems>
     return FutureBuilder<List<TemTemApiTem>>(
       future: _future,
       builder: (context, snapshot) {
-        if (snapshot.hasError) return Text(snapshot.error.toString());
+        if (snapshot.hasError) throw snapshot.error;
         if (!snapshot.hasData) return const CircularProgressIndicator();
         return ListView(
           children: [
