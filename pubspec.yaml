@@ -1,7 +1,6 @@
 name: temtem_api_wrapper
 description: Wrapper for the unofficial Temtem API.
 version: 0.1.0
-author: Guillaume Roux <rouxguillaume8@gmail.com>
 homepage: https://github.com/TesteurManiak
 repository: https://github.com/TesteurManiak/temtem_api_wrapper/
 
