@@ -18,6 +18,8 @@ class TemTemApiLocation {
   final String description;
   final List<String> temtemTypes;
   final String type;
+  final String imageWikiThumbnail;
+  final String imageWikiFile;
   final List<_Location> routes;
   final List<_Location> townsAndVillages;
   final List<_Location> landmarks;
@@ -30,6 +32,8 @@ class TemTemApiLocation {
     this.description,
     this.temtemTypes,
     this.type,
+    this.imageWikiThumbnail,
+    this.imageWikiFile,
     this.routes,
     this.townsAndVillages,
     this.landmarks,
@@ -44,6 +48,8 @@ class TemTemApiLocation {
         description: json['description'],
         temtemTypes: List<String>.from(json['temtemTypes']),
         type: json['type'],
+        imageWikiThumbnail: json['imageWikiThumbnail'],
+        imageWikiFile: json['imageWikiFile'],
         routes: List<_Location>.generate(
             json['routes'] == null ? 0 : json['routes'].length,
             (index) => _Location.fromJson(json['routes'][index])),
