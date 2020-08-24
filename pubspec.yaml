@@ -1,6 +1,6 @@
 name: temtem_api_wrapper
 description: Wrapper for all the methods of the unofficial Temtem REST API.
-version: 0.1.0+1
+version: 0.1.1
 homepage: https://github.com/TesteurManiak
 repository: https://github.com/TesteurManiak/temtem_api_wrapper/
 
