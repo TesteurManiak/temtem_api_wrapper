@@ -1,3 +1,7 @@
+# 0.1.1+1
+
+* Made more class public
+
 # 0.1.1
 
 * Updated `temtem_api_location.dart`

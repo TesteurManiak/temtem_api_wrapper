@@ -1,11 +1,11 @@
-class _Location {
+class Location {
   final String name;
   final String wikiUrl;
   final String type;
 
-  _Location({this.name, this.wikiUrl, this.type});
+  Location({this.name, this.wikiUrl, this.type});
 
-  factory _Location.fromJson(Map<String, dynamic> json) => _Location(
+  factory Location.fromJson(Map<String, dynamic> json) => Location(
         name: json['name'],
         wikiUrl: json['wikiUrl'],
         type: json['type'],
@@ -20,9 +20,9 @@ class TemTemApiLocation {
   final String type;
   final String imageWikiThumbnail;
   final String imageWikiFile;
-  final List<_Location> routes;
-  final List<_Location> townsAndVillages;
-  final List<_Location> landmarks;
+  final List<Location> routes;
+  final List<Location> townsAndVillages;
+  final List<Location> landmarks;
   final List<String> temtem;
   final List<String> trivia;
 
@@ -50,17 +50,17 @@ class TemTemApiLocation {
         type: json['type'],
         imageWikiThumbnail: json['imageWikiThumbnail'],
         imageWikiFile: json['imageWikiFile'],
-        routes: List<_Location>.generate(
+        routes: List<Location>.generate(
             json['routes'] == null ? 0 : json['routes'].length,
-            (index) => _Location.fromJson(json['routes'][index])),
-        townsAndVillages: List<_Location>.generate(
+            (index) => Location.fromJson(json['routes'][index])),
+        townsAndVillages: List<Location>.generate(
             json['townsAndVillages'] == null
                 ? 0
                 : json['townsAndVillages'].length,
-            (index) => _Location.fromJson(json['townsAndVillages'][index])),
-        landmarks: List<_Location>.generate(
+            (index) => Location.fromJson(json['townsAndVillages'][index])),
+        landmarks: List<Location>.generate(
             json['landmarks'] == null ? 0 : json['landmarks'].length,
-            (index) => _Location.fromJson(json['landmarks'][index])),
+            (index) => Location.fromJson(json['landmarks'][index])),
         temtem: List<String>.from(json['temtem']),
         trivia: List<String>.from(json['trivia']),
       );

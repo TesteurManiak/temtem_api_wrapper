@@ -1,12 +1,12 @@
-class _Place {
+class Place {
   final String temtem;
   final int lumaRate;
   final int minSvs;
   final int eggMoves;
 
-  _Place({this.temtem, this.lumaRate, this.minSvs, this.eggMoves});
+  Place({this.temtem, this.lumaRate, this.minSvs, this.eggMoves});
 
-  factory _Place.fromJson(Map<String, dynamic> json) => _Place(
+  factory Place.fromJson(Map<String, dynamic> json) => Place(
         temtem: json['temtem'],
         lumaRate: json['lumaRate'],
         minSvs: json['minSvs'],
@@ -18,8 +18,8 @@ class TemTemApiSaipark {
   final String dateRange;
   final String startDate;
   final String endDate;
-  final List<_Place> land;
-  final List<_Place> water;
+  final List<Place> land;
+  final List<Place> water;
 
   TemTemApiSaipark({
     this.dateRange,
@@ -34,11 +34,11 @@ class TemTemApiSaipark {
         dateRange: json['dateRange'],
         startDate: json['startDate'],
         endDate: json['endDate'],
-        land: List<_Place>.generate(
+        land: List<Place>.generate(
             json['land'] == null ? 0 : json['land'].length,
-            (index) => _Place.fromJson(json['land'][index])),
-        water: List<_Place>.generate(
+            (index) => Place.fromJson(json['land'][index])),
+        water: List<Place>.generate(
             json['water'] == null ? 0 : json['water'].length,
-            (index) => _Place.fromJson(json['water'][index])),
+            (index) => Place.fromJson(json['water'][index])),
       );
 }
