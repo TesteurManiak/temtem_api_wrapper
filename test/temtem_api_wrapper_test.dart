@@ -1,5 +1,19 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:temtem_api_wrapper/src/model/temtem_api_tem.dart';
+import 'test_json.dart';
 
 void main() {
-  test('adds one to input values', () {});
+  test('TemTemApiTem List<dynamic> is not subtype of int', () {
+    final TemTemApiTem temtem = TemTemApiTem.fromJson(oreeJSON);
+    expect(temtem, isNotNull);
+  });
+
+  test('TemTemApiTem the method [] was called on null', () {
+    List<Location> locations;
+    for (final e in oreeJSON['locations']) {
+      locations ??= [];
+      locations.add(Location.fromJson(e));
+    }
+    expect(locations, isNull);
+  });
 }

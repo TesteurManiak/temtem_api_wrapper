@@ -140,7 +140,7 @@ class _FreeTem {
       );
 }
 
-class _Location {
+class Location {
   final String location;
   final String place;
   final String note;
@@ -149,7 +149,7 @@ class _Location {
   final String level;
   final _FreeTem freeTem;
 
-  _Location({
+  Location({
     this.location,
     this.place,
     this.note,
@@ -159,8 +159,8 @@ class _Location {
     this.freeTem,
   });
 
-  factory _Location.fromJson(Map<String, dynamic> json) {
-    return _Location(
+  factory Location.fromJson(Map<String, dynamic> json) {
+    return Location(
       location: json['location'],
       place: json['place'],
       note: json['note'],
@@ -199,7 +199,7 @@ class TemTemApiTem {
   final _Evolution evolution;
   final String wikiPortraitUrlLarge;
   final String lumaWikiPortraitUrlLarge;
-  final List<_Location> locations;
+  final List<Location> locations;
   final String icon;
   final String lumaIcon;
   final _GenderRatio genderRatio;
@@ -248,13 +248,10 @@ class TemTemApiTem {
   });
 
   factory TemTemApiTem.fromJson(Map<String, dynamic> json) {
-    List<Map<String, dynamic>> _techniques = [];
-    if (json['techniques'] != null) {
-      json['techniques'].forEach((item) => _techniques.add({
-            'name': item['name'],
-            'source': item['source'],
-            'levels': item['levels'],
-          }));
+    List<Location> locations;
+    for (final e in json['locations']) {
+      locations ??= [];
+      locations.add(Location.fromJson(e));
     }
 
     return TemTemApiTem(
@@ -267,16 +264,13 @@ class TemTemApiTem {
       stats: _Stats.fromJson(json['stats']),
       traits: List<String>.from(json['traits']),
       details: _Details.fromJson(json['details']),
-      techniques: List<_Technique>.generate(
-          json['techniques'] == null ? 0 : json['techniques'].length,
-          (index) => _Technique.fromJson(json['techniques'][index])),
+      techniques: Iterable<_Technique>.generate(json['techniques'].length,
+          (index) => _Technique.fromJson(json['techniques'][index])).toList(),
       trivia: List<String>.from(json['trivia']),
       evolution: _Evolution.fromJson(json['evolution']),
       wikiPortraitUrlLarge: json['wikiPortraitUrlLarge'],
       lumaWikiPortraitUrlLarge: json['lumaWikiPortraitUrlLarge'],
-      locations: List<_Location>.generate(
-          json['locations'] == null ? 0 : json['locations'].length,
-          (index) => _Location.fromJson(json['locations'][index])),
+      locations: locations,
       icon: json['icon'],
       lumaIcon: json['lumaIcon'],
       genderRatio: _GenderRatio.fromJson(json['genderRatio']),
