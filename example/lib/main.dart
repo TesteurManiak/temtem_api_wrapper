@@ -1,3 +1,4 @@
+import 'package:example/pages/all_conditions.dart';
 import 'package:example/pages/all_rewards.dart';
 import 'package:example/pages/all_temtems.dart';
 import 'package:example/pages/all_types.dart';
@@ -52,6 +53,7 @@ class _MyHomePageState extends State<MyHomePage>
       TabItem('Temtems', AllTemtems(_api)),
       TabItem('Rewards', AllRewards(_api)),
       TabItem('Types', AllTypes(_api)),
+      TabItem('Conditions', AllConditions(_api)),
     ];
     _tabController = TabController(length: _items.length, vsync: this);
   }

@@ -1,45 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:temtem_api_wrapper/temtem_api_wrapper.dart';
 
-class AllRewards extends StatefulWidget {
+class AllConditions extends StatefulWidget {
   final TemTemApi api;
 
-  AllRewards(this.api);
+  AllConditions(this.api);
 
   @override
-  State<StatefulWidget> createState() => _AllRewardsState();
+  State<StatefulWidget> createState() => _AllConditionsState();
 }
 
-class _AllRewardsState extends State<AllRewards>
+class _AllConditionsState extends State<AllConditions>
     with AutomaticKeepAliveClientMixin {
-  Future<List<TemTemApiRewards>> _future;
+  Future<List<TemTemApiCondition>> _future;
 
   @override
   void initState() {
     super.initState();
-    _future = widget.api.getFreeTemRewards();
+    _future = widget.api.getConditions();
   }
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return FutureBuilder<List<TemTemApiRewards>>(
+    return FutureBuilder<List<TemTemApiCondition>>(
       future: _future,
       builder: (context, snapshot) {
         if (!snapshot.hasData) return const CircularProgressIndicator();
         if (snapshot.data.isEmpty) {
-          return const Center(child: Text('Empty rewards list'));
+          return const Center(child: Text('Empty conditions list'));
         }
         return ListView(
           children: [
             ...snapshot.data
-                .map<Widget>(
-                  (e) => ListTile(
-                    leading: Image.network(e.wikiImageUrl),
-                    title: Text(e.name),
-                  ),
-                )
-                .toList(),
+                .map<Widget>((e) => ListTile(
+                      title: Text(e.name),
+                      subtitle:
+                          Text(e.description, overflow: TextOverflow.ellipsis),
+                    ))
+                .toList()
           ],
         );
       },

@@ -10,7 +10,8 @@ class AllTypes extends StatefulWidget {
   State<StatefulWidget> createState() => _AllTypesState();
 }
 
-class _AllTypesState extends State<AllTypes> {
+class _AllTypesState extends State<AllTypes>
+    with AutomaticKeepAliveClientMixin {
   Future<List<TemTemApiType>> _future;
 
   @override
@@ -21,6 +22,7 @@ class _AllTypesState extends State<AllTypes> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return FutureBuilder<List<TemTemApiType>>(
       future: _future,
       builder: (context, snapshot) {
@@ -40,4 +42,7 @@ class _AllTypesState extends State<AllTypes> {
       },
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
