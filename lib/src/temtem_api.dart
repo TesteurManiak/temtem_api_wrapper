@@ -75,7 +75,7 @@ class TemTemApi {
     return TemTemApiFreeTem.fromJson(response);
   }
 
-  /// Get the rewards for the dynamic events of freeing Temtems
+  /// Get the rewards for the dynamic events of freeing Temtems.
   Future<List<TemTemApiRewards>> getFreeTemRewards() async {
     final response = await _provider.getFreetemRewards();
     final parsedData = response as List;
@@ -93,6 +93,7 @@ class TemTemApi {
         .toList();
   }
 
+  /// Get informations on all available Temtem's conditions.
   Future<List<TemTemApiCondition>> getConditions() async {
     final response = await _provider.getConditions();
     final parsedData = response as List;
@@ -101,7 +102,11 @@ class TemTemApi {
         .toList();
   }
 
-  /// Get informations on all available Temtem's conditions
+  /// Get informations on all available techniques.
+  /// 
+  /// [names] : A list of technique names that you want information about.
+  /// 
+  /// [fields] : A list of fields you want returned.
   Future<List<TemTemApiTechnique>> getTechniques(
       {List<String> names = const [], List<String> fields = const []}) async {
     final response =
@@ -112,6 +117,7 @@ class TemTemApi {
         .toList();
   }
 
+  /// Get informations on all available training courses.
   Future<List<TemTemApiTrainingCourse>> getTrainingCourses() async {
     final response = await _provider.getTrainingCourses();
     final parsedData = response as List;
@@ -121,6 +127,11 @@ class TemTemApi {
         .toList();
   }
 
+  /// Get informations on all available Temtem's traits.
+  /// 
+  /// [names] : A list of trait names that you want information about.
+  /// 
+  /// [fields] : A list of fields you want returned.
   Future<List<TemTemApiTraits>> getTraits(
       {List<String> names = const [], List<String> fields = const []}) async {
     final response = await _provider.getTraits(names: names, fields: fields);
@@ -130,6 +141,7 @@ class TemTemApi {
         .toList();
   }
 
+  /// Get informations on all available items.
   Future<List<TemTemApiItem>> getItems() async {
     final response = await _provider.getItems();
     final parsedData = response as List;
@@ -138,6 +150,7 @@ class TemTemApi {
         .toList();
   }
 
+  /// Get informations on all available gears.
   Future<List<TemTemApiGear>> getGears() async {
     final response = await _provider.getGears();
     final parsedData = response as List;
@@ -146,6 +159,7 @@ class TemTemApi {
         .toList();
   }
 
+  /// Get informations on all available quests.
   Future<List<TemTemApiQuest>> getQuests() async {
     final response = await _provider.getQuests();
     final parsedData = response as List;
@@ -154,6 +168,7 @@ class TemTemApi {
         .toList();
   }
 
+  /// Get informations on all available characters.
   Future<List<TemTemApiCharacter>> getCharacters() async {
     final response = await _provider.getCharacters();
     final parsedData = response as List;
@@ -162,6 +177,7 @@ class TemTemApi {
         .toList();
   }
 
+  /// Get informations on all available saipark rotation.
   Future<List<TemTemApiSaipark>> getSaiparks() async {
     final response = await _provider.getSaiparks();
     final parsedData = response as List;
@@ -170,6 +186,7 @@ class TemTemApi {
         .toList();
   }
 
+  /// Get informations on all available islands.
   Future<List<TemTemApiLocation>> getLocations() async {
     final response = await _provider.getLocations();
     final parsedData = response as List;
@@ -178,6 +195,7 @@ class TemTemApi {
         .toList();
   }
 
+  /// Get informations on all available cosmetics.
   Future<List<TemTemApiCosmetic>> getCosmetics() async {
     final response = await _provider.getCosmetics();
     final parsedData = response as List;
@@ -186,6 +204,7 @@ class TemTemApi {
         .toList();
   }
 
+  /// Get informations on all available dyes.
   Future<List<TemTemApiDye>> getDyes() async {
     final response = await _provider.getDyes();
     final parsedData = response as List;
@@ -194,6 +213,7 @@ class TemTemApi {
         .toList();
   }
 
+  /// Get informations on all released patches.
   Future<List<TemTemApiPatch>> getPatches() async {
     final response = await _provider.getPatches();
     final parsedData = response as List;
@@ -202,11 +222,17 @@ class TemTemApi {
         .toList();
   }
 
+  /// Get informations on all calculated weaknesses.
   Future<TemTemApiWeakness> getWeaknesses() async {
     final response = await _provider.getWeaknesses();
     return TemTemApiWeakness.fromJson(response);
   }
 
+  /// Get the modifier of an attacking type on defending types.
+  /// 
+  /// [attacking] : A valid Temtem type to use as the attack value.
+  /// 
+  /// [defending] : A list of valid Temtem types to use as the defending values
   Future<TemTemApiWeaknessCalc> calculateWeakness(
       String attacking, List<String> defending) async {
     assert(attacking != null);
@@ -215,6 +241,7 @@ class TemTemApi {
     return TemTemApiWeaknessCalc.fromJson(response);
   }
 
+  /// This is work in progress
   Future<List> getBreeding() async {
     final response = await _provider.getBreeding();
     return response as List;
