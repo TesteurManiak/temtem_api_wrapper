@@ -65,7 +65,7 @@ class TemTemApi {
     return TemTemApiTem.fromJson(response);
   }
 
-  /// Calculates the Freetem! reward for catching a specific Temtem at a certain
+  /// Calculates the Freetem reward for catching a specific Temtem at a certain
   /// [level]. The Temtem parameter is the [name] of the temtem, it is case
   /// insensitive.
   Future<TemTemApiFreeTem> getFreeTem(String name, int level) async {
@@ -75,6 +75,7 @@ class TemTemApi {
     return TemTemApiFreeTem.fromJson(response);
   }
 
+  /// Get the rewards for the dynamic events of freeing Temtems
   Future<List<TemTemApiRewards>> getFreeTemRewards() async {
     final response = await _provider.getFreetemRewards();
     final parsedData = response as List;
@@ -83,6 +84,7 @@ class TemTemApi {
         .toList();
   }
 
+  /// Get informations on all available Temtem's types.
   Future<List<TemTemApiType>> getTypes() async {
     final response = await _provider.getTypes();
     final parsedData = response as List;
@@ -99,6 +101,7 @@ class TemTemApi {
         .toList();
   }
 
+  /// Get informations on all available Temtem's conditions
   Future<List<TemTemApiTechnique>> getTechniques(
       {List<String> names = const [], List<String> fields = const []}) async {
     final response =
