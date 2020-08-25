@@ -1,3 +1,7 @@
+# 0.1.1+3
+
+* Code format to dartfmt
+
 # 0.1.1+2
 
 * Made `TemLocation`, `Technique` and `EvolutionNode` class public
