@@ -45,8 +45,7 @@ abstract class ApiProvider {
 
   Future<dynamic> getWeaknesses();
 
-  Future<dynamic> calculateWeaknesses(
-      String attacking, List<String> defending);
+  Future<dynamic> calculateWeaknesses(String attacking, List<String> defending);
 
   Future<dynamic> getBreeding();
 }

@@ -60,18 +60,18 @@ class _Details {
   }
 }
 
-class _Technique {
+class Technique {
   final String name;
   final String source;
   final int levels;
 
-  _Technique({this.name, this.source, this.levels});
+  Technique({this.name, this.source, this.levels});
 
-  factory _Technique.fromJson(Map<String, dynamic> json) => _Technique(
+  factory Technique.fromJson(Map<String, dynamic> json) => Technique(
       name: json['name'], source: json['source'], levels: json['levels']);
 }
 
-class _EvolutionNode {
+class EvolutionNode {
   final int number;
   final String name;
   final int stage;
@@ -79,7 +79,7 @@ class _EvolutionNode {
   final bool trading;
   final Map<String, dynamic> traitMapping;
 
-  _EvolutionNode({
+  EvolutionNode({
     this.number,
     this.name,
     this.stage,
@@ -88,7 +88,7 @@ class _EvolutionNode {
     this.traitMapping,
   });
 
-  factory _EvolutionNode.fromJson(Map<String, dynamic> json) => _EvolutionNode(
+  factory EvolutionNode.fromJson(Map<String, dynamic> json) => EvolutionNode(
         number: json['number'],
         name: json['name'],
         stage: json['stage'],
@@ -100,7 +100,7 @@ class _EvolutionNode {
 
 class _Evolution {
   final int stage;
-  final List<_EvolutionNode> evolutionTree;
+  final List<EvolutionNode> evolutionTree;
   final bool evolves;
   final String type;
   final String description;
@@ -115,9 +115,9 @@ class _Evolution {
 
   factory _Evolution.fromJson(Map<String, dynamic> json) => _Evolution(
         stage: json['stage'],
-        evolutionTree: List<_EvolutionNode>.generate(
+        evolutionTree: List<EvolutionNode>.generate(
             json['evolutionTree'] == null ? 0 : json['evolutionTree'].length,
-            (index) => _EvolutionNode.fromJson(json['evolutionTree'][index])),
+            (index) => EvolutionNode.fromJson(json['evolutionTree'][index])),
         evolves: json['evolves'],
         type: json['type'],
         description: json['description'],
@@ -142,7 +142,7 @@ class _FreeTem {
   }
 }
 
-class _Location {
+class TemLocation {
   final String location;
   final String place;
   final String note;
@@ -151,7 +151,7 @@ class _Location {
   final String level;
   final _FreeTem freeTem;
 
-  _Location({
+  TemLocation({
     this.location,
     this.place,
     this.note,
@@ -161,8 +161,8 @@ class _Location {
     this.freeTem,
   });
 
-  factory _Location.fromJson(Map<String, dynamic> json) {
-    return _Location(
+  factory TemLocation.fromJson(Map<String, dynamic> json) {
+    return TemLocation(
       location: json['location'],
       place: json['place'],
       note: json['note'],
@@ -196,12 +196,12 @@ class TemTemApiTem {
   final String lumaPortraitWikiUrl;
   final List<String> traits;
   final _Details details;
-  final List<_Technique> techniques;
+  final List<Technique> techniques;
   final List<String> trivia;
   final _Evolution evolution;
   final String wikiPortraitUrlLarge;
   final String lumaWikiPortraitUrlLarge;
-  final List<_Location> locations;
+  final List<TemLocation> locations;
   final String icon;
   final String lumaIcon;
   final _GenderRatio genderRatio;
@@ -260,14 +260,14 @@ class TemTemApiTem {
       stats: _Stats.fromJson(json['stats']),
       traits: List<String>.from(json['traits']),
       details: _Details.fromJson(json['details']),
-      techniques: Iterable<_Technique>.generate(json['techniques'].length,
-          (index) => _Technique.fromJson(json['techniques'][index])).toList(),
+      techniques: Iterable<Technique>.generate(json['techniques'].length,
+          (index) => Technique.fromJson(json['techniques'][index])).toList(),
       trivia: List<String>.from(json['trivia']),
       evolution: _Evolution.fromJson(json['evolution']),
       wikiPortraitUrlLarge: json['wikiPortraitUrlLarge'],
       lumaWikiPortraitUrlLarge: json['lumaWikiPortraitUrlLarge'],
-      locations: Iterable<_Location>.generate(json['locations'].length,
-          (index) => _Location.fromJson(json['locations'][index])).toList(),
+      locations: Iterable<TemLocation>.generate(json['locations'].length,
+          (index) => TemLocation.fromJson(json['locations'][index])).toList(),
       icon: json['icon'],
       lumaIcon: json['lumaIcon'],
       genderRatio: _GenderRatio.fromJson(json['genderRatio']),

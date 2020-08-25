@@ -29,11 +29,11 @@ class TemTemApi {
       : _provider = provider;
 
   /// Get informations for all available Temtems on the API.
-  /// 
+  ///
   /// [names] : A list of the Temtem names that you want information about.
-  /// 
+  ///
   /// [fields] : A list of fields you want returned.
-  /// 
+  ///
   /// [expand] : A list of fields you want extended.
   /// You can extend the trait, technique, and type fields, which then means
   /// they will return an array of data in the shape returned by the endpoints.
@@ -51,9 +51,9 @@ class TemTemApi {
   }
 
   /// Get informations for a specific Temtem, specified by its [number].
-  /// 
+  ///
   /// [fields] : A list of fields you want returned.
-  /// 
+  ///
   /// [expand] : A list of fields you want extended.
   /// You can extend the trait, technique, and type fields, which then means
   /// they will return an array of data in the shape returned by the endpoints.
@@ -103,9 +103,9 @@ class TemTemApi {
   }
 
   /// Get informations on all available techniques.
-  /// 
+  ///
   /// [names] : A list of technique names that you want information about.
-  /// 
+  ///
   /// [fields] : A list of fields you want returned.
   Future<List<TemTemApiTechnique>> getTechniques(
       {List<String> names = const [], List<String> fields = const []}) async {
@@ -128,9 +128,9 @@ class TemTemApi {
   }
 
   /// Get informations on all available Temtem's traits.
-  /// 
+  ///
   /// [names] : A list of trait names that you want information about.
-  /// 
+  ///
   /// [fields] : A list of fields you want returned.
   Future<List<TemTemApiTraits>> getTraits(
       {List<String> names = const [], List<String> fields = const []}) async {
@@ -229,9 +229,9 @@ class TemTemApi {
   }
 
   /// Get the modifier of an attacking type on defending types.
-  /// 
+  ///
   /// [attacking] : A valid Temtem type to use as the attack value.
-  /// 
+  ///
   /// [defending] : A list of valid Temtem types to use as the defending values
   Future<TemTemApiWeaknessCalc> calculateWeakness(
       String attacking, List<String> defending) async {
