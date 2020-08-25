@@ -1,6 +1,10 @@
+# 0.1.1+2
+
+* Made `TemLocation`, `Technique` and `EvolutionNode` class public
+
 # 0.1.1+1
 
-* Made more class public
+* Made `Location`, `Place` and `SynergyEffect` class public
 
 # 0.1.1
 
