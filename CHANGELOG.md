@@ -1,7 +1,7 @@
 # 1.0.0
 
 * Added unit tests
-* Added `TemTemApiDojo`
+* Added `TemTemApiDojo` model
 
 ## Breaking Changes
 
@@ -9,6 +9,7 @@
 * Bumped Dart SDK minimum version to `2.15`
 * Migration to null-safety
 * `TemTemApiRewards.startDate` & `TemTemApiRewards.endDate` are now `DateTime`
+* Removed `TemTemApiPatch.pathInfo`, replaced it with `TemTemTemApiPatch.fixes`, `TemTemApiPatch.improvements` & `TemTemApiPatch.features` properties
 
 # 0.1.1+3
 
