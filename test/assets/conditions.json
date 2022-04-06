@@ -1,0 +1,7 @@
+[
+    {
+        "name": "Cold",
+        "description": "If Cold is afflicted twice, the Temtem becomes Frozen. Frozen Temtem cannot attack, but they can rest normally. Cold and Frozen also serve to erase the Burnt Condition from a Temtem, while Burnt erases both Cold and Frozen",
+        "icon": "/images/icons/conditions/Cold.png"
+    }
+]

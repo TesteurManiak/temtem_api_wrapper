@@ -1,0 +1,15 @@
+[
+    {
+        "name": "Aggressive DNA Strand",
+        "wikiUrl": "https://temtem.gamepedia.com/Aggressive_DNA_Strand",
+        "wikiIconUrl": "https://gamepedia.cursecdn.com/temtem_gamepedia_en/8/8f/AggressiveDNAStrand.png",
+        "icon": "/images/icons/gear/AggressiveDNAStrand.png",
+        "category": "Gear",
+        "consumable": true,
+        "limitedQuantity": false,
+        "purchasable": true,
+        "buyPrice": 10,
+        "description": "Aggressive DNA Strand This single-use DNA strand ensures the egg inherits the parent's ATK.",
+        "gameDescription": "NEEDS DESCRIPTION"
+    }
+]

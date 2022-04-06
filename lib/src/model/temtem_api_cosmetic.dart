@@ -9,14 +9,14 @@ class TemTemApiCosmetic {
   final String description;
 
   TemTemApiCosmetic({
-    this.type,
-    this.wikiImageUrl,
-    this.wikiUrl,
-    this.name,
-    this.location,
-    this.cost,
-    this.requirement,
-    this.description,
+    required this.type,
+    required this.wikiImageUrl,
+    required this.wikiUrl,
+    required this.name,
+    required this.location,
+    required this.cost,
+    required this.requirement,
+    required this.description,
   });
 
   factory TemTemApiCosmetic.fromJson(Map<String, dynamic> json) =>
