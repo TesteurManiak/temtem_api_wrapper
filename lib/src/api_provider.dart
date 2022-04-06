@@ -6,8 +6,11 @@ abstract class ApiProvider {
     List<String> expand = const [],
   });
 
-  Future<dynamic> getTemtem(int id,
-      {List<String> fields = const [], List<String> expand = const []});
+  Future<dynamic> getTemtem(
+    int id, {
+    List<String> fields = const [],
+    List<String> expand = const [],
+  });
 
   Future<dynamic> getFreetem(String name, int level);
 

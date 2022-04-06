@@ -1,6 +1,7 @@
 import 'dart:convert';
-import 'package:temtem_api_wrapper/src/api_provider.dart';
+
 import 'package:http/http.dart' as http;
+import 'package:temtem_api_wrapper/src/api_provider.dart';
 
 class HttpProvider implements ApiProvider {
   static const _baseUrl = 'https://temtem-api.mael.tech/api';
@@ -120,7 +121,7 @@ class HttpProvider implements ApiProvider {
 
   Future<dynamic> _get(String request) async {
     try {
-      final response = await http.get(request);
+      final response = await http.get(Uri.parse(request));
       if (response.statusCode == 200) {
         return jsonDecode(response.body);
       } else {

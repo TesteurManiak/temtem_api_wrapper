@@ -6,17 +6,15 @@ class _Stats {
   final int def;
   final int spatk;
   final int spdef;
-  final int total;
 
   _Stats({
-    this.hp,
-    this.sta,
-    this.spd,
-    this.atk,
-    this.def,
-    this.spatk,
-    this.spdef,
-    this.total,
+    required this.hp,
+    required this.sta,
+    required this.spd,
+    required this.atk,
+    required this.def,
+    required this.spatk,
+    required this.spdef,
   });
 
   factory _Stats.fromJson(Map<String, dynamic> json) => _Stats(
@@ -27,19 +25,43 @@ class _Stats {
         def: json['def'],
         spatk: json['spatk'],
         spdef: json['spdef'],
-        total: json['total'],
       );
+}
 
-  factory _Stats.fromTvYieldsJson(Map<String, dynamic> json) => _Stats(
-        hp: json['hp'],
-        sta: json['sta'],
-        spd: json['spd'],
-        atk: json['atk'],
-        def: json['def'],
-        spatk: json['spatk'],
-        spdef: json['spdef'],
-        total: json['total'],
-      );
+class _BaseStats extends _Stats {
+  final int total;
+
+  _BaseStats({
+    required int hp,
+    required int sta,
+    required int spd,
+    required int atk,
+    required int def,
+    required int spatk,
+    required int spdef,
+    required this.total,
+  }) : super(
+          hp: hp,
+          sta: sta,
+          spd: spd,
+          atk: atk,
+          def: def,
+          spatk: spatk,
+          spdef: spdef,
+        );
+
+  factory _BaseStats.fromJson(Map<String, dynamic> json) {
+    return _BaseStats(
+      hp: json['hp'] as int,
+      sta: json['sta'] as int,
+      spd: json['spd'] as int,
+      atk: json['atk'] as int,
+      def: json['def'] as int,
+      spatk: json['spatk'] as int,
+      spdef: json['spdef'] as int,
+      total: json['total'] as int,
+    );
+  }
 }
 
 class _Details {
@@ -48,7 +70,12 @@ class _Details {
   final int weightKg;
   final int weightLbs;
 
-  _Details({this.heightCm, this.heightInches, this.weightKg, this.weightLbs});
+  _Details({
+    required this.heightCm,
+    required this.heightInches,
+    required this.weightKg,
+    required this.weightLbs,
+  });
 
   factory _Details.fromJson(Map<String, dynamic> json) {
     return _Details(
@@ -63,37 +90,44 @@ class _Details {
 class Technique {
   final String name;
   final String source;
-  final int levels;
+  final int? levels;
 
-  Technique({this.name, this.source, this.levels});
+  Technique({
+    required this.name,
+    required this.source,
+    required this.levels,
+  });
 
   factory Technique.fromJson(Map<String, dynamic> json) => Technique(
-      name: json['name'], source: json['source'], levels: json['levels']);
+        name: json['name'],
+        source: json['source'],
+        levels: json['levels'] as int?,
+      );
 }
 
 class EvolutionNode {
   final int number;
   final String name;
   final int stage;
-  final dynamic levels;
-  final bool trading;
+  final num? levels;
+  final bool? trading;
   final Map<String, dynamic> traitMapping;
 
   EvolutionNode({
-    this.number,
-    this.name,
-    this.stage,
-    this.levels,
-    this.trading,
-    this.traitMapping,
+    required this.number,
+    required this.name,
+    required this.stage,
+    required this.levels,
+    required this.trading,
+    required this.traitMapping,
   });
 
   factory EvolutionNode.fromJson(Map<String, dynamic> json) => EvolutionNode(
         number: json['number'],
         name: json['name'],
         stage: json['stage'],
-        levels: json['levels'],
-        trading: json['trading'],
+        levels: json['levels'] as num?,
+        trading: json['trading'] as bool?,
         traitMapping: json['traitMapping'],
       );
 }
@@ -103,14 +137,14 @@ class _Evolution {
   final List<EvolutionNode> evolutionTree;
   final bool evolves;
   final String type;
-  final String description;
+  final String? description;
 
   _Evolution({
-    this.stage,
-    this.evolutionTree,
-    this.evolves,
-    this.type,
-    this.description,
+    required this.stage,
+    required this.evolutionTree,
+    required this.evolves,
+    required this.type,
+    required this.description,
   });
 
   factory _Evolution.fromJson(Map<String, dynamic> json) => _Evolution(
@@ -119,8 +153,8 @@ class _Evolution {
             json['evolutionTree'] == null ? 0 : json['evolutionTree'].length,
             (index) => EvolutionNode.fromJson(json['evolutionTree'][index])),
         evolves: json['evolves'],
-        type: json['type'],
-        description: json['description'],
+        type: json['type'] as String,
+        description: json['description'] as String?,
       );
 }
 
@@ -130,7 +164,12 @@ class _FreeTem {
   final int minPansuns;
   final int maxPansuns;
 
-  _FreeTem({this.minLevel, this.maxLevel, this.minPansuns, this.maxPansuns});
+  _FreeTem({
+    required this.minLevel,
+    required this.maxLevel,
+    required this.minPansuns,
+    required this.maxPansuns,
+  });
 
   factory _FreeTem.fromJson(Map<String, dynamic> json) {
     return _FreeTem(
@@ -152,13 +191,13 @@ class TemLocation {
   final _FreeTem freeTem;
 
   TemLocation({
-    this.location,
-    this.place,
-    this.note,
-    this.island,
-    this.frequency,
-    this.level,
-    this.freeTem,
+    required this.location,
+    required this.place,
+    required this.note,
+    required this.island,
+    required this.frequency,
+    required this.level,
+    required this.freeTem,
   });
 
   factory TemLocation.fromJson(Map<String, dynamic> json) {
@@ -178,7 +217,7 @@ class _GenderRatio {
   final double male;
   final double female;
 
-  _GenderRatio({this.male, this.female});
+  _GenderRatio({required this.male, required this.female});
 
   factory _GenderRatio.fromJson(Map<String, dynamic> json) => _GenderRatio(
         male: double.parse(json['male'].toString()),
@@ -193,14 +232,14 @@ class TemTemApiTem {
   final String portraitWikiUrl;
   final String wikiUrl;
   final _Stats stats;
-  final String lumaPortraitWikiUrl;
+  final String? lumaPortraitWikiUrl;
   final List<String> traits;
   final _Details details;
   final List<Technique> techniques;
   final List<String> trivia;
   final _Evolution evolution;
   final String wikiPortraitUrlLarge;
-  final String lumaWikiPortraitUrlLarge;
+  final String? lumaWikiPortraitUrlLarge;
   final List<TemLocation> locations;
   final String icon;
   final String lumaIcon;
@@ -208,45 +247,45 @@ class TemTemApiTem {
   final int catchRate;
   final _Stats tvYields;
   final String gameDescription;
-  final String wikiRenderStaticUrl;
-  final String wikiRenderAnimatedUrl;
-  final String wikiRenderStaticLumaUrl;
-  final String wikiRenderAnimatedLumaUrl;
-  final String renderStaticImage;
-  final String renderStaticLumaImage;
-  final String renderAnimatedImage;
-  final String renderAnimatedLumaImage;
+  final String? wikiRenderStaticUrl;
+  final String? wikiRenderAnimatedUrl;
+  final String? wikiRenderStaticLumaUrl;
+  final String? wikiRenderAnimatedLumaUrl;
+  final String? renderStaticImage;
+  final String? renderStaticLumaImage;
+  final String? renderAnimatedImage;
+  final String? renderAnimatedLumaImage;
 
   TemTemApiTem({
-    this.number,
-    this.name,
-    this.types,
-    this.portraitWikiUrl,
-    this.lumaPortraitWikiUrl,
-    this.wikiUrl,
-    this.stats,
-    this.traits,
-    this.details,
-    this.techniques,
-    this.trivia,
-    this.evolution,
-    this.wikiPortraitUrlLarge,
-    this.lumaWikiPortraitUrlLarge,
-    this.locations,
-    this.icon,
-    this.lumaIcon,
-    this.genderRatio,
-    this.catchRate,
-    this.tvYields,
-    this.gameDescription,
-    this.wikiRenderStaticUrl,
-    this.wikiRenderAnimatedUrl,
-    this.wikiRenderStaticLumaUrl,
-    this.wikiRenderAnimatedLumaUrl,
-    this.renderStaticImage,
-    this.renderStaticLumaImage,
-    this.renderAnimatedImage,
-    this.renderAnimatedLumaImage,
+    required this.number,
+    required this.name,
+    required this.types,
+    required this.portraitWikiUrl,
+    required this.lumaPortraitWikiUrl,
+    required this.wikiUrl,
+    required this.stats,
+    required this.traits,
+    required this.details,
+    required this.techniques,
+    required this.trivia,
+    required this.evolution,
+    required this.wikiPortraitUrlLarge,
+    required this.lumaWikiPortraitUrlLarge,
+    required this.locations,
+    required this.icon,
+    required this.lumaIcon,
+    required this.genderRatio,
+    required this.catchRate,
+    required this.tvYields,
+    required this.gameDescription,
+    required this.wikiRenderStaticUrl,
+    required this.wikiRenderAnimatedUrl,
+    required this.wikiRenderStaticLumaUrl,
+    required this.wikiRenderAnimatedLumaUrl,
+    required this.renderStaticImage,
+    required this.renderStaticLumaImage,
+    required this.renderAnimatedImage,
+    required this.renderAnimatedLumaImage,
   });
 
   factory TemTemApiTem.fromJson(Map<String, dynamic> json) {
@@ -257,7 +296,7 @@ class TemTemApiTem {
       portraitWikiUrl: json['portraitWikiUrl'],
       lumaPortraitWikiUrl: json['lumaPortraitWikiUrl'],
       wikiUrl: json['wikiUrl'],
-      stats: _Stats.fromJson(json['stats']),
+      stats: _BaseStats.fromJson(json['stats']),
       traits: List<String>.from(json['traits']),
       details: _Details.fromJson(json['details']),
       techniques: Iterable<Technique>.generate(json['techniques'].length,
@@ -272,8 +311,16 @@ class TemTemApiTem {
       lumaIcon: json['lumaIcon'],
       genderRatio: _GenderRatio.fromJson(json['genderRatio']),
       catchRate: json['catchRate'],
-      tvYields: _Stats.fromTvYieldsJson(json['tvYields']),
+      tvYields: _Stats.fromJson(json['tvYields']),
       gameDescription: json['gameDescription'],
+      wikiRenderStaticUrl: json['wikiRenderStaticUrl'],
+      renderStaticImage: json['renderStaticImage'],
+      wikiRenderStaticLumaUrl: json['wikiRenderStaticLumaUrl'],
+      wikiRenderAnimatedUrl: json['wikiRenderAnimatedUrl'],
+      renderAnimatedImage: json['renderAnimatedImage'],
+      wikiRenderAnimatedLumaUrl: json['wikiRenderAnimatedLumaUrl'],
+      renderStaticLumaImage: json['renderStaticLumaImage'],
+      renderAnimatedLumaImage: json['renderAnimatedLumaImage'],
     );
   }
 }
