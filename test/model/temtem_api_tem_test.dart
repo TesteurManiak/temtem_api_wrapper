@@ -12,9 +12,8 @@ void main() {
       test('parse temtems from temtems.json', () {
         final json = (jsonDecode(fixture('temtems.json')) as Iterable)
             .cast<Map<String, dynamic>>();
-        for (final e in json) {
-          TemTemApiTem.fromJson(e);
-        }
+        final temtems = json.map(TemTemApiTem.fromJson);
+        expect(temtems.length, 1);
       });
 
       test('parse temtem_113.json', () {
