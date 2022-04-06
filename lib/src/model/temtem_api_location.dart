@@ -3,7 +3,11 @@ class Location {
   final String wikiUrl;
   final String type;
 
-  Location({this.name, this.wikiUrl, this.type});
+  Location({
+    required this.name,
+    required this.wikiUrl,
+    required this.type,
+  });
 
   factory Location.fromJson(Map<String, dynamic> json) => Location(
         name: json['name'],
@@ -27,18 +31,18 @@ class TemTemApiLocation {
   final List<String> trivia;
 
   TemTemApiLocation({
-    this.name,
-    this.wikiUrl,
-    this.description,
-    this.temtemTypes,
-    this.type,
-    this.imageWikiThumbnail,
-    this.imageWikiFile,
-    this.routes,
-    this.townsAndVillages,
-    this.landmarks,
-    this.temtem,
-    this.trivia,
+    required this.name,
+    required this.wikiUrl,
+    required this.description,
+    required this.temtemTypes,
+    required this.type,
+    required this.imageWikiThumbnail,
+    required this.imageWikiFile,
+    required this.routes,
+    required this.townsAndVillages,
+    required this.landmarks,
+    required this.temtem,
+    required this.trivia,
   });
 
   factory TemTemApiLocation.fromJson(Map<String, dynamic> json) =>
