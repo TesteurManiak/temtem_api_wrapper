@@ -21,8 +21,8 @@ class Place {
 
 class TemTemApiSaipark {
   final String dateRange;
-  final String startDate;
-  final String endDate;
+  final DateTime startDate;
+  final DateTime endDate;
   final List<Place>? land;
   final List<Place>? water;
 
@@ -39,8 +39,8 @@ class TemTemApiSaipark {
     final water = (json['water'] as Iterable?)?.cast<Map<String, dynamic>>();
     return TemTemApiSaipark(
       dateRange: json['dateRange'] as String,
-      startDate: json['startDate'] as String,
-      endDate: json['endDate'] as String,
+      startDate: DateTime.parse(json['startDate'] as String),
+      endDate: DateTime.parse(json['endDate'] as String),
       land: land?.map(Place.fromJson).toList(),
       water: water?.map(Place.fromJson).toList(),
     );
