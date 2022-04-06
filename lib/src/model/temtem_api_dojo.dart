@@ -3,7 +3,7 @@ class TemTemApiDojo {
   final String wikiUrl;
   final List<String> types;
   final String leaderName;
-  final List<_Temtem> leaderTemtems;
+  final List<LeaderTemtem> leaderTemtems;
 
   TemTemApiDojo({
     required this.name,
@@ -22,20 +22,20 @@ class TemTemApiDojo {
       leaderName: leaderJson['name'] as String,
       leaderTemtems: (leaderJson['temtem'] as Iterable)
           .cast<Map<String, dynamic>>()
-          .map(_Temtem.fromJson)
+          .map(LeaderTemtem.fromJson)
           .toList(),
     );
   }
 }
 
-class _Temtem {
+class LeaderTemtem {
   final int level;
   final String name;
   final int number;
   final String trait;
   final List<String> techniques;
 
-  _Temtem({
+  LeaderTemtem({
     required this.level,
     required this.name,
     required this.number,
@@ -43,8 +43,8 @@ class _Temtem {
     required this.techniques,
   });
 
-  factory _Temtem.fromJson(Map<String, dynamic> json) {
-    return _Temtem(
+  factory LeaderTemtem.fromJson(Map<String, dynamic> json) {
+    return LeaderTemtem(
       level: json['level'] as int,
       name: json['name'] as String,
       number: json['number'] as int,

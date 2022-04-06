@@ -52,7 +52,7 @@ void main() {
             weightLbs: 31,
           ),
         );
-        expect(temtem.techniques.length, 11);
+        expect(temtem.techniques?.length, 11);
         expect(temtem.trivia.length, 4);
         expect(
           temtem.evolution,
@@ -88,7 +88,7 @@ void main() {
           temtem.wikiPortraitUrlLarge,
           'https://gamepedia.cursecdn.com/temtem_gamepedia_en/thumb/b/bc/Ganki.png/250px-Ganki.png?version=d18706728e9cc3706caea19e24063ac4',
         );
-        expect(temtem.locations.length, 2);
+        expect(temtem.locations?.length, 2);
         expect(temtem.icon, '/images/portraits/temtem/large/Ganki.png');
         expect(
           temtem.lumaIcon,

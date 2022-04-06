@@ -1,0 +1,27 @@
+name: Test workflow
+
+on:
+  push
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dart-lang/setup-dart@v1
+      - run: dart pub get
+      - name: Analyze project source
+        run: dart analyze
+        working-directory: ./lib
+  test:
+    needs: analyze
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: dart-lang/setup-dart@v1
+    - run: dart pub get
+    - name: Test
+      run: |
+        dart pub global activate coverage
+        dart pub run test --coverage="coverage"
+        dart pub global run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info --packages=.packages --report-on=lib

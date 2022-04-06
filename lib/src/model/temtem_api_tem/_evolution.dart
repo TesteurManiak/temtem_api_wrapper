@@ -17,12 +17,12 @@ class Evolution {
 
   factory Evolution.fromJson(Map<String, dynamic> json) {
     return Evolution(
-      stage: json['stage'],
+      stage: json['stage'] as int,
       evolutionTree: (json['evolutionTree'] as Iterable)
           .cast<Map<String, dynamic>>()
           .map(EvolutionNode.fromJson)
           .toList(),
-      evolves: json['evolves'],
+      evolves: json['evolves'] as bool,
       type: json['type'] as String,
       description: json['description'] as String?,
     );

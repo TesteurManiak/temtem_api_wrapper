@@ -8,8 +8,8 @@ class TemTemApiType {
 
   factory TemTemApiType.fromJson(Map<String, dynamic> json) {
     return TemTemApiType(
-      name: json['name'],
-      icon: json['icon'],
+      name: json['name'] as String,
+      icon: json['icon'] as String,
     );
   }
 }

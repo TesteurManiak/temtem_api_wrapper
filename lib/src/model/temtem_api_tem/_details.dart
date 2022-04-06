@@ -14,11 +14,13 @@ class Details {
   });
 
   factory Details.fromJson(Map<String, dynamic> json) {
+    final heightJson = json['height'] as Map<String, dynamic>;
+    final weightJson = json['weight'] as Map<String, dynamic>;
     return Details(
-      heightCm: json['height']['cm'] as int,
-      heightInches: json['height']['inches'] as int,
-      weightKg: json['weight']['kg'] as int,
-      weightLbs: json['weight']['lbs'] as int,
+      heightCm: heightJson['cm'] as int,
+      heightInches: heightJson['inches'] as int,
+      weightKg: weightJson['kg'] as int,
+      weightLbs: weightJson['lbs'] as int,
     );
   }
 

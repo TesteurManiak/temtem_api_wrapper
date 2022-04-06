@@ -15,7 +15,7 @@ export 'src/model/temtem_api_rewards.dart';
 export 'src/model/temtem_api_saipark.dart';
 export 'src/model/temtem_api_technique.dart';
 export 'src/model/temtem_api_tem/temtem_api_tem.dart'
-    hide Stats, Details, Evolution, GenderRatio;
+    hide Stats, Details, Evolution, GenderRatio, FreeTem;
 export 'src/model/temtem_api_training_course.dart';
 export 'src/model/temtem_api_traits.dart';
 export 'src/model/temtem_api_type.dart';

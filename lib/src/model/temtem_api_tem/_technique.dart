@@ -12,8 +12,8 @@ class Technique {
   });
 
   factory Technique.fromJson(Map<String, dynamic> json) => Technique(
-        name: json['name'],
-        source: json['source'],
+        name: json['name'] as String,
+        source: json['source'] as String,
         levels: json['levels'] as int?,
       );
 }

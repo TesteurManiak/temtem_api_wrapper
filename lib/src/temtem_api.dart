@@ -104,8 +104,10 @@ class TemTemApi {
   /// [names] : A list of technique names that you want information about.
   ///
   /// [fields] : A list of fields you want returned.
-  Future<List<TemTemApiTechnique>> getTechniques(
-      {List<String> names = const [], List<String> fields = const []}) async {
+  Future<List<TemTemApiTechnique>> getTechniques({
+    List<String> names = const [],
+    List<String> fields = const [],
+  }) async {
     final response =
         await _provider.getTechniques(names: names, fields: fields);
     final parsedData = (response as Iterable).cast<Map<String, dynamic>>();
@@ -128,8 +130,10 @@ class TemTemApi {
   /// [names] : A list of trait names that you want information about.
   ///
   /// [fields] : A list of fields you want returned.
-  Future<List<TemTemApiTraits>> getTraits(
-      {List<String> names = const [], List<String> fields = const []}) async {
+  Future<List<TemTemApiTraits>> getTraits({
+    List<String> names = const [],
+    List<String> fields = const [],
+  }) async {
     final response = await _provider.getTraits(names: names, fields: fields);
     final parsedData = (response as Iterable).cast<Map<String, dynamic>>();
     return parsedData.map<TemTemApiTraits>(TemTemApiTraits.fromJson).toList();

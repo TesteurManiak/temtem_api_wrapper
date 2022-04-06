@@ -27,17 +27,17 @@ class TemTemApiGear {
 
   factory TemTemApiGear.fromJson(Map<String, dynamic> json) {
     return TemTemApiGear(
-      name: json['name'],
-      wikiUrl: json['wikiUrl'],
-      wikiIconUrl: json['wikiIconUrl'],
-      icon: json['icon'],
-      category: json['category'],
-      consumable: json['consumable'],
-      limitedQuantity: json['limitedQuantity'],
-      purchasable: json['purchasable'],
-      buyPrice: json['buyPrice'],
-      description: json['description'],
-      gameDescription: json['gameDescription'],
+      name: json['name'] as String,
+      wikiUrl: json['wikiUrl'] as String,
+      wikiIconUrl: json['wikiIconUrl'] as String,
+      icon: json['icon'] as String,
+      category: json['category'] as String,
+      consumable: json['consumable'] as bool,
+      limitedQuantity: json['limitedQuantity'] as bool,
+      purchasable: json['purchasable'] as bool,
+      buyPrice: json['buyPrice'] as int,
+      description: json['description'] as String,
+      gameDescription: json['gameDescription'] as String,
     );
   }
 }

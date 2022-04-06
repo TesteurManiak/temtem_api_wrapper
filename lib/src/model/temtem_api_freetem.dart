@@ -13,9 +13,9 @@ class TemTemApiFreetem {
 
   factory TemTemApiFreetem.fromJson(Map<String, dynamic> json) =>
       TemTemApiFreetem(
-        temtem: json['temtem'],
-        level: json['level'],
-        catchRate: json['catchRate'],
-        reward: json['reward'],
+        temtem: json['temtem'] as String,
+        level: json['level'] as int,
+        catchRate: json['catchRate'] as int,
+        reward: json['reward'] as int,
       );
 }

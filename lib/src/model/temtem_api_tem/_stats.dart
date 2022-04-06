@@ -24,13 +24,13 @@ class Stats {
   }) : _total = total;
 
   factory Stats.fromJson(Map<String, dynamic> json) => Stats(
-        hp: json['hp'],
-        sta: json['sta'],
-        spd: json['spd'],
-        atk: json['atk'],
-        def: json['def'],
-        spatk: json['spatk'],
-        spdef: json['spdef'],
+        hp: json['hp'] as int,
+        sta: json['sta'] as int,
+        spd: json['spd'] as int,
+        atk: json['atk'] as int,
+        def: json['def'] as int,
+        spatk: json['spatk'] as int,
+        spdef: json['spdef'] as int,
         total: json['total'] as int?,
       );
 

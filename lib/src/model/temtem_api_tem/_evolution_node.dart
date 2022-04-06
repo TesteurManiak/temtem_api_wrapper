@@ -18,12 +18,12 @@ class EvolutionNode {
   });
 
   factory EvolutionNode.fromJson(Map<String, dynamic> json) => EvolutionNode(
-        number: json['number'],
-        name: json['name'],
-        stage: json['stage'],
+        number: json['number'] as int,
+        name: json['name'] as String,
+        stage: json['stage'] as int,
         levels: json['levels'] as num?,
         trading: json['trading'] as bool?,
-        traitMapping: json['traitMapping'],
+        traitMapping: json['traitMapping'] as Map<String, dynamic>,
       );
 
   @override

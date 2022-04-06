@@ -28,8 +28,11 @@ class HttpProvider implements ApiProvider {
   }
 
   @override
-  Future<dynamic> getTemtem(int id,
-      {List<String> fields = const [], List<String> expand = const []}) {
+  Future<Map<String, dynamic>> getTemtem(
+    int id, {
+    List<String> fields = const [],
+    List<String> expand = const [],
+  }) {
     String url = '$_baseUrl/temtems/$id?';
     if (fields.isNotEmpty) url += 'fields=${fields.join(",")}';
     if (expand.isNotEmpty) {
@@ -40,7 +43,7 @@ class HttpProvider implements ApiProvider {
   }
 
   @override
-  Future<dynamic> getFreetem(String name, int level) =>
+  Future<Map<String, dynamic>> getFreetem(String name, int level) =>
       _get('$_baseUrl/freetem/$name/$level');
 
   @override
@@ -53,8 +56,10 @@ class HttpProvider implements ApiProvider {
   Future<dynamic> getConditions() => _get('$_baseUrl/conditions');
 
   @override
-  Future<dynamic> getTechniques(
-      {List<String> names = const [], List<String> fields = const []}) {
+  Future<dynamic> getTechniques({
+    List<String> names = const [],
+    List<String> fields = const [],
+  }) {
     String url = '$_baseUrl/techniques?';
     if (names.isNotEmpty) url += 'names=${names.join(",")}';
     if (fields.isNotEmpty) {
@@ -68,14 +73,16 @@ class HttpProvider implements ApiProvider {
   Future<dynamic> getTrainingCourses() => _get('$_baseUrl/training-courses');
 
   @override
-  Future<dynamic> getTraits(
-      {List<String> names = const [], List<String> fields = const []}) {
-    String url = '$_baseUrl/traits?';
+  Future<dynamic> getTraits({
+    List<String> names = const [],
+    List<String> fields = const [],
+  }) {
+    final buffer = StringBuffer('$_baseUrl/traits?');
     for (int index = 0; index < names.length; index++) {
-      url += '${names[index]}';
-      if (index != names.length - 1) url += ',';
+      buffer.write(names[index]);
+      if (index != names.length - 1) buffer.write(',');
     }
-    return _get(url);
+    return _get(buffer.toString());
   }
 
   @override
@@ -106,24 +113,27 @@ class HttpProvider implements ApiProvider {
   Future<dynamic> getPatches() => _get('$_baseUrl/patches');
 
   @override
-  Future<dynamic> getWeaknesses() => _get('$_baseUrl/weaknesses');
+  Future<Map<String, dynamic>> getWeaknesses() => _get('$_baseUrl/weaknesses');
 
   @override
-  Future<dynamic> calculateWeaknesses(
-      String attacking, List<String> defending) {
-    final baseRequest = '/weaknesses/calculate?attacking=';
+  Future<Map<String, dynamic>> calculateWeaknesses(
+    String attacking,
+    List<String> defending,
+  ) {
+    const baseRequest = '/weaknesses/calculate?attacking=';
     return _get(
-        '$_baseUrl$baseRequest$attacking&defending=${defending.join(",")}');
+      '$_baseUrl$baseRequest$attacking&defending=${defending.join(",")}',
+    );
   }
 
   @override
   Future<dynamic> getBreeding() => _get('$_baseUrl/breeding');
 
-  Future<dynamic> _get(String request) async {
+  Future<T> _get<T>(String request) async {
     try {
       final response = await http.get(Uri.parse(request));
       if (response.statusCode == 200) {
-        return jsonDecode(response.body);
+        return jsonDecode(response.body) as T;
       } else {
         throw Exception('Error GET request: $request');
       }

@@ -10,8 +10,8 @@ class TemTemApiCharacter {
 
   factory TemTemApiCharacter.fromJson(Map<String, dynamic> json) {
     return TemTemApiCharacter(
-      name: json['name'],
-      wikiUrl: json['wikiUrl'],
+      name: json['name'] as String,
+      wikiUrl: json['wikiUrl'] as String,
     );
   }
 }

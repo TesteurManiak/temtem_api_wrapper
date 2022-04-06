@@ -2,6 +2,7 @@
 
 * Added unit tests
 * Added `TemTemApiDojo` model
+* Added `TemTemApiPatch.balance` property
 
 ## Breaking Changes
 
@@ -10,6 +11,7 @@
 * Migration to null-safety
 * `TemTemApiRewards.startDate` & `TemTemApiRewards.endDate` are now `DateTime`
 * Removed `TemTemApiPatch.pathInfo`, replaced it with `TemTemTemApiPatch.fixes`, `TemTemApiPatch.improvements` & `TemTemApiPatch.features` properties
+* `TemTemApiPatch.date` is now `DateTime`
 
 # 0.1.1+3
 
