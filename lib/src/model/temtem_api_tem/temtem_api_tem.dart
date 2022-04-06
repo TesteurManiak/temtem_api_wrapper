@@ -1,109 +1,8 @@
-class _Stats {
-  final int hp;
-  final int sta;
-  final int spd;
-  final int atk;
-  final int def;
-  final int spatk;
-  final int spdef;
+import 'package:collection/collection.dart';
 
-  _Stats({
-    required this.hp,
-    required this.sta,
-    required this.spd,
-    required this.atk,
-    required this.def,
-    required this.spatk,
-    required this.spdef,
-  });
-
-  factory _Stats.fromJson(Map<String, dynamic> json) => _Stats(
-        hp: json['hp'],
-        sta: json['sta'],
-        spd: json['spd'],
-        atk: json['atk'],
-        def: json['def'],
-        spatk: json['spatk'],
-        spdef: json['spdef'],
-      );
-}
-
-class _BaseStats extends _Stats {
-  final int total;
-
-  _BaseStats({
-    required int hp,
-    required int sta,
-    required int spd,
-    required int atk,
-    required int def,
-    required int spatk,
-    required int spdef,
-    required this.total,
-  }) : super(
-          hp: hp,
-          sta: sta,
-          spd: spd,
-          atk: atk,
-          def: def,
-          spatk: spatk,
-          spdef: spdef,
-        );
-
-  factory _BaseStats.fromJson(Map<String, dynamic> json) {
-    return _BaseStats(
-      hp: json['hp'] as int,
-      sta: json['sta'] as int,
-      spd: json['spd'] as int,
-      atk: json['atk'] as int,
-      def: json['def'] as int,
-      spatk: json['spatk'] as int,
-      spdef: json['spdef'] as int,
-      total: json['total'] as int,
-    );
-  }
-}
-
-class _Details {
-  final int heightCm;
-  final int heightInches;
-  final int weightKg;
-  final int weightLbs;
-
-  _Details({
-    required this.heightCm,
-    required this.heightInches,
-    required this.weightKg,
-    required this.weightLbs,
-  });
-
-  factory _Details.fromJson(Map<String, dynamic> json) {
-    return _Details(
-      heightCm: json['height']['cm'],
-      heightInches: json['height']['inches'],
-      weightKg: json['weight']['kg'],
-      weightLbs: json['weight']['lbs'],
-    );
-  }
-}
-
-class Technique {
-  final String name;
-  final String source;
-  final int? levels;
-
-  Technique({
-    required this.name,
-    required this.source,
-    required this.levels,
-  });
-
-  factory Technique.fromJson(Map<String, dynamic> json) => Technique(
-        name: json['name'],
-        source: json['source'],
-        levels: json['levels'] as int?,
-      );
-}
+part '_stats.dart';
+part '_details.dart';
+part '_technique.dart';
 
 class EvolutionNode {
   final int number;
@@ -117,8 +16,8 @@ class EvolutionNode {
     required this.number,
     required this.name,
     required this.stage,
-    required this.levels,
-    required this.trading,
+    this.levels,
+    this.trading,
     required this.traitMapping,
   });
 
@@ -130,32 +29,79 @@ class EvolutionNode {
         trading: json['trading'] as bool?,
         traitMapping: json['traitMapping'],
       );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is EvolutionNode &&
+        other.number == number &&
+        other.name == name &&
+        other.stage == stage &&
+        other.levels == levels &&
+        other.trading == trading &&
+        const MapEquality().equals(other.traitMapping, traitMapping);
+  }
+
+  @override
+  int get hashCode {
+    return number.hashCode ^
+        name.hashCode ^
+        stage.hashCode ^
+        levels.hashCode ^
+        trading.hashCode ^
+        traitMapping.hashCode;
+  }
 }
 
-class _Evolution {
+class Evolution {
   final int stage;
   final List<EvolutionNode> evolutionTree;
   final bool evolves;
   final String type;
   final String? description;
 
-  _Evolution({
+  Evolution({
     required this.stage,
     required this.evolutionTree,
     required this.evolves,
     required this.type,
-    required this.description,
+    this.description,
   });
 
-  factory _Evolution.fromJson(Map<String, dynamic> json) => _Evolution(
-        stage: json['stage'],
-        evolutionTree: List<EvolutionNode>.generate(
-            json['evolutionTree'] == null ? 0 : json['evolutionTree'].length,
-            (index) => EvolutionNode.fromJson(json['evolutionTree'][index])),
-        evolves: json['evolves'],
-        type: json['type'] as String,
-        description: json['description'] as String?,
-      );
+  factory Evolution.fromJson(Map<String, dynamic> json) {
+    return Evolution(
+      stage: json['stage'],
+      evolutionTree: (json['evolutionTree'] as Iterable)
+          .cast<Map<String, dynamic>>()
+          .map(EvolutionNode.fromJson)
+          .toList(),
+      evolves: json['evolves'],
+      type: json['type'] as String,
+      description: json['description'] as String?,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is Evolution &&
+        other.stage == stage &&
+        const ListEquality().equals(other.evolutionTree, evolutionTree) &&
+        other.evolves == evolves &&
+        other.type == type &&
+        other.description == description;
+  }
+
+  @override
+  int get hashCode {
+    return stage.hashCode ^
+        evolutionTree.hashCode ^
+        evolves.hashCode ^
+        type.hashCode ^
+        description.hashCode;
+  }
 }
 
 class _FreeTem {
@@ -213,16 +159,26 @@ class TemLocation {
   }
 }
 
-class _GenderRatio {
+class GenderRatio {
   final double male;
   final double female;
 
-  _GenderRatio({required this.male, required this.female});
+  GenderRatio({required this.male, required this.female});
 
-  factory _GenderRatio.fromJson(Map<String, dynamic> json) => _GenderRatio(
+  factory GenderRatio.fromJson(Map<String, dynamic> json) => GenderRatio(
         male: double.parse(json['male'].toString()),
         female: double.parse(json['female'].toString()),
       );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is GenderRatio && other.male == male && other.female == female;
+  }
+
+  @override
+  int get hashCode => male.hashCode ^ female.hashCode;
 }
 
 class TemTemApiTem {
@@ -231,21 +187,21 @@ class TemTemApiTem {
   final List<String> types;
   final String portraitWikiUrl;
   final String wikiUrl;
-  final _Stats stats;
+  final Stats stats;
   final String? lumaPortraitWikiUrl;
   final List<String> traits;
-  final _Details details;
+  final Details details;
   final List<Technique> techniques;
   final List<String> trivia;
-  final _Evolution evolution;
+  final Evolution evolution;
   final String wikiPortraitUrlLarge;
   final String? lumaWikiPortraitUrlLarge;
   final List<TemLocation> locations;
   final String icon;
   final String lumaIcon;
-  final _GenderRatio genderRatio;
+  final GenderRatio genderRatio;
   final int catchRate;
-  final _Stats tvYields;
+  final Stats tvYields;
   final String gameDescription;
   final String? wikiRenderStaticUrl;
   final String? wikiRenderAnimatedUrl;
@@ -296,22 +252,22 @@ class TemTemApiTem {
       portraitWikiUrl: json['portraitWikiUrl'],
       lumaPortraitWikiUrl: json['lumaPortraitWikiUrl'],
       wikiUrl: json['wikiUrl'],
-      stats: _BaseStats.fromJson(json['stats']),
+      stats: Stats.fromJson(json['stats']),
       traits: List<String>.from(json['traits']),
-      details: _Details.fromJson(json['details']),
+      details: Details.fromJson(json['details']),
       techniques: Iterable<Technique>.generate(json['techniques'].length,
           (index) => Technique.fromJson(json['techniques'][index])).toList(),
       trivia: List<String>.from(json['trivia']),
-      evolution: _Evolution.fromJson(json['evolution']),
+      evolution: Evolution.fromJson(json['evolution']),
       wikiPortraitUrlLarge: json['wikiPortraitUrlLarge'],
       lumaWikiPortraitUrlLarge: json['lumaWikiPortraitUrlLarge'],
       locations: Iterable<TemLocation>.generate(json['locations'].length,
           (index) => TemLocation.fromJson(json['locations'][index])).toList(),
       icon: json['icon'],
       lumaIcon: json['lumaIcon'],
-      genderRatio: _GenderRatio.fromJson(json['genderRatio']),
+      genderRatio: GenderRatio.fromJson(json['genderRatio']),
       catchRate: json['catchRate'],
-      tvYields: _Stats.fromJson(json['tvYields']),
+      tvYields: Stats.fromJson(json['tvYields']),
       gameDescription: json['gameDescription'],
       wikiRenderStaticUrl: json['wikiRenderStaticUrl'],
       renderStaticImage: json['renderStaticImage'],

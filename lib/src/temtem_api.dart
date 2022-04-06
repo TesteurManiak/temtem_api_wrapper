@@ -12,7 +12,7 @@ import 'package:temtem_api_wrapper/src/model/temtem_api_quest.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_rewards.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_saipark.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_technique.dart';
-import 'package:temtem_api_wrapper/src/model/temtem_api_tem.dart';
+import 'package:temtem_api_wrapper/src/model/temtem_api_tem/temtem_api_tem.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_training_course.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_traits.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_type.dart';
