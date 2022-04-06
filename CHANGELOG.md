@@ -1,3 +1,15 @@
+# 1.0.0
+
+* Added unit tests
+* Added `TemTemApiDojo`
+
+## Breaking Changes
+
+* Removed dependency to `flutter`
+* Bumped Dart SDK minimum version to `2.15`
+* Migration to null-safety
+* `TemTemApiRewards.startDate` & `TemTemApiRewards.endDate` are now `DateTime`
+
 # 0.1.1+3
 
 * Code format to dartfmt
