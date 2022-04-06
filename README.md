@@ -1,8 +1,6 @@
 # temtem_api_wrapper
 
 [![Issues](https://img.shields.io/github/issues/TesteurManiak/temtem_api_wrapper)](https://github.com/TesteurManiak/temtem_api_wrapper/issues)
-[![Forks](https://img.shields.io/github/forks/TesteurManiak/temtem_api_wrapper)](https://github.com/TesteurManiak/temtem_api_wrapper/network/members)
-[![Stars](https://img.shields.io/github/stars/TesteurManiak/temtem_api_wrapper)](https://github.com/TesteurManiak/temtem_api_wrapper/stargazers)
 [![Pub Version](https://img.shields.io/pub/v/temtem_api_wrapper?color=blue&logo=dart)](https://pub.dev/packages/temtem_api_wrapper)
 [![License](https://img.shields.io/github/license/TesteurManiak/temtem_api_wrapper)]()
 
@@ -48,9 +46,9 @@ final TemTemApiFreeTem freetemRewards = await temtemApi.getFreeTem();
 ## Dependencies
 
 * [http](https://pub.dev/packages/http) : Used to make HTTP requests
+* [collection](https://pub.dev/packages/collection) : Used to manage lists and maps equality
 
 ## TODO
 
 * Add comments
-* Add unit tests
 * Expand example cases

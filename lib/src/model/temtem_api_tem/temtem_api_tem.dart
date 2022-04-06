@@ -3,106 +3,8 @@ import 'package:collection/collection.dart';
 part '_stats.dart';
 part '_details.dart';
 part '_technique.dart';
-
-class EvolutionNode {
-  final int number;
-  final String name;
-  final int stage;
-  final num? levels;
-  final bool? trading;
-  final Map<String, dynamic> traitMapping;
-
-  EvolutionNode({
-    required this.number,
-    required this.name,
-    required this.stage,
-    this.levels,
-    this.trading,
-    required this.traitMapping,
-  });
-
-  factory EvolutionNode.fromJson(Map<String, dynamic> json) => EvolutionNode(
-        number: json['number'],
-        name: json['name'],
-        stage: json['stage'],
-        levels: json['levels'] as num?,
-        trading: json['trading'] as bool?,
-        traitMapping: json['traitMapping'],
-      );
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is EvolutionNode &&
-        other.number == number &&
-        other.name == name &&
-        other.stage == stage &&
-        other.levels == levels &&
-        other.trading == trading &&
-        const MapEquality().equals(other.traitMapping, traitMapping);
-  }
-
-  @override
-  int get hashCode {
-    return number.hashCode ^
-        name.hashCode ^
-        stage.hashCode ^
-        levels.hashCode ^
-        trading.hashCode ^
-        traitMapping.hashCode;
-  }
-}
-
-class Evolution {
-  final int stage;
-  final List<EvolutionNode> evolutionTree;
-  final bool evolves;
-  final String type;
-  final String? description;
-
-  Evolution({
-    required this.stage,
-    required this.evolutionTree,
-    required this.evolves,
-    required this.type,
-    this.description,
-  });
-
-  factory Evolution.fromJson(Map<String, dynamic> json) {
-    return Evolution(
-      stage: json['stage'],
-      evolutionTree: (json['evolutionTree'] as Iterable)
-          .cast<Map<String, dynamic>>()
-          .map(EvolutionNode.fromJson)
-          .toList(),
-      evolves: json['evolves'],
-      type: json['type'] as String,
-      description: json['description'] as String?,
-    );
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is Evolution &&
-        other.stage == stage &&
-        const ListEquality().equals(other.evolutionTree, evolutionTree) &&
-        other.evolves == evolves &&
-        other.type == type &&
-        other.description == description;
-  }
-
-  @override
-  int get hashCode {
-    return stage.hashCode ^
-        evolutionTree.hashCode ^
-        evolves.hashCode ^
-        type.hashCode ^
-        description.hashCode;
-  }
-}
+part '_evolution_node.dart';
+part '_evolution.dart';
 
 class _FreeTem {
   final int minLevel;
@@ -201,6 +103,7 @@ class TemTemApiTem {
   final String lumaIcon;
   final GenderRatio genderRatio;
   final int catchRate;
+  final int hatchMins;
   final Stats tvYields;
   final String gameDescription;
   final String? wikiRenderStaticUrl;
@@ -232,6 +135,7 @@ class TemTemApiTem {
     required this.lumaIcon,
     required this.genderRatio,
     required this.catchRate,
+    required this.hatchMins,
     required this.tvYields,
     required this.gameDescription,
     required this.wikiRenderStaticUrl,
@@ -266,7 +170,8 @@ class TemTemApiTem {
       icon: json['icon'],
       lumaIcon: json['lumaIcon'],
       genderRatio: GenderRatio.fromJson(json['genderRatio']),
-      catchRate: json['catchRate'],
+      catchRate: json['catchRate'] as int,
+      hatchMins: json['hatchMins'] as int,
       tvYields: Stats.fromJson(json['tvYields']),
       gameDescription: json['gameDescription'],
       wikiRenderStaticUrl: json['wikiRenderStaticUrl'],

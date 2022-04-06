@@ -96,6 +96,24 @@ void main() {
           '/images/portraits/temtem/luma/large/Ganki.png',
         );
         expect(temtem.genderRatio, GenderRatio(male: 50, female: 50));
+        expect(temtem.catchRate, 120);
+        expect(temtem.hatchMins, 21);
+        expect(
+          temtem.tvYields,
+          Stats(hp: 0, sta: 0, spd: 0, atk: 1, def: 0, spatk: 0, spdef: 0),
+        );
+        expect(
+          temtem.gameDescription,
+          'Many Cipanki legends mention the kind but powerful Ganki as mountain spirits, mythologically related to lightning and whirlwinds. Although they are no longer revered as kami, the Cipanki still appreciate and breed them.',
+        );
+        expect(temtem.wikiRenderStaticUrl, '');
+        expect(temtem.wikiRenderAnimatedUrl, '');
+        expect(temtem.wikiRenderStaticLumaUrl, '');
+        expect(temtem.wikiRenderAnimatedLumaUrl, '');
+        expect(temtem.renderStaticImage, '');
+        expect(temtem.renderStaticLumaImage, '');
+        expect(temtem.renderAnimatedImage, '');
+        expect(temtem.renderAnimatedLumaImage, '');
       });
     });
   });
