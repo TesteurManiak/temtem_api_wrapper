@@ -71,9 +71,9 @@ class TemTemApi {
   /// Calculates the Freetem reward for catching a specific Temtem at a certain
   /// [level]. The Temtem parameter is the [name] of the temtem, it is case
   /// insensitive.
-  Future<TemTemApiFreeTem> getFreeTem(String name, int level) async {
+  Future<TemTemApiFreetem> getFreeTem(String name, int level) async {
     final response = await _provider.getFreetem(name, level);
-    return TemTemApiFreeTem.fromJson(response);
+    return TemTemApiFreetem.fromJson(response);
   }
 
   /// Get the rewards for the dynamic events of freeing Temtems.

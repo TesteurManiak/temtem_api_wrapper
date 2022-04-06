@@ -1,18 +1,18 @@
-class TemTemApiFreeTem {
+class TemTemApiFreetem {
   final String temtem;
   final int level;
   final int catchRate;
   final int reward;
 
-  TemTemApiFreeTem({
-    this.temtem,
-    this.level,
-    this.catchRate,
-    this.reward,
+  TemTemApiFreetem({
+    required this.temtem,
+    required this.level,
+    required this.catchRate,
+    required this.reward,
   });
 
-  factory TemTemApiFreeTem.fromJson(Map<String, dynamic> json) =>
-      TemTemApiFreeTem(
+  factory TemTemApiFreetem.fromJson(Map<String, dynamic> json) =>
+      TemTemApiFreetem(
         temtem: json['temtem'],
         level: json['level'],
         catchRate: json['catchRate'],
