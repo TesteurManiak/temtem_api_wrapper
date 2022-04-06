@@ -4,3 +4,7 @@ include: package:lint/analysis_options_package.yaml
 analyzer:
   exclude:
     - '**.freezed.dart'
+
+linter:
+  rules:
+    - unnecessary_lambdas
