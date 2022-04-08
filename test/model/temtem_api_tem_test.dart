@@ -7,6 +7,49 @@ import 'package:test/scaffolding.dart';
 import '../utils/fixture_reader.dart';
 
 void main() {
+  group('Stats', () {
+    group('total', () {
+      test(
+          'if indicated, should be calculated from hp, sta, spd, atk, def, spatk, spdef',
+          () {
+        final stats = Stats(
+          hp: 38,
+          sta: 46,
+          spd: 61,
+          atk: 57,
+          def: 38,
+          spatk: 62,
+          spdef: 73,
+        );
+        expect(stats.total, 375);
+      });
+    });
+
+    group('hashCode', () {
+      test('should be the same for 2 classes with same values', () {
+        final stats1 = Stats(
+          hp: 38,
+          sta: 46,
+          spd: 61,
+          atk: 57,
+          def: 38,
+          spatk: 62,
+          spdef: 73,
+        );
+        final stats2 = Stats(
+          hp: 38,
+          sta: 46,
+          spd: 61,
+          atk: 57,
+          def: 38,
+          spatk: 62,
+          spdef: 73,
+        );
+        expect(stats1.hashCode, stats2.hashCode);
+      });
+    });
+  });
+
   group('TemTemApiTem', () {
     group('fromJson', () {
       test('parse temtems from temtems.json', () {
