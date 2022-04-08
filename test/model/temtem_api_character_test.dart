@@ -14,6 +14,10 @@ void main() {
             .cast<Map<String, dynamic>>();
         final characters = json.map(TemTemApiCharacter.fromJson);
         expect(characters.length, 1);
+
+        final character = characters.first;
+        expect(character.name, 'Lady Lottie');
+        expect(character.wikiUrl, 'https://temtem.gamepedia.com/Lady_Lottie');
       });
     });
   });
