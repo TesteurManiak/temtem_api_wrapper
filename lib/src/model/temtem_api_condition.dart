@@ -1,3 +1,5 @@
+import 'package:temtem_api_wrapper/src/utils/consts.dart';
+
 /// Model for conditions.
 class TemTemApiCondition {
   /// Condition's name.
@@ -14,6 +16,8 @@ class TemTemApiCondition {
     required this.description,
     required this.icon,
   });
+
+  String get iconUrl => '${TemTemApiConstants.imgHost}$icon';
 
   factory TemTemApiCondition.fromJson(Map<String, dynamic> json) =>
       TemTemApiCondition(

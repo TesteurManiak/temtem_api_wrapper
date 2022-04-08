@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:temtem_api_wrapper/src/model/temtem_api_type.dart';
+import 'package:temtem_api_wrapper/src/utils/consts.dart';
 import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
 
@@ -22,7 +23,7 @@ void main() {
         final json = (jsonDecode(fixture('types.json')) as Iterable)
             .cast<Map<String, dynamic>>();
         final type = json.map(TemTemApiType.fromJson).first;
-        expect(type.iconUrl, 'https://temtem-api.mael.tech${type.icon}');
+        expect(type.iconUrl, '${TemTemApiConstants.imgHost}${type.icon}');
       });
     });
   });
