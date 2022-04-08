@@ -16,5 +16,14 @@ void main() {
         expect(types.length, 1);
       });
     });
+
+    group('iconUrl', () {
+      test('url should be completed with icon', () {
+        final json = (jsonDecode(fixture('types.json')) as Iterable)
+            .cast<Map<String, dynamic>>();
+        final type = json.map(TemTemApiType.fromJson).first;
+        expect(type.iconUrl, 'https://temtem-api.mael.tech${type.icon}');
+      });
+    });
   });
 }
