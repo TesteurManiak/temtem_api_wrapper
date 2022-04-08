@@ -7,6 +7,70 @@ import 'package:test/scaffolding.dart';
 import '../utils/fixture_reader.dart';
 
 void main() {
+  group('Details', () {
+    group('hashCode', () {
+      test('should be the same for 2 classes with same values', () {
+        final details1 = Details(
+          heightCm: 100,
+          heightInches: 100,
+          weightKg: 25,
+          weightLbs: 25,
+        );
+        final details2 = Details(
+          heightCm: 100,
+          heightInches: 100,
+          weightKg: 25,
+          weightLbs: 25,
+        );
+        expect(details1.hashCode, details2.hashCode);
+      });
+    });
+  });
+
+  group('Evolution', () {
+    group('hashCode', () {
+      test('should be the same for 2 classes with same values', () {
+        final evolution1 = Evolution(
+          stage: 1,
+          evolutionTree: [
+            EvolutionNode(number: 1, name: '', stage: 1, traitMapping: {})
+          ],
+          evolves: true,
+          type: 'level',
+        );
+        final evolution2 = Evolution(
+          stage: 1,
+          evolutionTree: [
+            EvolutionNode(number: 1, name: '', stage: 1, traitMapping: {})
+          ],
+          evolves: true,
+          type: 'level',
+        );
+        expect(evolution1.hashCode, evolution2.hashCode);
+      });
+    });
+  });
+
+  group('EvolutionNode', () {
+    group('hashCode', () {
+      test('should be the same for 2 classes with same values', () {
+        final node1 = EvolutionNode(
+          number: 1,
+          name: 'Temtem',
+          stage: 1,
+          traitMapping: {},
+        );
+        final node2 = EvolutionNode(
+          number: 1,
+          name: 'Temtem',
+          stage: 1,
+          traitMapping: {},
+        );
+        expect(node1.hashCode, node2.hashCode);
+      });
+    });
+  });
+
   group('GenderRatio', () {
     group('hashCode', () {
       test('should be the same for 2 classes with same values', () {

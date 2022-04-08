@@ -43,7 +43,7 @@ class Evolution {
   @override
   int get hashCode {
     return stage.hashCode ^
-        evolutionTree.hashCode ^
+        const ListEquality().hash(evolutionTree) ^
         evolves.hashCode ^
         type.hashCode ^
         description.hashCode;

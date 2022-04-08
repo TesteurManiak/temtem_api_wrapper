@@ -46,6 +46,6 @@ class EvolutionNode {
         stage.hashCode ^
         levels.hashCode ^
         trading.hashCode ^
-        traitMapping.hashCode;
+        const MapEquality().hash(traitMapping);
   }
 }
