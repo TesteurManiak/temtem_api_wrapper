@@ -7,6 +7,16 @@ import 'package:test/scaffolding.dart';
 import '../utils/fixture_reader.dart';
 
 void main() {
+  group('GenderRatio', () {
+    group('hashCode', () {
+      test('should be the same for 2 classes with same values', () {
+        final ratio1 = GenderRatio(male: 50, female: 50);
+        final ratio2 = GenderRatio(male: 50, female: 50);
+        expect(ratio1.hashCode, ratio2.hashCode);
+      });
+    });
+  });
+
   group('Stats', () {
     group('total', () {
       test(

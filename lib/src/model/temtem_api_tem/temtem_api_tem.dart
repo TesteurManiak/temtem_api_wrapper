@@ -1,65 +1,13 @@
 import 'package:collection/collection.dart';
 
-part 'stats.dart';
 part 'details.dart';
-part 'technique.dart';
-part 'evolution_node.dart';
 part 'evolution.dart';
+part 'evolution_node.dart';
 part 'free_tem.dart';
-
-class TemLocation {
-  final String location;
-  final String place;
-  final String note;
-  final String island;
-  final String frequency;
-  final String level;
-  final FreeTem freeTem;
-
-  TemLocation({
-    required this.location,
-    required this.place,
-    required this.note,
-    required this.island,
-    required this.frequency,
-    required this.level,
-    required this.freeTem,
-  });
-
-  factory TemLocation.fromJson(Map<String, dynamic> json) {
-    return TemLocation(
-      location: json['location'] as String,
-      place: json['place'] as String,
-      note: json['note'] as String,
-      island: json['island'] as String,
-      frequency: json['frequency'] as String,
-      level: json['level'] as String,
-      freeTem: FreeTem.fromJson(json['freetem'] as Map<String, dynamic>),
-    );
-  }
-}
-
-class GenderRatio {
-  final double male;
-  final double female;
-
-  GenderRatio({required this.male, required this.female});
-
-  factory GenderRatio.fromJson(Map<String, dynamic> json) => GenderRatio(
-        male: double.parse(json['male'].toString()),
-        female: double.parse(json['female'].toString()),
-      );
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is GenderRatio && other.male == male && other.female == female;
-  }
-
-  @override
-  int get hashCode => male.hashCode ^ female.hashCode;
-}
+part 'gender_ratio.dart';
+part 'stats.dart';
+part 'technique.dart';
+part 'tem_location.dart';
 
 class TemTemApiTem {
   final int number;
