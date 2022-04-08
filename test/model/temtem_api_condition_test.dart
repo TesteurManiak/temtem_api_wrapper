@@ -9,11 +9,12 @@ import '../utils/fixture_reader.dart';
 
 void main() {
   group('TemTemApiCondition', () {
+    final tJson = (jsonDecode(fixture('conditions.json')) as Iterable)
+        .cast<Map<String, dynamic>>();
+
     group('fromJson', () {
       test('parse conditions.json', () {
-        final json = (jsonDecode(fixture('conditions.json')) as Iterable)
-            .cast<Map<String, dynamic>>();
-        final conditions = json.map(TemTemApiCondition.fromJson);
+        final conditions = tJson.map(TemTemApiCondition.fromJson);
         expect(conditions.length, 1);
 
         final condition = conditions.first;
@@ -28,11 +29,8 @@ void main() {
 
     group('iconUrl', () {
       test('returns the icon url', () {
-        final condition = TemTemApiCondition(
-          name: 'Cold',
-          description: '',
-          icon: '/images/icons/conditions/Cold.png',
-        );
+        final conditions = tJson.map(TemTemApiCondition.fromJson);
+        final condition = conditions.first;
         expect(
           condition.iconUrl,
           '${HttpProvider.baseUrl}${condition.icon}',

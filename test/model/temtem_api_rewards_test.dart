@@ -14,6 +14,14 @@ void main() {
             .cast<Map<String, dynamic>>();
         final rewards = json.map(TemTemApiRewards.fromJson);
         expect(rewards.length, 1);
+
+        final reward = rewards.first;
+        expect(reward.name, 'Telomere Hack - SPD');
+        expect(reward.quantity, 2);
+        expect(
+          reward.wikiUrl,
+          'https://temtem.gamepedia.com/Telomere_Hack_-_SPD',
+        );
       });
     });
   });

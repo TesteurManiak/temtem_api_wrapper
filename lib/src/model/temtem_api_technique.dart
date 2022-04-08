@@ -1,3 +1,5 @@
+import 'package:temtem_api_wrapper/src/provider/http_provider.dart';
+
 class SynergyEffect {
   final String effect;
   final String type;
@@ -14,6 +16,19 @@ class SynergyEffect {
         type: json['type'] as String,
         damage: json['damage'] as int,
       );
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is SynergyEffect &&
+        other.effect == effect &&
+        other.type == type &&
+        other.damage == damage;
+  }
+
+  @override
+  int get hashCode => effect.hashCode ^ type.hashCode ^ damage.hashCode;
 }
 
 class TemTemApiTechnique {
@@ -21,7 +36,10 @@ class TemTemApiTechnique {
   final String wikiUrl;
   final String type;
   final String classTouch;
+
+  /// The icon field is the path to an image under https://temtem-api.mael.tech.
   final String classIcon;
+
   final int damage;
   final int staminaCost;
   final int hold;
@@ -48,6 +66,9 @@ class TemTemApiTechnique {
     required this.targets,
     required this.description,
   });
+
+  String get classIconUrl => '${HttpProvider.baseUrl}$classIcon';
+  String get priorityIconUrl => '${HttpProvider.baseUrl}$priorityIcon';
 
   factory TemTemApiTechnique.fromJson(Map<String, dynamic> json) {
     return TemTemApiTechnique(

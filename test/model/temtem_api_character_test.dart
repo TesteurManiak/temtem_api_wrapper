@@ -8,11 +8,12 @@ import '../utils/fixture_reader.dart';
 
 void main() {
   group('TemTemApiCharacter', () {
+    final tJson = (jsonDecode(fixture('characters.json')) as Iterable)
+        .cast<Map<String, dynamic>>();
+
     group('fromJson', () {
       test('parse characters.json', () {
-        final json = (jsonDecode(fixture('characters.json')) as Iterable)
-            .cast<Map<String, dynamic>>();
-        final characters = json.map(TemTemApiCharacter.fromJson);
+        final characters = tJson.map(TemTemApiCharacter.fromJson);
         expect(characters.length, 1);
 
         final character = characters.first;
