@@ -13,6 +13,28 @@ void main() {
             .cast<Map<String, dynamic>>();
         final patches = json.map(TemTemApiPatch.fromJson);
         expect(patches.length, 1);
+
+        final patch = patches.first;
+        expect(patch.name, 'Temtem 0.5.5');
+        expect(patch.url, 'https://crema.gg/temtem/temtem-0-5-5/');
+        expect(
+          patch.date.millisecondsSinceEpoch,
+          DateTime(2020, 1, 25).millisecondsSinceEpoch,
+        );
+        expect(
+          patch.fixes,
+          [
+            "Fixed not receiving the surfboard in the Beached Narwhal quest after delivering a Toxolotl.",
+            "Fixed errors when changing the Squad order while they were being healed.",
+            "The Tamer Info screen can now be closed even when there’s an error and it doesn’t display information.",
+            "Fixed some interactions between moving platforms and opening eggs.",
+            "Fixed Name Reservation missing icon.",
+            "Fixed some dialogs."
+          ],
+        );
+        expect(patch.improvements, []);
+        expect(patch.features, []);
+        expect(patch.balance, ["Increased the price for all breeding gears."]);
       });
     });
   });

@@ -21,11 +21,12 @@ class TemTemApiPatch {
 
   factory TemTemApiPatch.fromJson(Map<String, dynamic> json) {
     final patchJson = json['patchInfo'] as Map<String, dynamic>;
+    final date = (json['date'] as String).split('-').map(int.parse).toList();
     return TemTemApiPatch(
       name: json['name'] as String,
       version: json['version'] as String,
       url: json['url'] as String,
-      date: DateTime.parse(json['date'] as String),
+      date: DateTime(date[0], date[1], date[2]),
       fixes: List<String>.from(patchJson['fixes'] as Iterable),
       improvements: List<String>.from(patchJson['improvements'] as Iterable),
       features: List<String>.from(patchJson['features'] as Iterable),

@@ -1,4 +1,4 @@
-import 'package:temtem_api_wrapper/src/utils/consts.dart';
+import 'package:temtem_api_wrapper/src/provider/http_provider.dart';
 
 class TemTemApiType {
   /// Type's name.
@@ -12,7 +12,7 @@ class TemTemApiType {
     required this.icon,
   });
 
-  String get iconUrl => '${TemTemApiConstants.imgHost}$icon';
+  String get iconUrl => '${HttpProvider.baseUrl}$icon';
 
   factory TemTemApiType.fromJson(Map<String, dynamic> json) {
     return TemTemApiType(

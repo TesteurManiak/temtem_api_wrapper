@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:temtem_api_wrapper/src/model/temtem_api_condition.dart';
-import 'package:temtem_api_wrapper/src/utils/consts.dart';
+import 'package:temtem_api_wrapper/src/provider/http_provider.dart';
 import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
 
@@ -35,7 +35,7 @@ void main() {
         );
         expect(
           condition.iconUrl,
-          '${TemTemApiConstants.imgHost}${condition.icon}',
+          '${HttpProvider.baseUrl}${condition.icon}',
         );
       });
     });

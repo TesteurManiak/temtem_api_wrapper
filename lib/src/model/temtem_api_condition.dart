@@ -1,4 +1,4 @@
-import 'package:temtem_api_wrapper/src/utils/consts.dart';
+import 'package:temtem_api_wrapper/src/provider/http_provider.dart';
 
 /// Model for conditions.
 class TemTemApiCondition {
@@ -17,7 +17,7 @@ class TemTemApiCondition {
     required this.icon,
   });
 
-  String get iconUrl => '${TemTemApiConstants.imgHost}$icon';
+  String get iconUrl => '${HttpProvider.baseUrl}$icon';
 
   factory TemTemApiCondition.fromJson(Map<String, dynamic> json) =>
       TemTemApiCondition(
