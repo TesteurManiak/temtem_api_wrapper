@@ -22,8 +22,8 @@ class TemTemApiLocation {
   final String description;
   final List<String> temtemTypes;
   final String type;
-  final String imageWikiThumbnail;
-  final String imageWikiFile;
+  final String? imageWikiThumbnail;
+  final String? imageWikiFile;
   final List<Location>? routes;
   final List<Location>? townsAndVillages;
   final List<Location>? landmarks;
@@ -57,8 +57,8 @@ class TemTemApiLocation {
       description: json['description'] as String,
       temtemTypes: List<String>.from(json['temtemTypes'] as Iterable),
       type: json['type'] as String,
-      imageWikiThumbnail: json['imageWikiThumbnail'] as String,
-      imageWikiFile: json['imageWikiFile'] as String,
+      imageWikiThumbnail: json['imageWikiThumbnail'] as String?,
+      imageWikiFile: json['imageWikiFile'] as String?,
       routes: routes?.map(Location.fromJson).toList(),
       townsAndVillages: townsAndVillages?.map(Location.fromJson).toList(),
       landmarks: landmarks?.map(Location.fromJson).toList(),

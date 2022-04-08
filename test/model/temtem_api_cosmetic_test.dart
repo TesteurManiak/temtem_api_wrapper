@@ -14,6 +14,22 @@ void main() {
             .cast<Map<String, dynamic>>();
         final cosmetics = json.map(TemTemApiCosmetic.fromJson);
         expect(cosmetics.length, 1);
+
+        final cosmetic = cosmetics.first;
+        expect(cosmetic.type, 'bottom');
+        expect(
+          cosmetic.wikiImageUrl,
+          'https://gamepedia.cursecdn.com/temtem_gamepedia_en/thumb/d/dc/TieDownPants.png/100px-TieDownPants.png',
+        );
+        expect(cosmetic.wikiUrl, 'https://temtem.gamepedia.com/Tie_Down_Pants');
+        expect(cosmetic.name, 'Tie Down Pants');
+        expect(cosmetic.location, 'Mokupuni');
+        expect(cosmetic.cost, 24999);
+        expect(cosmetic.requirement, '');
+        expect(
+          cosmetic.description,
+          'Practical shorts, enhanced with tied rope details for a rustic touch.',
+        );
       });
     });
   });
