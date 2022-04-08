@@ -9,7 +9,7 @@ class HttpProvider implements ApiProvider {
   const HttpProvider();
 
   @override
-  Future<dynamic> getTemtems({
+  Future<Iterable> getTemtems({
     List<String> names = const [],
     List<String> fields = const [],
     List<String> expand = const [],
@@ -47,7 +47,7 @@ class HttpProvider implements ApiProvider {
       _get('$_baseUrl/freetem/$name/$level');
 
   @override
-  Future<dynamic> getFreetemRewards() => _get('$_baseUrl/freetem/rewards');
+  Future<Iterable> getFreetemRewards() => _get('$_baseUrl/freetem/rewards');
 
   @override
   Future<dynamic> getTypes() => _get('$_baseUrl/types');

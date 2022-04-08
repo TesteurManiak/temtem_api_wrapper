@@ -47,7 +47,7 @@ class TemTemApi {
       fields: fields,
       expand: expand,
     );
-    final parsedData = (response as Iterable).cast<Map<String, dynamic>>();
+    final parsedData = response.cast<Map<String, dynamic>>();
     return parsedData.map<TemTemApiTem>(TemTemApiTem.fromJson).toList();
   }
 
@@ -79,7 +79,7 @@ class TemTemApi {
   /// Get the rewards for the dynamic events of freeing Temtems.
   Future<List<TemTemApiRewards>> getFreeTemRewards() async {
     final response = await _provider.getFreetemRewards();
-    final parsedData = (response as Iterable).cast<Map<String, dynamic>>();
+    final parsedData = response.cast<Map<String, dynamic>>();
     return parsedData.map<TemTemApiRewards>(TemTemApiRewards.fromJson).toList();
   }
 

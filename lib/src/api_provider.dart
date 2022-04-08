@@ -1,6 +1,6 @@
 /// Astract class to use if you need to implement your own provider.
 abstract class ApiProvider {
-  Future<dynamic> getTemtems({
+  Future<Iterable> getTemtems({
     List<String> names = const [],
     List<String> fields = const [],
     List<String> expand = const [],
@@ -11,7 +11,7 @@ abstract class ApiProvider {
     List<String> expand = const [],
   });
   Future<Map<String, dynamic>> getFreetem(String name, int level);
-  Future<dynamic> getFreetemRewards();
+  Future<Iterable> getFreetemRewards();
   Future<dynamic> getTypes();
   Future<dynamic> getConditions();
   Future<dynamic> getTechniques({

@@ -1,11 +1,11 @@
 import 'package:collection/collection.dart';
 
-part '_stats.dart';
-part '_details.dart';
-part '_technique.dart';
-part '_evolution_node.dart';
-part '_evolution.dart';
-part '_free_tem.dart';
+part 'stats.dart';
+part 'details.dart';
+part 'technique.dart';
+part 'evolution_node.dart';
+part 'evolution.dart';
+part 'free_tem.dart';
 
 class TemLocation {
   final String location;
