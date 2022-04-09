@@ -4,27 +4,27 @@ import 'package:http/http.dart' as http;
 import 'package:temtem_api_wrapper/src/api_provider.dart';
 
 class HttpProvider implements ApiProvider {
-  static const baseUrl = 'https://temtem-api.mael.tech/api';
+  static const baseUrl = 'https://temtem-api.mael.tech';
+
+  static final baseUri = Uri.parse(baseUrl);
 
   const HttpProvider();
 
   @override
   Future<Iterable> getTemtems({
     List<String> names = const [],
-    List<String> fields = const [],
-    List<String> expand = const [],
+    List<ExpandableField> expand = const [],
+    bool weaknesses = false,
   }) {
-    String url = '$baseUrl/temtems?';
-    if (names.isNotEmpty) url += 'name=${names.join(",")}';
-    if (fields.isNotEmpty) {
-      if (names.isNotEmpty) url += '&';
-      url += 'fields=${fields.join(",")}';
-    }
-    if (expand.isNotEmpty) {
-      if (names.isNotEmpty || fields.isNotEmpty) url += '&';
-      url += 'expand=${expand.join(",")}';
-    }
-    return _get(url);
+    final uri = baseUri.replace(
+      pathSegments: ['api', 'temtems'],
+      queryParameters: {
+        if (names.isNotEmpty) 'names': names.join(','),
+        if (expand.isNotEmpty) 'expand': expand.map((e) => e.name).join(','),
+        if (weaknesses) 'weaknesses': 'true',
+      },
+    );
+    return _get(uri.toString());
   }
 
   @override

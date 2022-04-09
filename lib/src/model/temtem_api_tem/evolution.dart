@@ -1,10 +1,10 @@
 part of 'temtem_api_tem.dart';
 
 class Evolution {
-  final int stage;
-  final List<EvolutionNode> evolutionTree;
+  final int? stage;
+  final List<EvolutionNode>? evolutionTree;
   final bool evolves;
-  final String type;
+  final String? type;
   final String? description;
 
   Evolution({
@@ -17,13 +17,13 @@ class Evolution {
 
   factory Evolution.fromJson(Map<String, dynamic> json) {
     return Evolution(
-      stage: json['stage'] as int,
-      evolutionTree: (json['evolutionTree'] as Iterable)
-          .cast<Map<String, dynamic>>()
+      stage: json['stage'] as int?,
+      evolutionTree: (json['evolutionTree'] as Iterable?)
+          ?.cast<Map<String, dynamic>>()
           .map(EvolutionNode.fromJson)
           .toList(),
       evolves: json['evolves'] as bool,
-      type: json['type'] as String,
+      type: json['type'] as String?,
       description: json['description'] as String?,
     );
   }

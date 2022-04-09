@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:temtem_api_wrapper/src/provider/http_provider.dart';
 
 part 'details.dart';
 part 'evolution.dart';
@@ -8,16 +9,18 @@ part 'gender_ratio.dart';
 part 'stats.dart';
 part 'technique.dart';
 part 'tem_location.dart';
+part 'trait.dart';
+part 'type.dart';
 
 class TemTemApiTem {
   final int number;
   final String name;
-  final List<String> types;
+  final List<Type> types;
   final String portraitWikiUrl;
   final String wikiUrl;
   final Stats stats;
   final String? lumaPortraitWikiUrl;
-  final List<String> traits;
+  final List<Trait> traits;
   final Details details;
   final List<Technique>? techniques;
   final List<String> trivia;
@@ -40,6 +43,7 @@ class TemTemApiTem {
   final String? renderStaticLumaImage;
   final String? renderAnimatedImage;
   final String? renderAnimatedLumaImage;
+  final Map<String, dynamic>? weaknesses;
 
   TemTemApiTem({
     required this.number,
@@ -72,6 +76,7 @@ class TemTemApiTem {
     required this.renderStaticLumaImage,
     required this.renderAnimatedImage,
     required this.renderAnimatedLumaImage,
+    required this.weaknesses,
   });
 
   factory TemTemApiTem.fromJson(Map<String, dynamic> json) {
@@ -80,15 +85,35 @@ class TemTemApiTem {
     final locations =
         (json['locations'] as Iterable?)?.cast<Map<String, dynamic>>();
 
+    final traitsEntry = json['traits'] as Iterable;
+    final traits = <Trait>[];
+    for (final trait in traitsEntry) {
+      if (trait is String) {
+        traits.add(Trait.fromString(trait));
+      } else {
+        traits.add(Trait.fromJson(trait as Map<String, dynamic>));
+      }
+    }
+
+    final typesEntry = json['types'] as Iterable;
+    final types = <Type>[];
+    for (final type in typesEntry) {
+      if (type is String) {
+        types.add(Type.fromString(type));
+      } else {
+        types.add(Type.fromJson(type as Map<String, dynamic>));
+      }
+    }
+
     return TemTemApiTem(
       number: json['number'] as int,
       name: json['name'] as String,
-      types: List<String>.from(json['types'] as Iterable),
+      types: types,
       portraitWikiUrl: json['portraitWikiUrl'] as String,
       lumaPortraitWikiUrl: json['lumaPortraitWikiUrl'] as String?,
       wikiUrl: json['wikiUrl'] as String,
       stats: Stats.fromJson(json['stats'] as Map<String, dynamic>),
-      traits: List<String>.from(json['traits'] as Iterable),
+      traits: traits,
       details: Details.fromJson(json['details'] as Map<String, dynamic>),
       techniques: techniques?.map(Technique.fromJson).toList(),
       trivia: List<String>.from(json['trivia'] as Iterable),
@@ -112,6 +137,7 @@ class TemTemApiTem {
       wikiRenderAnimatedLumaUrl: json['wikiRenderAnimatedLumaUrl'] as String?,
       renderStaticLumaImage: json['renderStaticLumaImage'] as String?,
       renderAnimatedLumaImage: json['renderAnimatedLumaImage'] as String?,
+      weaknesses: json['weaknesses'] as Map<String, dynamic>?,
     );
   }
 }

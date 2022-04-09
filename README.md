@@ -13,7 +13,7 @@ Simply instantiate the API class and call the methods you need.
 
 The package currently supports:
 
-* `getTemTem(int number, {List<String> fields, List<String> expand})`
+* `getTemTems({List<String> names, List<ExpandableField> expand, bool weaknesses})`
 * `getTemtem(String name, int level)`
 * `getFreeTem()`
 * `getFreeTemRewards()`
@@ -53,5 +53,5 @@ final TemTemApiFreeTem freetemRewards = await temtemApi.getFreeTem();
 
 ## TODO
 
-* Add comments
+* Improve documentation
 * Expand example cases

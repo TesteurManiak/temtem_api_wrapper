@@ -30,22 +30,20 @@ class TemTemApi {
 
   /// Get informations for all available Temtems on the API.
   ///
-  /// [names] : A list of the Temtem names that you want information about.
+  /// - [names] : A list of the Temtem names that you want information about.
+  /// - [expand] : A list of fields you want extended.
   ///
-  /// [fields] : A list of fields you want returned.
-  ///
-  /// [expand] : A list of fields you want extended.
   /// You can extend the trait, technique, and type fields, which then means
   /// they will return an array of data in the shape returned by the endpoints.
   Future<List<TemTemApiTem>> getTemTems({
     List<String> names = const [],
-    List<String> fields = const [],
-    List<String> expand = const [],
+    List<ExpandableField> expand = const [],
+    bool weaknesses = false,
   }) async {
     final response = await _provider.getTemtems(
       names: names,
-      fields: fields,
       expand: expand,
+      weaknesses: weaknesses,
     );
     final parsedData = response.cast<Map<String, dynamic>>();
     return parsedData.map<TemTemApiTem>(TemTemApiTem.fromJson).toList();
@@ -53,9 +51,9 @@ class TemTemApi {
 
   /// Get informations for a specific Temtem, specified by its [number].
   ///
-  /// [fields] : A list of fields you want returned.
+  /// - [fields] : A list of fields you want returned.
+  /// - [expand] : A list of fields you want extended.
   ///
-  /// [expand] : A list of fields you want extended.
   /// You can extend the trait, technique, and type fields, which then means
   /// they will return an array of data in the shape returned by the endpoints.
   Future<TemTemApiTem> getTemTem(

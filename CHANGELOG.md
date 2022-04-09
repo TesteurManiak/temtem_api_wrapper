@@ -3,6 +3,8 @@
 * Added unit tests
 * Added `TemTemApiDojo` model
 * Added `TemTemApiPatch.balance` property
+* `getTemTems` supports the parameter `weaknesses`
+* Support for `expand` parameter in `getTemTems`
 
 ## Breaking Changes
 
@@ -13,6 +15,9 @@
 * Removed `TemTemApiPatch.pathInfo`, replaced it with `TemTemTemApiPatch.fixes`, `TemTemApiPatch.improvements` & `TemTemApiPatch.features` properties
 * `TemTemApiPatch.date` is now `DateTime`
 * `TemTemApiSaipark.startDate` & `TemTemApiSaipark.endDate` are now `DateTime`
+* In method `getTemTems`:
+    - parameter `fields` has been removed
+    - parameter `expand` is now a `List<ExpandableField>`
 
 # 0.1.1+3
 

@@ -1,10 +1,15 @@
+enum ExpandableField { traits, techniques, types }
+
 /// Astract class to use if you need to implement your own provider.
 abstract class ApiProvider {
+  /// - `names`: List of the Temtem names you want information about.
+  /// - `expand`: List of fields you want extended.
   Future<Iterable> getTemtems({
     List<String> names = const [],
-    List<String> fields = const [],
-    List<String> expand = const [],
+    List<ExpandableField> expand = const [],
+    bool weaknesses = false,
   });
+
   Future<Map<String, dynamic>> getTemtem(
     int id, {
     List<String> fields = const [],

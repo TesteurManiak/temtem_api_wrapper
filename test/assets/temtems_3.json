@@ -1,0 +1,453 @@
+[
+    {
+        "number": 113,
+        "name": "Ganki",
+        "types": [
+            {
+                "name": "Electric",
+                "icon": "/images/icons/types/Electric.png"
+            },
+            {
+                "name": "Wind",
+                "icon": "/images/icons/types/Wind.png"
+            }
+        ],
+        "portraitWikiUrl": "https://static.wikia.nocookie.net/temtem_gamepedia_en/images/b/bc/Ganki.png",
+        "lumaPortraitWikiUrl": "",
+        "wikiUrl": "https://temtem.gamepedia.com/Ganki",
+        "stats": {
+            "hp": 38,
+            "sta": 46,
+            "spd": 61,
+            "atk": 57,
+            "def": 38,
+            "spatk": 62,
+            "spdef": 73,
+            "total": 375
+        },
+        "traits": [
+            {
+                "name": "Resistant",
+                "wikiUrl": "https://temtem.gamepedia.com/wiki/Resistant",
+                "description": "",
+                "effect": "Resistant decreases the duration of the Poisoned, the Burned, the Asleep, the Cold, the Exhausted, the Isolated, the Seized, and the Trapped Conditions the holder is inflicted with by 1 turn. If the inflicted condition would only last 1 turn normally, the holder will not be inflicted with it."
+            },
+            {
+                "name": "Inductor",
+                "wikiUrl": "https://temtem.gamepedia.com/wiki/Inductor",
+                "description": "",
+                "effect": "Inductor restores 8% of the holder's max HP every time an Electric Technique is used by any Temtem on the battlefield."
+            }
+        ],
+        "details": {
+            "height": {
+                "cm": 105,
+                "inches": 41
+            },
+            "weight": {
+                "kg": 14,
+                "lbs": 31
+            }
+        },
+        "techniques": [
+            {
+                "name": "Sparks",
+                "wikiUrl": "https://temtem.gamepedia.com/wiki/Sparks",
+                "type": "Electric",
+                "class": "Status",
+                "classIcon": "/images/icons/technique/Status.png",
+                "damage": 0,
+                "staminaCost": 9,
+                "hold": 0,
+                "priority": "normal",
+                "priorityIcon": "/images/icons/priority/normal.png",
+                "synergy": "None",
+                "synergyEffects": [],
+                "targets": "Single Target",
+                "description": "Nothing perks you up like a spark-up! SPATK .",
+                "effectText": "Sparks gifts a single target with SPATK .",
+                "effects": [],
+                "source": "Levelling",
+                "levels": 1
+            },
+            {
+                "name": "Nimble",
+                "wikiUrl": "https://temtem.gamepedia.com/wiki/Nimble",
+                "type": "Wind",
+                "class": "Status",
+                "classIcon": "/images/icons/technique/Status.png",
+                "damage": 0,
+                "staminaCost": 9,
+                "hold": 0,
+                "priority": "normal",
+                "priorityIcon": "/images/icons/priority/normal.png",
+                "synergy": "None",
+                "synergyEffects": [],
+                "targets": "Single Other Target",
+                "description": "Through rigorous training, Temtem can become extra fast and gain SPD .",
+                "effectText": "Nimble gifts a single other target with SPD .",
+                "effects": [],
+                "source": "Levelling",
+                "levels": 3
+            },
+            {
+                "name": "Wind Blade",
+                "wikiUrl": "https://temtem.gamepedia.com/wiki/Wind_Blade",
+                "type": "Wind",
+                "class": "Special",
+                "classIcon": "/images/icons/technique/Special.png",
+                "damage": 40,
+                "staminaCost": 9,
+                "hold": 0,
+                "priority": "normal",
+                "priorityIcon": "/images/icons/priority/normal.png",
+                "synergy": "None",
+                "synergyEffects": [],
+                "targets": "Single Other Target",
+                "description": "Lashing gales, like the frozen tramontane wind howling over the Loch.",
+                "effectText": "Wind Blade deals damage to a single other target.",
+                "effects": [],
+                "source": "Levelling",
+                "levels": 5
+            },
+            {
+                "name": "DC Beam",
+                "wikiUrl": "https://temtem.gamepedia.com/wiki/DC_Beam",
+                "type": "Electric",
+                "class": "Special",
+                "classIcon": "/images/icons/technique/Special.png",
+                "damage": 35,
+                "staminaCost": 5,
+                "hold": 0,
+                "priority": "high",
+                "priorityIcon": "/images/icons/priority/high.png",
+                "synergy": "None",
+                "synergyEffects": [],
+                "targets": "Single Other Target",
+                "description": "Lightning, an elemental force; not extremely powerful, but always reliable.",
+                "effectText": "DC Beam deals damage to a single other target.",
+                "effects": [],
+                "source": "Levelling",
+                "levels": 7
+            },
+            {
+                "name": "Chain Lightning",
+                "wikiUrl": "https://temtem.gamepedia.com/wiki/Chain_Lightning",
+                "type": "Electric",
+                "class": "Special",
+                "classIcon": "/images/icons/technique/Special.png",
+                "damage": 48,
+                "staminaCost": 17,
+                "hold": 0,
+                "priority": "normal",
+                "priorityIcon": "/images/icons/priority/normal.png",
+                "synergy": "None",
+                "synergyEffects": [],
+                "targets": "Single Target",
+                "description": "This miracle of Electric manipulation bounces 3 times clockwise for as long as it deals damage, dealing decreasing damage with each hit.",
+                "effectText": "Chain Lightning deals damage to a single target then two other Temtem in clockwise order from the initial target. The initial target takes 100% of the damage, the second takes 70%, and the third takes 60%. The chain of damage will fail to continue to the next target if the damage was blocked by the current target. Damage can be blocked if the target who would have taken damage has the Evading Condition, has the Electric Synthesize Trait, or, if the target is an ally, has the Friendship trait.",
+                "effects": [],
+                "source": "Levelling",
+                "levels": 16
+            },
+            {
+                "name": "Drill Impact",
+                "wikiUrl": "https://temtem.gamepedia.com/wiki/Drill_Impact",
+                "type": "Neutral",
+                "class": "Physical",
+                "classIcon": "/images/icons/technique/Physical.png",
+                "damage": 120,
+                "staminaCost": 23,
+                "hold": 0,
+                "priority": "normal",
+                "priorityIcon": "/images/icons/priority/normal.png",
+                "synergy": "None",
+                "synergyEffects": [],
+                "targets": "Single Other Target",
+                "description": "Nothing does armor piercing damage like a drill to the head.",
+                "effectText": "Drill Impact deals damage to a single other target.",
+                "effects": [],
+                "source": "Levelling",
+                "levels": 22
+            },
+            {
+                "name": "Electric Storm",
+                "wikiUrl": "https://temtem.gamepedia.com/wiki/Electric_Storm",
+                "type": "Electric",
+                "class": "Special",
+                "classIcon": "/images/icons/technique/Special.png",
+                "damage": 76,
+                "staminaCost": 29,
+                "hold": 1,
+                "priority": "normal",
+                "priorityIcon": "/images/icons/priority/normal.png",
+                "synergy": "None",
+                "synergyEffects": [],
+                "targets": "Other Team or Ally",
+                "description": "True Electric storm like the monsoon over Cipanku. Damages whole team.",
+                "effectText": "Electric Storm deals damage to the rival team or the user's ally.",
+                "effects": [],
+                "source": "Levelling",
+                "levels": 33
+            },
+            {
+                "name": "Turbo Choreography",
+                "wikiUrl": "https://temtem.gamepedia.com/wiki/Turbo_Choreography",
+                "type": "Wind",
+                "class": "Status",
+                "classIcon": "/images/icons/technique/Status.png",
+                "damage": 0,
+                "staminaCost": 23,
+                "hold": 1,
+                "priority": "normal",
+                "priorityIcon": "/images/icons/priority/normal.png",
+                "synergy": "Wind",
+                "synergyEffects": [
+                    {
+                        "effect": "+2 SPD",
+                        "type": "buff",
+                        "damage": 0
+                    }
+                ],
+                "targets": "Single Team",
+                "description": "The ancestral dance of Deniz is a powerful ritual that bestows protection, SPD to the whole team.Wind allies boost the effect of Turbo Choreography to the whole team SPD .",
+                "effectText": "Turbo Choreography gifts a single team with SPD .",
+                "effects": [],
+                "source": "TechniqueCourses",
+                "trainingCourse": {
+                    "number": "TC001",
+                    "technique": "Tsunami",
+                    "type": "Water",
+                    "location": "Complete Gone with the Sillaro. Requires the Surfboard.",
+                    "locationType": "quest"
+                }
+            },
+            {
+                "name": "Misogi",
+                "wikiUrl": "https://temtem.gamepedia.com/wiki/Misogi",
+                "type": "Water",
+                "class": "Status",
+                "classIcon": "/images/icons/technique/Status.png",
+                "damage": 0,
+                "staminaCost": 18,
+                "hold": 2,
+                "priority": "normal",
+                "priorityIcon": "/images/icons/priority/normal.png",
+                "synergy": "Water",
+                "synergyEffects": [
+                    {
+                        "effect": "3 Turns  Immune",
+                        "type": "condition",
+                        "damage": 0
+                    }
+                ],
+                "targets": "Self",
+                "description": "The monks of Miyako developed this technique to eliminate all altered states on the Temtem.Using this waterfall meditation with a Water ally, you become immune for 3 turns.",
+                "effectText": "Misogi cures/removes all Status Conditions gifted/given/inflicted on the user.",
+                "effects": [],
+                "source": "TechniqueCourses",
+                "trainingCourse": {
+                    "number": "TC001",
+                    "technique": "Tsunami",
+                    "type": "Water",
+                    "location": "Complete Gone with the Sillaro. Requires the Surfboard.",
+                    "locationType": "quest"
+                }
+            },
+            {
+                "name": "Noxious Bomb",
+                "wikiUrl": "https://temtem.gamepedia.com/wiki/Noxious_Bomb",
+                "type": "Toxic",
+                "class": "Physical",
+                "classIcon": "/images/icons/technique/Physical.png",
+                "damage": 100,
+                "staminaCost": 20,
+                "hold": 0,
+                "priority": "normal",
+                "priorityIcon": "/images/icons/priority/normal.png",
+                "synergy": "None",
+                "synergyEffects": [],
+                "targets": "Single Target",
+                "description": "This nasty stinker inflicts Toxic damage... Just don't use it in an elevator...",
+                "effectText": "Noxious Bomb deals damage to a single target.",
+                "effects": [],
+                "source": "TechniqueCourses",
+                "trainingCourse": {
+                    "number": "TC001",
+                    "technique": "Tsunami",
+                    "type": "Water",
+                    "location": "Complete Gone with the Sillaro. Requires the Surfboard.",
+                    "locationType": "quest"
+                }
+            },
+            {
+                "name": "Tesla Prison",
+                "wikiUrl": "https://temtem.gamepedia.com/wiki/Tesla_Prison",
+                "type": "Electric",
+                "class": "Special",
+                "classIcon": "/images/icons/technique/Special.png",
+                "damage": 50,
+                "staminaCost": 14,
+                "hold": 0,
+                "priority": "normal",
+                "priorityIcon": "/images/icons/priority/normal.png",
+                "synergy": "None",
+                "synergyEffects": [],
+                "targets": "Single Other Target",
+                "description": "An electromagnetic trap that does light damage and slows down the target: SPD .",
+                "effectText": "Tesla Prison deals damage to a single other target and inflicts them with SPD .",
+                "effects": [],
+                "source": "Breeding"
+            },
+            {
+                "name": "Turbine",
+                "wikiUrl": "https://temtem.gamepedia.com/wiki/Turbine",
+                "type": "Wind",
+                "class": "Physical",
+                "classIcon": "/images/icons/technique/Physical.png",
+                "damage": 100,
+                "staminaCost": 23,
+                "hold": 1,
+                "priority": "high",
+                "priorityIcon": "/images/icons/priority/high.png",
+                "synergy": "None",
+                "synergyEffects": [],
+                "targets": "Single Other Target",
+                "description": "Swift as the wind and as harsh and razor sharp as a wintery gale. This technique is fast and inflicts decent damage.",
+                "effectText": "Turbine deals damage to a single other target.",
+                "effects": [],
+                "source": "Breeding"
+            }
+        ],
+        "trivia": [
+            "Ganki was first revealed via Twitter.",
+            "Ganki has an emote on the official Temtem discord."
+        ],
+        "evolution": {
+            "stage": 0,
+            "evolutionTree": [
+                {
+                    "stage": 0,
+                    "number": 113,
+                    "name": "Ganki",
+                    "level": 0,
+                    "type": "levels",
+                    "trading": false,
+                    "traits": [
+                        "Resistant",
+                        "Inductor"
+                    ],
+                    "traitMapping": {
+                        "Resistant": "Receptive",
+                        "Inductor": "Fast Charge"
+                    }
+                },
+                {
+                    "stage": 1,
+                    "number": 114,
+                    "name": "Gazuma",
+                    "level": 27,
+                    "type": "levels",
+                    "trading": false,
+                    "traits": [
+                        "Receptive",
+                        "Fast Charge"
+                    ],
+                    "traitMapping": {
+                        "Receptive": "Receptive",
+                        "Fast Charge": "Fast Charge"
+                    }
+                }
+            ],
+            "evolves": true,
+            "type": "levels",
+            "from": null,
+            "to": {
+                "stage": 1,
+                "number": 114,
+                "name": "Gazuma",
+                "level": 27,
+                "type": "levels",
+                "trading": false,
+                "traits": [
+                    "Receptive",
+                    "Fast Charge"
+                ],
+                "traitMapping": {
+                    "Receptive": "Receptive",
+                    "Fast Charge": "Fast Charge"
+                }
+            },
+            "number": 113,
+            "name": "Ganki",
+            "level": 0,
+            "trading": false,
+            "traits": [
+                "Resistant",
+                "Inductor"
+            ],
+            "traitMapping": {
+                "Resistant": "Receptive",
+                "Inductor": "Fast Charge"
+            }
+        },
+        "wikiPortraitUrlLarge": "https://static.wikia.nocookie.net/temtem_gamepedia_en/images/b/bc/Ganki.png",
+        "lumaWikiPortraitUrlLarge": "https://static.wikia.nocookie.net/temtem_gamepedia_en/images/c/c5/LumaGanki.png",
+        "locations": [
+            {
+                "location": "Thalassian Cliffs",
+                "place": "Thalassian Cliffs",
+                "note": "",
+                "island": "Deniz",
+                "frequency": "80% - 100%",
+                "level": "5 - 16",
+                "freetem": {
+                    "minLevel": 5,
+                    "maxLevel": 16,
+                    "minPansuns": 33,
+                    "maxPansuns": 60
+                }
+            },
+            {
+                "location": "Windward Fort",
+                "place": "Windward Fort",
+                "note": "",
+                "island": "Deniz",
+                "frequency": "20% - 95%",
+                "level": "10 - 14",
+                "freetem": {
+                    "minLevel": 10,
+                    "maxLevel": 14,
+                    "minPansuns": 45,
+                    "maxPansuns": 55
+                }
+            }
+        ],
+        "icon": "/images/portraits/temtem/large/Ganki.png",
+        "lumaIcon": "/images/portraits/temtem/luma/large/Ganki.png",
+        "genderRatio": {
+            "male": 50,
+            "female": 50
+        },
+        "catchRate": 120,
+        "hatchMins": 21,
+        "tvYields": {
+            "hp": 0,
+            "sta": 0,
+            "spd": 0,
+            "atk": 1,
+            "def": 0,
+            "spatk": 0,
+            "spdef": 0
+        },
+        "gameDescription": "Many Cipanki legends mention the kind but powerful Ganki as mountain spirits, mythologically related to lightning and whirlwinds. Although they are no longer revered as kami, the Cipanki still appreciate and breed them.",
+        "wikiRenderStaticUrl": "",
+        "wikiRenderAnimatedUrl": "https://static.wikia.nocookie.net/temtem_gamepedia_en/images/e/e4/LumaGanki_idle_animation_of_.gif",
+        "wikiRenderStaticLumaUrl": "",
+        "wikiRenderAnimatedLumaUrl": "https://static.wikia.nocookie.net/temtem_gamepedia_en/images/e/e4/LumaGanki_idle_animation_of_.gif",
+        "renderStaticImage": "",
+        "renderStaticLumaImage": "",
+        "renderAnimatedImage": "/images/renders/temtem/animated/Ganki.gif",
+        "renderAnimatedLumaImage": "/images/renders/temtem/luma/animated/Ganki.gif"
+    }
+]
