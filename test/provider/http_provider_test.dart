@@ -61,5 +61,38 @@ void main() {
         expect(temtems.every((temtem) => temtem['weaknesses'] != null), isTrue);
       });
     });
+
+    group('getTemtem', () {
+      test('return info for temtem 113', () async {
+        final temtem = await httpProvider.getTemtem(
+          id: 113,
+          expand: [],
+          weaknesses: false,
+        );
+        expect(temtem, isNotNull);
+        expect(temtem['number'], 113);
+      });
+
+      test('return expanded info for temtem 113', () async {
+        final temtem = await httpProvider.getTemtem(
+          id: 113,
+          expand: ExpandableField.values,
+          weaknesses: false,
+        );
+        expect(temtem, isNotNull);
+        expect(temtem['number'], 113);
+
+        // final techniques = temtem['techniques'] as Iterable?;
+        // expect(techniques, isNotNull);
+        // expect(techniques?.length, 14);
+
+        // final traits = temtem['traits'] as Iterable?;
+        // expect(traits, isNotNull);
+
+        // final types = temtem['types'] as Iterable?;
+        // expect(types, isNotNull);
+        // expect(types?.length, 2);
+      });
+    });
   });
 }

@@ -124,6 +124,41 @@ void main() {
         expect(temtem.renderAnimatedImage, '');
         expect(temtem.renderAnimatedLumaImage, '');
       });
+
+      test('parse temtem_113_expanded.json', () {
+        final json = jsonDecode(fixture('temtem_113_expanded.json'))
+            as Map<String, dynamic>;
+        final temtem = TemTemApiTem.fromJson(json);
+
+        expect(temtem.number, 113);
+        expect(temtem.name, 'Ganki');
+        expect(
+          temtem.types,
+          [
+            Type(name: 'Electric', icon: '/images/icons/types/Electric.png'),
+            Type(name: 'Wind', icon: '/images/icons/types/Wind.png'),
+          ],
+        );
+        expect(
+          temtem.portraitWikiUrl,
+          'https://static.wikia.nocookie.net/temtem_gamepedia_en/images/b/bc/Ganki.png',
+        );
+        expect(temtem.lumaPortraitWikiUrl, '');
+        expect(temtem.wikiUrl, 'https://temtem.gamepedia.com/Ganki');
+        expect(
+          temtem.stats,
+          Stats(
+            hp: 38,
+            sta: 46,
+            spd: 61,
+            atk: 57,
+            def: 38,
+            spatk: 62,
+            spdef: 73,
+            total: 375,
+          ),
+        );
+      });
     });
   });
 

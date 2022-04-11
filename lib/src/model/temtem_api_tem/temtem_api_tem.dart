@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:collection/collection.dart';
 import 'package:temtem_api_wrapper/src/provider/http_provider.dart';
 
@@ -80,8 +82,16 @@ class TemTemApiTem {
   });
 
   factory TemTemApiTem.fromJson(Map<String, dynamic> json) {
-    final techniques =
-        (json['techniques'] as Iterable?)?.cast<Map<String, dynamic>>();
+    final techniquesEntry = json['techniques'] as Iterable?;
+    final techniques = <Technique>[];
+    if (techniquesEntry != null) {
+      for (final technique in techniquesEntry) {
+        final encoded = jsonEncode(technique);
+        final decoded = jsonDecode(encoded) as Map<String, dynamic>;
+        techniques.add(Technique.fromJson(decoded));
+      }
+    }
+
     final locations =
         (json['locations'] as Iterable?)?.cast<Map<String, dynamic>>();
 
@@ -115,7 +125,7 @@ class TemTemApiTem {
       stats: Stats.fromJson(json['stats'] as Map<String, dynamic>),
       traits: traits,
       details: Details.fromJson(json['details'] as Map<String, dynamic>),
-      techniques: techniques?.map(Technique.fromJson).toList(),
+      techniques: techniques,
       trivia: List<String>.from(json['trivia'] as Iterable),
       evolution: Evolution.fromJson(json['evolution'] as Map<String, dynamic>),
       wikiPortraitUrlLarge: json['wikiPortraitUrlLarge'] as String,

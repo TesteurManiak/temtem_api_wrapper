@@ -35,7 +35,7 @@ class Technique {
   final String? synergy;
 
   /// This field is only filled if the technique has been expanded.
-  final List<String>? synergyEffects;
+  final List<SynergyEffect>? synergyEffects;
 
   /// This field is only filled if the technique has been expanded.
   final String? targets;
@@ -73,27 +73,35 @@ class Technique {
     required this.levels,
   });
 
-  factory Technique.fromJson(Map<String, dynamic> json) => Technique(
-        name: json['name'] as String,
-        wikiUrl: json['wikiUrl'] as String?,
-        type: json['type'] as String?,
-        classTouch: json['classTouch'] as String?,
-        classIcon: json['classIcon'] as String?,
-        damage: json['damage'] as int?,
-        staminaCost: json['staminaCost'] as int?,
-        hold: json['hold'] as int?,
-        priority: json['priority'] as String?,
-        priorityIcon: json['priorityIcon'] as String?,
-        synergy: json['synergy'] as String?,
-        synergyEffects:
-            (json['synergyEffects'] as Iterable?)?.cast<String>().toList(),
-        targets: json['targets'] as String?,
-        description: json['description'] as String?,
-        effectText: json['effectText'] as String?,
-        effects: (json['effects'] as Iterable?)?.cast<String>().toList(),
-        source: json['source'] as String,
-        levels: json['levels'] as int?,
-      );
+  factory Technique.fromJson(Map<String, dynamic> json) {
+    final synergyEffects = json['synergyEffects'] as Iterable?;
+    return Technique(
+      name: json['name'] as String,
+      wikiUrl: json['wikiUrl'] as String?,
+      type: json['type'] as String?,
+      classTouch: json['classTouch'] as String?,
+      classIcon: json['classIcon'] as String?,
+      damage: json['damage'] as int?,
+      staminaCost: json['staminaCost'] as int?,
+      hold: json['hold'] as int?,
+      priority: json['priority'] as String?,
+      priorityIcon: json['priorityIcon'] as String?,
+      synergy: json['synergy'] as String?,
+      synergyEffects: synergyEffects?.map<SynergyEffect>((e) {
+        if (e is String) {
+          return SynergyEffect.fromString(e);
+        } else {
+          return SynergyEffect.fromJson(e as Map<String, dynamic>);
+        }
+      }).toList(),
+      targets: json['targets'] as String?,
+      description: json['description'] as String?,
+      effectText: json['effectText'] as String?,
+      effects: (json['effects'] as Iterable?)?.cast<String>().toList(),
+      source: json['source'] as String,
+      levels: json['levels'] as int?,
+    );
+  }
 
   String? get classIconUrl => classIcon != null
       ? HttpProvider.baseUri.replace(path: classIcon).toString()
@@ -102,4 +110,30 @@ class Technique {
   String? get priorityIconUrl => priorityIcon != null
       ? HttpProvider.baseUri.replace(path: priorityIcon).toString()
       : null;
+}
+
+class SynergyEffect {
+  final String effect;
+  final String? type;
+  final int? damage;
+
+  SynergyEffect({
+    required this.effect,
+    required this.type,
+    required this.damage,
+  });
+
+  factory SynergyEffect.fromJson(Map<String, dynamic> json) => SynergyEffect(
+        effect: json['effect'] as String,
+        type: json['type'] as String?,
+        damage: json['damage'] as int?,
+      );
+
+  factory SynergyEffect.fromString(String effect) {
+    return SynergyEffect(
+      effect: effect,
+      type: null,
+      damage: null,
+    );
+  }
 }
