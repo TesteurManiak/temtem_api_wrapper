@@ -41,24 +41,32 @@ void main() {
     });
 
     group('getTemTem', () {
-      test('should return temtem 113', () async {
+      test('return info for temtem 113', () async {
         final temtem = await temtemApi.getTemTem(113);
         expect(temtem, isNotNull);
       });
 
-      test('should return a temtem with the given expand', () async {
+      test('return a temtem with the given expand', () async {
         final temtem =
             await temtemApi.getTemTem(113, expand: ExpandableField.values);
         expect(temtem, isNotNull);
       });
 
-      test('should return a temtem with the given weaknesses', () async {
+      test('return a temtem with the given weaknesses', () async {
         final temtem = await temtemApi.getTemTem(113, weaknesses: true);
         expect(temtem, isNotNull);
         expect(temtem.weaknesses != null, isTrue);
       });
     });
 
-    group('getFreetem', () {});
+    group('getFreetem', () {
+      test('return the reward for catching a Ganki at level 30', () async {
+        final freetem = await temtemApi.getFreeTem('Ganki', 30);
+        expect(freetem.temtem, 'Ganki');
+        expect(freetem.level, 30);
+        expect(freetem.catchRate, 120);
+        expect(freetem.reward, 95);
+      });
+    });
   });
 }
