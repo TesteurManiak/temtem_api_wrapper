@@ -39,8 +39,9 @@ final mockClient = MockClient((request) async {
 
       if (expand != null && weaknesses == null) {
         return Response(fixture('temtem_113_expanded.json'), 200);
+      } else if (expand == null && weaknesses != null) {
+        return Response(fixture('temtem_113_weaknesses.json'), 200);
       }
-
       return Response(fixture('temtem_113.json'), 200);
     }
   }

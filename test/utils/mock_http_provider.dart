@@ -107,8 +107,19 @@ class MockHttpProvider implements ApiProvider {
     required int id,
     required List<ExpandableField> expand,
     required bool weaknesses,
-  }) {
-    // TODO: implement getTemtem
+  }) async {
+    const listEquality = ListEquality();
+
+    if (id == 113) {
+      if (listEquality.equals(expand, ExpandableField.values) && !weaknesses) {
+        return jsonDecode(fixture('temtem_113_expanded.json'))
+            as Map<String, dynamic>;
+      } else if (expand.isEmpty && weaknesses) {
+        return jsonDecode(fixture('temtem_113_weaknesses.json'))
+            as Map<String, dynamic>;
+      }
+      return jsonDecode(fixture('temtem_113.json')) as Map<String, dynamic>;
+    }
     throw UnimplementedError();
   }
 

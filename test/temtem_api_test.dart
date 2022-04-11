@@ -39,5 +39,24 @@ void main() {
         expect(temtems.every((temtem) => temtem.weaknesses != null), isTrue);
       });
     });
+
+    group('getTemTem', () {
+      test('should return temtem 113', () async {
+        final temtem = await temtemApi.getTemTem(113);
+        expect(temtem, isNotNull);
+      });
+
+      test('should return a temtem with the given expand', () async {
+        final temtem =
+            await temtemApi.getTemTem(113, expand: ExpandableField.values);
+        expect(temtem, isNotNull);
+      });
+
+      test('should return a temtem with the given weaknesses', () async {
+        final temtem = await temtemApi.getTemTem(113, weaknesses: true);
+        expect(temtem, isNotNull);
+        expect(temtem.weaknesses != null, isTrue);
+      });
+    });
   });
 }

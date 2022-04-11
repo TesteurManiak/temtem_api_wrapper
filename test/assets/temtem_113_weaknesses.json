@@ -1,0 +1,236 @@
+{
+    "number": 113,
+    "name": "Ganki",
+    "types": [
+        "Electric",
+        "Wind"
+    ],
+    "portraitWikiUrl": "https://static.wikia.nocookie.net/temtem_gamepedia_en/images/b/bc/Ganki.png",
+    "lumaPortraitWikiUrl": "",
+    "wikiUrl": "https://temtem.gamepedia.com/Ganki",
+    "stats": {
+        "hp": 38,
+        "sta": 46,
+        "spd": 61,
+        "atk": 57,
+        "def": 38,
+        "spatk": 62,
+        "spdef": 73,
+        "total": 375
+    },
+    "traits": [
+        "Resistant",
+        "Inductor"
+    ],
+    "details": {
+        "height": {
+            "cm": 105,
+            "inches": 41
+        },
+        "weight": {
+            "kg": 14,
+            "lbs": 31
+        }
+    },
+    "techniques": [
+        {
+            "name": "Sparks",
+            "source": "Levelling",
+            "levels": 1
+        },
+        {
+            "name": "Nimble",
+            "source": "Levelling",
+            "levels": 3
+        },
+        {
+            "name": "Wind Blade",
+            "source": "Levelling",
+            "levels": 5
+        },
+        {
+            "name": "DC Beam",
+            "source": "Levelling",
+            "levels": 7
+        },
+        {
+            "name": "Chain Lightning",
+            "source": "Levelling",
+            "levels": 16
+        },
+        {
+            "name": "Drill Impact",
+            "source": "Levelling",
+            "levels": 22
+        },
+        {
+            "name": "Electric Storm",
+            "source": "Levelling",
+            "levels": 33
+        },
+        {
+            "name": "Turbo Choreography",
+            "source": "TechniqueCourses"
+        },
+        {
+            "name": "Misogi",
+            "source": "TechniqueCourses"
+        },
+        {
+            "name": "Noxious Bomb",
+            "source": "TechniqueCourses"
+        },
+        {
+            "name": "Tesla Prison",
+            "source": "Breeding"
+        },
+        {
+            "name": "Turbine",
+            "source": "Breeding"
+        }
+    ],
+    "trivia": [
+        "Ganki was first revealed via Twitter.",
+        "Ganki has an emote on the official Temtem discord."
+    ],
+    "evolution": {
+        "stage": 0,
+        "evolutionTree": [
+            {
+                "stage": 0,
+                "number": 113,
+                "name": "Ganki",
+                "level": 0,
+                "type": "levels",
+                "trading": false,
+                "traits": [
+                    "Resistant",
+                    "Inductor"
+                ],
+                "traitMapping": {
+                    "Resistant": "Receptive",
+                    "Inductor": "Fast Charge"
+                }
+            },
+            {
+                "stage": 1,
+                "number": 114,
+                "name": "Gazuma",
+                "level": 27,
+                "type": "levels",
+                "trading": false,
+                "traits": [
+                    "Receptive",
+                    "Fast Charge"
+                ],
+                "traitMapping": {
+                    "Receptive": "Receptive",
+                    "Fast Charge": "Fast Charge"
+                }
+            }
+        ],
+        "evolves": true,
+        "type": "levels",
+        "from": null,
+        "to": {
+            "stage": 1,
+            "number": 114,
+            "name": "Gazuma",
+            "level": 27,
+            "type": "levels",
+            "trading": false,
+            "traits": [
+                "Receptive",
+                "Fast Charge"
+            ],
+            "traitMapping": {
+                "Receptive": "Receptive",
+                "Fast Charge": "Fast Charge"
+            }
+        },
+        "number": 113,
+        "name": "Ganki",
+        "level": 0,
+        "trading": false,
+        "traits": [
+            "Resistant",
+            "Inductor"
+        ],
+        "traitMapping": {
+            "Resistant": "Receptive",
+            "Inductor": "Fast Charge"
+        }
+    },
+    "wikiPortraitUrlLarge": "https://static.wikia.nocookie.net/temtem_gamepedia_en/images/b/bc/Ganki.png",
+    "lumaWikiPortraitUrlLarge": "https://static.wikia.nocookie.net/temtem_gamepedia_en/images/c/c5/LumaGanki.png",
+    "locations": [
+        {
+            "location": "Thalassian Cliffs",
+            "place": "Thalassian Cliffs",
+            "note": "",
+            "island": "Deniz",
+            "frequency": "80% - 100%",
+            "level": "5 - 16",
+            "freetem": {
+                "minLevel": 5,
+                "maxLevel": 16,
+                "minPansuns": 33,
+                "maxPansuns": 60
+            }
+        },
+        {
+            "location": "Windward Fort",
+            "place": "Windward Fort",
+            "note": "",
+            "island": "Deniz",
+            "frequency": "20% - 95%",
+            "level": "10 - 14",
+            "freetem": {
+                "minLevel": 10,
+                "maxLevel": 14,
+                "minPansuns": 45,
+                "maxPansuns": 55
+            }
+        }
+    ],
+    "icon": "/images/portraits/temtem/large/Ganki.png",
+    "lumaIcon": "/images/portraits/temtem/luma/large/Ganki.png",
+    "genderRatio": {
+        "male": 50,
+        "female": 50
+    },
+    "catchRate": 120,
+    "hatchMins": 21,
+    "tvYields": {
+        "hp": 0,
+        "sta": 0,
+        "spd": 0,
+        "atk": 1,
+        "def": 0,
+        "spatk": 0,
+        "spdef": 0
+    },
+    "gameDescription": "Many Cipanki legends mention the kind but powerful Ganki as mountain spirits, mythologically related to lightning and whirlwinds. Although they are no longer revered as kami, the Cipanki still appreciate and breed them.",
+    "wikiRenderStaticUrl": "",
+    "wikiRenderAnimatedUrl": "https://static.wikia.nocookie.net/temtem_gamepedia_en/images/e/e4/LumaGanki_idle_animation_of_.gif",
+    "wikiRenderStaticLumaUrl": "",
+    "wikiRenderAnimatedLumaUrl": "https://static.wikia.nocookie.net/temtem_gamepedia_en/images/e/e4/LumaGanki_idle_animation_of_.gif",
+    "renderStaticImage": "",
+    "renderStaticLumaImage": "",
+    "renderAnimatedImage": "/images/renders/temtem/animated/Ganki.gif",
+    "renderAnimatedLumaImage": "/images/renders/temtem/luma/animated/Ganki.gif",
+    "weaknesses": {
+        "Neutral": 1,
+        "Fire": 1,
+        "Water": 1,
+        "Nature": 1,
+        "Electric": 1,
+        "Earth": 1,
+        "Mental": 1,
+        "Wind": 0.25,
+        "Digital": 1,
+        "Melee": 1,
+        "Crystal": 2,
+        "Toxic": 1
+    }
+}
