@@ -46,8 +46,11 @@ class MockHttpProvider implements ApiProvider {
   }
 
   @override
-  Future<Map<String, dynamic>> getFreetem(String name, int level) {
-    // TODO: implement getFreetem
+  Future<Map<String, dynamic>> getFreetem(String name, int level) async {
+    if (name == 'Ganki' && level == 30) {
+      return jsonDecode(fixture('freetem_ganki.json')) as Map<String, dynamic>;
+    }
+
     throw UnimplementedError();
   }
 

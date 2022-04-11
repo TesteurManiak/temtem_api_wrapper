@@ -58,5 +58,7 @@ void main() {
         expect(temtem.weaknesses != null, isTrue);
       });
     });
+
+    group('getFreetem', () {});
   });
 }

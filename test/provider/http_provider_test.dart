@@ -104,5 +104,18 @@ void main() {
         expect(temtem['weaknesses'], isNotNull);
       });
     });
+    group('getFreetem', () {
+      test(
+        'return the reward for catching a specific temtem at a certain level',
+        () async {
+          final freetem = await httpProvider.getFreetem('Ganki', 30);
+          expect(freetem, isNotNull);
+          expect(freetem['temtem'], 'Ganki');
+          expect(freetem['level'], 30);
+          expect(freetem['catchRate'], 120);
+          expect(freetem['reward'], 95);
+        },
+      );
+    });
   });
 }

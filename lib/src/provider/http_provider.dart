@@ -45,8 +45,12 @@ class HttpProvider implements ApiProvider {
   }
 
   @override
-  Future<Map<String, dynamic>> getFreetem(String name, int level) =>
-      _get('$baseUrl/freetem/$name/$level');
+  Future<Map<String, dynamic>> getFreetem(String name, int level) {
+    final uri = baseUri.replace(
+      pathSegments: ['api', 'freetem', name, '$level'],
+    );
+    return _get(uri.toString());
+  }
 
   @override
   Future<Iterable> getFreetemRewards() => _get('$baseUrl/freetem/rewards');

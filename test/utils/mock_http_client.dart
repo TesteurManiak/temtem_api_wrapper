@@ -43,6 +43,9 @@ final mockClient = MockClient((request) async {
         return Response(fixture('temtem_113_weaknesses.json'), 200);
       }
       return Response(fixture('temtem_113.json'), 200);
+    } else if (listEquality
+        .equals(url.pathSegments, ['api', 'freetem', 'Ganki', '30'])) {
+      return Response(fixture('freetem_ganki.json'), 200);
     }
   }
   throw Response('{errorStatus: 404}', 404);
