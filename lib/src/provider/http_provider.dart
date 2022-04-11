@@ -13,9 +13,9 @@ class HttpProvider implements ApiProvider {
 
   @override
   Future<Iterable> getTemtems({
-    List<String> names = const [],
-    List<ExpandableField> expand = const [],
-    bool weaknesses = false,
+    required List<String> names,
+    required List<ExpandableField> expand,
+    required bool weaknesses,
   }) {
     final uri = baseUri.replace(
       pathSegments: ['api', 'temtems'],
@@ -29,18 +29,19 @@ class HttpProvider implements ApiProvider {
   }
 
   @override
-  Future<Map<String, dynamic>> getTemtem(
-    int id, {
-    List<String> fields = const [],
-    List<String> expand = const [],
+  Future<Map<String, dynamic>> getTemtem({
+    required int id,
+    required List<ExpandableField> expand,
+    required bool weaknesses,
   }) {
-    String url = '$baseUrl/temtems/$id?';
-    if (fields.isNotEmpty) url += 'fields=${fields.join(",")}';
-    if (expand.isNotEmpty) {
-      if (fields.isNotEmpty) url += '&';
-      url += 'expand=${expand.join(",")}';
-    }
-    return _get(url);
+    final uri = baseUri.replace(
+      pathSegments: ['api', 'temtems', '$id'],
+      queryParameters: {
+        if (expand.isNotEmpty) 'expand': expand.map((e) => e.name).join(','),
+        if (weaknesses) 'weaknesses': 'true',
+      },
+    );
+    return _get(uri.toString());
   }
 
   @override

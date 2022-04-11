@@ -103,10 +103,10 @@ class MockHttpProvider implements ApiProvider {
   }
 
   @override
-  Future<Map<String, dynamic>> getTemtem(
-    int id, {
-    List<String> fields = const [],
-    List<String> expand = const [],
+  Future<Map<String, dynamic>> getTemtem({
+    required int id,
+    required List<ExpandableField> expand,
+    required bool weaknesses,
   }) {
     // TODO: implement getTemtem
     throw UnimplementedError();
@@ -114,9 +114,9 @@ class MockHttpProvider implements ApiProvider {
 
   @override
   Future<Iterable> getTemtems({
-    List<String> names = const [],
-    List<ExpandableField> expand = const [],
-    bool weaknesses = false,
+    required List<String> names,
+    required List<ExpandableField> expand,
+    required bool weaknesses,
   }) async {
     const listEquality = ListEquality();
 

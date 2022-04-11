@@ -57,11 +57,14 @@ class TemTemApi {
   /// they will return an array of data in the shape returned by the endpoints.
   Future<TemTemApiTem> getTemTem(
     int number, {
-    List<String> fields = const [],
-    List<String> expand = const [],
+    List<ExpandableField> expand = const [],
+    bool weaknesses = false,
   }) async {
-    final response =
-        await _provider.getTemtem(number, fields: fields, expand: expand);
+    final response = await _provider.getTemtem(
+      id: number,
+      expand: expand,
+      weaknesses: weaknesses,
+    );
     return TemTemApiTem.fromJson(response);
   }
 

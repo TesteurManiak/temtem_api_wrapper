@@ -5,16 +5,17 @@ abstract class ApiProvider {
   /// - `names`: List of the Temtem names you want information about.
   /// - `expand`: List of fields you want extended.
   Future<Iterable> getTemtems({
-    List<String> names = const [],
-    List<ExpandableField> expand = const [],
-    bool weaknesses = false,
+    required List<String> names,
+    required List<ExpandableField> expand,
+    required bool weaknesses,
   });
 
-  Future<Map<String, dynamic>> getTemtem(
-    int id, {
-    List<String> fields = const [],
-    List<String> expand = const [],
+  Future<Map<String, dynamic>> getTemtem({
+    required int id,
+    required List<ExpandableField> expand,
+    required bool weaknesses,
   });
+
   Future<Map<String, dynamic>> getFreetem(String name, int level);
   Future<Iterable> getFreetemRewards();
   Future<dynamic> getTypes();
