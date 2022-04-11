@@ -25,8 +25,7 @@ import 'package:temtem_api_wrapper/src/provider/http_provider.dart';
 class TemTemApi {
   final ApiProvider _provider;
 
-  TemTemApi({ApiProvider provider = const HttpProvider()})
-      : _provider = provider;
+  TemTemApi({ApiProvider? provider}) : _provider = provider ?? HttpProvider();
 
   /// Get informations for all available Temtems on the API.
   ///

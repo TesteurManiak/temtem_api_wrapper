@@ -5,10 +5,11 @@ import 'package:temtem_api_wrapper/src/api_provider.dart';
 
 class HttpProvider implements ApiProvider {
   static const baseUrl = 'https://temtem-api.mael.tech';
-
   static final baseUri = Uri.parse(baseUrl);
 
-  const HttpProvider();
+  final http.Client _client;
+
+  HttpProvider({http.Client? client}) : _client = client ?? http.Client();
 
   @override
   Future<Iterable> getTemtems({
@@ -131,7 +132,7 @@ class HttpProvider implements ApiProvider {
 
   Future<T> _get<T>(String request) async {
     try {
-      final response = await http.get(Uri.parse(request));
+      final response = await _client.get(Uri.parse(request));
       if (response.statusCode == 200) {
         return jsonDecode(response.body) as T;
       } else {
