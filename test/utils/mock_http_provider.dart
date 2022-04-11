@@ -55,9 +55,8 @@ class MockHttpProvider implements ApiProvider {
   }
 
   @override
-  Future<Iterable> getFreetemRewards() {
-    // TODO: implement getFreetemRewards
-    throw UnimplementedError();
+  Future<Iterable> getFreetemRewards() async {
+    return jsonDecode(fixture('rewards.json')) as Iterable;
   }
 
   @override

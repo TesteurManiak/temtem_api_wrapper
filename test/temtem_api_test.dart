@@ -68,5 +68,16 @@ void main() {
         expect(freetem.reward, 95);
       });
     });
+
+    group('getFreeTemRewards', () {
+      test('return all freetem rewards', () async {
+        final rewards = await temtemApi.getFreeTemRewards();
+        expect(rewards, isNotEmpty);
+        expect(rewards.length, 1);
+
+        final reward = rewards.first;
+        expect(reward.name, 'Telomere Hack - SPD');
+      });
+    });
   });
 }
