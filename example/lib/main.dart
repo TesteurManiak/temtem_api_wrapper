@@ -32,7 +32,7 @@ class TabItem {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -42,10 +42,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
-  final TemTemApi _api = TemTemApi();
-  List<TabItem> _items;
+  final _api = TemTemApi();
 
-  TabController _tabController;
+  late final List<TabItem> _items;
+  late final TabController _tabController;
 
   @override
   void initState() {

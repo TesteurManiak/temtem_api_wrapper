@@ -12,7 +12,7 @@ class AllLocations extends StatefulWidget {
 
 class _AllLocationsState extends State<AllLocations>
     with AutomaticKeepAliveClientMixin {
-  Future<List<TemTemApiLocation>> _future;
+  late final Future<List<TemTemApiLocation>> _future;
 
   @override
   void initState() {
@@ -26,28 +26,33 @@ class _AllLocationsState extends State<AllLocations>
     return FutureBuilder<List<TemTemApiLocation>>(
       future: _future,
       builder: (context, snapshot) {
-        if (!snapshot.hasData) return const CircularProgressIndicator();
+        final data = snapshot.data;
+        if (!snapshot.hasData || data == null)
+          return const CircularProgressIndicator();
         return ListView(
           children: [
-            ...snapshot.data
-                .map(
-                  (e) => ListTile(
-                    trailing: const Icon(Icons.arrow_forward_ios),
-                    onTap: () => showDialog(
-                      context: context,
-                      builder: (_) => AlertDialog(
-                        title: Text(e.name),
-                        content: Image.network(e.imageWikiThumbnail),
-                      ),
-                    ),
-                    title: Text(e.name),
-                    subtitle: Text(
-                      e.description,
-                      overflow: TextOverflow.ellipsis,
+            ...data.map(
+              (e) {
+                final imageWikiThumbnail = e.imageWikiThumbnail;
+                return ListTile(
+                  trailing: const Icon(Icons.arrow_forward_ios),
+                  onTap: () => showDialog(
+                    context: context,
+                    builder: (_) => AlertDialog(
+                      title: Text(e.name),
+                      content: imageWikiThumbnail != null
+                          ? Image.network(imageWikiThumbnail)
+                          : null,
                     ),
                   ),
-                )
-                .toList(),
+                  title: Text(e.name),
+                  subtitle: Text(
+                    e.description,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                );
+              },
+            ).toList(),
           ],
         );
       },

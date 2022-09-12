@@ -12,7 +12,7 @@ class AllTemtems extends StatefulWidget {
 
 class _AllTemtemsState extends State<AllTemtems>
     with AutomaticKeepAliveClientMixin {
-  Future<List<TemTemApiTem>> _future;
+  late final Future<List<TemTemApiTem>> _future;
 
   @override
   void initState() {
@@ -26,11 +26,14 @@ class _AllTemtemsState extends State<AllTemtems>
     return FutureBuilder<List<TemTemApiTem>>(
       future: _future,
       builder: (context, snapshot) {
-        if (snapshot.hasError) throw snapshot.error;
-        if (!snapshot.hasData) return const CircularProgressIndicator();
+        final data = snapshot.data;
+        if (snapshot.hasError) throw snapshot.error!;
+        if (!snapshot.hasData || data == null) {
+          return const CircularProgressIndicator();
+        }
         return ListView(
           children: [
-            ...snapshot.data.map<Widget>(
+            ...data.map<Widget>(
               (e) => ListTile(
                 leading: Image.network(e.portraitWikiUrl),
                 title: Text(e.name),

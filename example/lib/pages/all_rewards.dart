@@ -12,7 +12,7 @@ class AllRewards extends StatefulWidget {
 
 class _AllRewardsState extends State<AllRewards>
     with AutomaticKeepAliveClientMixin {
-  Future<List<TemTemApiRewards>> _future;
+  late final Future<List<TemTemApiRewards>> _future;
 
   @override
   void initState() {
@@ -26,13 +26,16 @@ class _AllRewardsState extends State<AllRewards>
     return FutureBuilder<List<TemTemApiRewards>>(
       future: _future,
       builder: (context, snapshot) {
-        if (!snapshot.hasData) return const CircularProgressIndicator();
-        if (snapshot.data.isEmpty) {
+        final data = snapshot.data;
+        if (!snapshot.hasData || data == null) {
+          return const CircularProgressIndicator();
+        }
+        if (data.isEmpty) {
           return const Center(child: Text('Empty rewards list'));
         }
         return ListView(
           children: [
-            ...snapshot.data
+            ...data
                 .map<Widget>(
                   (e) => ListTile(
                     leading: Image.network(e.wikiImageUrl),

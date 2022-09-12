@@ -12,7 +12,7 @@ class AllConditions extends StatefulWidget {
 
 class _AllConditionsState extends State<AllConditions>
     with AutomaticKeepAliveClientMixin {
-  Future<List<TemTemApiCondition>> _future;
+  late final Future<List<TemTemApiCondition>> _future;
 
   @override
   void initState() {
@@ -26,13 +26,15 @@ class _AllConditionsState extends State<AllConditions>
     return FutureBuilder<List<TemTemApiCondition>>(
       future: _future,
       builder: (context, snapshot) {
-        if (!snapshot.hasData) return const CircularProgressIndicator();
-        if (snapshot.data.isEmpty) {
+        final data = snapshot.data;
+        if (!snapshot.hasData || data == null)
+          return const CircularProgressIndicator();
+        if (data.isEmpty) {
           return const Center(child: Text('Empty conditions list'));
         }
         return ListView(
           children: [
-            ...snapshot.data
+            ...data
                 .map<Widget>(
                   (e) => ListTile(
                     title: Text(e.name),

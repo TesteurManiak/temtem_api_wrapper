@@ -4,7 +4,7 @@ import 'package:temtem_api_wrapper/temtem_api_wrapper.dart';
 class AllTypes extends StatefulWidget {
   final TemTemApi api;
 
-  AllTypes(this.api);
+  const AllTypes(this.api, {super.key});
 
   @override
   State<StatefulWidget> createState() => _AllTypesState();
@@ -12,7 +12,7 @@ class AllTypes extends StatefulWidget {
 
 class _AllTypesState extends State<AllTypes>
     with AutomaticKeepAliveClientMixin {
-  Future<List<TemTemApiType>> _future;
+  late final Future<List<TemTemApiType>> _future;
 
   @override
   void initState() {
@@ -26,10 +26,13 @@ class _AllTypesState extends State<AllTypes>
     return FutureBuilder<List<TemTemApiType>>(
       future: _future,
       builder: (context, snapshot) {
-        if (!snapshot.hasData) return const CircularProgressIndicator();
+        final data = snapshot.data;
+        if (!snapshot.hasData || data == null) {
+          return const CircularProgressIndicator();
+        }
         return ListView(
           children: [
-            ...snapshot.data
+            ...data
                 .map(
                   (e) => ListTile(
                     leading: Image.network(e.iconUrl),
