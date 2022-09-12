@@ -104,6 +104,7 @@ void main() {
         expect(temtem['weaknesses'], isNotNull);
       });
     });
+
     group('getFreetem', () {
       test(
         'return the reward for catching a specific temtem at a certain level',
