@@ -9,25 +9,25 @@ class TemTemApiCosmetic {
   final String description;
 
   TemTemApiCosmetic({
-    this.type,
-    this.wikiImageUrl,
-    this.wikiUrl,
-    this.name,
-    this.location,
-    this.cost,
-    this.requirement,
-    this.description,
+    required this.type,
+    required this.wikiImageUrl,
+    required this.wikiUrl,
+    required this.name,
+    required this.location,
+    required this.cost,
+    required this.requirement,
+    required this.description,
   });
 
   factory TemTemApiCosmetic.fromJson(Map<String, dynamic> json) =>
       TemTemApiCosmetic(
-        type: json['type'],
-        wikiImageUrl: json['wikiImageUrl'],
-        wikiUrl: json['wikiUrl'],
-        name: json['name'],
-        location: json['location'],
-        cost: json['cost'],
-        requirement: json['requirement'],
-        description: json['description'],
+        type: json['type'] as String,
+        wikiImageUrl: json['wikiImageUrl'] as String,
+        wikiUrl: json['wikiUrl'] as String,
+        name: json['name'] as String,
+        location: json['location'] as String,
+        cost: json['cost'] as int,
+        requirement: json['requirement'] as String,
+        description: json['description'] as String,
       );
 }

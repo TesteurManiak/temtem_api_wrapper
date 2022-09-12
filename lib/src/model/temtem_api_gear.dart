@@ -12,30 +12,32 @@ class TemTemApiGear {
   final String gameDescription;
 
   TemTemApiGear({
-    this.name,
-    this.wikiUrl,
-    this.wikiIconUrl,
-    this.icon,
-    this.category,
-    this.consumable,
-    this.limitedQuantity,
-    this.purchasable,
-    this.buyPrice,
-    this.description,
-    this.gameDescription,
+    required this.name,
+    required this.wikiUrl,
+    required this.wikiIconUrl,
+    required this.icon,
+    required this.category,
+    required this.consumable,
+    required this.limitedQuantity,
+    required this.purchasable,
+    required this.buyPrice,
+    required this.description,
+    required this.gameDescription,
   });
 
-  factory TemTemApiGear.fromJson(Map<String, dynamic> json) => TemTemApiGear(
-        name: json['name'],
-        wikiUrl: json['wikiUrl'],
-        wikiIconUrl: json['wikiIconUrl'],
-        icon: json['icon'],
-        category: json['category'],
-        consumable: json['consumable'],
-        limitedQuantity: json['limitedQuantity'],
-        purchasable: json['purchasable'],
-        buyPrice: json['buyPrice'],
-        description: json['description'],
-        gameDescription: json['gameDescription'],
-      );
+  factory TemTemApiGear.fromJson(Map<String, dynamic> json) {
+    return TemTemApiGear(
+      name: json['name'] as String,
+      wikiUrl: json['wikiUrl'] as String,
+      wikiIconUrl: json['wikiIconUrl'] as String,
+      icon: json['icon'] as String,
+      category: json['category'] as String,
+      consumable: json['consumable'] as bool,
+      limitedQuantity: json['limitedQuantity'] as bool,
+      purchasable: json['purchasable'] as bool,
+      buyPrice: json['buyPrice'] as int,
+      description: json['description'] as String,
+      gameDescription: json['gameDescription'] as String,
+    );
+  }
 }

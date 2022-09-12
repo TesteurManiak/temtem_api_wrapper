@@ -9,24 +9,24 @@ class TemTemApiQuest {
   final String requirements;
 
   TemTemApiQuest({
-    this.name,
-    this.wikiUrl,
-    this.type,
-    this.steps,
-    this.rewards,
-    this.startingLocation,
-    this.startingNPC,
-    this.requirements,
+    required this.name,
+    required this.wikiUrl,
+    required this.type,
+    required this.steps,
+    required this.rewards,
+    required this.startingLocation,
+    required this.startingNPC,
+    required this.requirements,
   });
 
   factory TemTemApiQuest.fromJson(Map<String, dynamic> json) => TemTemApiQuest(
-        name: json['name'],
-        wikiUrl: json['wikiUrl'],
-        type: json['type'],
-        steps: List<String>.from(json['steps']),
-        rewards: List<String>.from(json['rewards']),
-        startingLocation: json['startingLocation'],
-        startingNPC: json['startingNPC'],
-        requirements: json['requirements'],
+        name: json['name'] as String,
+        wikiUrl: json['wikiUrl'] as String,
+        type: json['type'] as String,
+        steps: List<String>.from(json['steps'] as Iterable),
+        rewards: List<String>.from(json['rewards'] as Iterable),
+        startingLocation: json['startingLocation'] as String,
+        startingNPC: json['startingNPC'] as String,
+        requirements: json['requirements'] as String,
       );
 }

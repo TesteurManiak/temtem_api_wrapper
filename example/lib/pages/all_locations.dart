@@ -34,13 +34,12 @@ class _AllLocationsState extends State<AllLocations>
                   (e) => ListTile(
                     trailing: const Icon(Icons.arrow_forward_ios),
                     onTap: () => showDialog(
-                        context: context,
-                        builder: (_) => AlertDialog(
-                              title: Text(e.name),
-                              content: Container(
-                                child: Image.network(e.imageWikiThumbnail),
-                              ),
-                            )),
+                      context: context,
+                      builder: (_) => AlertDialog(
+                        title: Text(e.name),
+                        content: Image.network(e.imageWikiThumbnail),
+                      ),
+                    ),
                     title: Text(e.name),
                     subtitle: Text(
                       e.description,

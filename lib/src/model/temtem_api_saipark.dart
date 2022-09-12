@@ -4,41 +4,45 @@ class Place {
   final int minSvs;
   final int eggMoves;
 
-  Place({this.temtem, this.lumaRate, this.minSvs, this.eggMoves});
+  Place({
+    required this.temtem,
+    required this.lumaRate,
+    required this.minSvs,
+    required this.eggMoves,
+  });
 
   factory Place.fromJson(Map<String, dynamic> json) => Place(
-        temtem: json['temtem'],
-        lumaRate: json['lumaRate'],
-        minSvs: json['minSvs'],
-        eggMoves: json['eggMoves'],
+        temtem: json['temtem'] as String,
+        lumaRate: json['lumaRate'] as int,
+        minSvs: json['minSvs'] as int,
+        eggMoves: json['eggMoves'] as int,
       );
 }
 
 class TemTemApiSaipark {
   final String dateRange;
-  final String startDate;
-  final String endDate;
-  final List<Place> land;
-  final List<Place> water;
+  final DateTime startDate;
+  final DateTime endDate;
+  final List<Place>? land;
+  final List<Place>? water;
 
   TemTemApiSaipark({
-    this.dateRange,
-    this.startDate,
-    this.endDate,
-    this.land,
-    this.water,
+    required this.dateRange,
+    required this.startDate,
+    required this.endDate,
+    required this.land,
+    required this.water,
   });
 
-  factory TemTemApiSaipark.fromJson(Map<String, dynamic> json) =>
-      TemTemApiSaipark(
-        dateRange: json['dateRange'],
-        startDate: json['startDate'],
-        endDate: json['endDate'],
-        land: List<Place>.generate(
-            json['land'] == null ? 0 : json['land'].length,
-            (index) => Place.fromJson(json['land'][index])),
-        water: List<Place>.generate(
-            json['water'] == null ? 0 : json['water'].length,
-            (index) => Place.fromJson(json['water'][index])),
-      );
+  factory TemTemApiSaipark.fromJson(Map<String, dynamic> json) {
+    final land = (json['land'] as Iterable?)?.cast<Map<String, dynamic>>();
+    final water = (json['water'] as Iterable?)?.cast<Map<String, dynamic>>();
+    return TemTemApiSaipark(
+      dateRange: json['dateRange'] as String,
+      startDate: DateTime.parse(json['startDate'] as String),
+      endDate: DateTime.parse(json['endDate'] as String),
+      land: land?.map(Place.fromJson).toList(),
+      water: water?.map(Place.fromJson).toList(),
+    );
+  }
 }

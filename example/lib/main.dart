@@ -1,8 +1,8 @@
 import 'package:example/pages/all_conditions.dart';
+import 'package:example/pages/all_locations.dart';
 import 'package:example/pages/all_rewards.dart';
 import 'package:example/pages/all_temtems.dart';
 import 'package:example/pages/all_types.dart';
-import 'package:example/pages/all_locations.dart';
 import 'package:flutter/material.dart';
 import 'package:temtem_api_wrapper/temtem_api_wrapper.dart';
 

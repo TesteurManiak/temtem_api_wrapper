@@ -1,3 +1,24 @@
+# 1.0.0
+
+* Added unit tests
+* Added `TemTemApiDojo` model
+* Added `TemTemApiPatch.balance` property
+* `getTemTems` supports the parameter `weaknesses`
+* Support for `expand` parameter in `getTemTems`
+
+## Breaking Changes
+
+* Removed dependency to `flutter`
+* Bumped Dart SDK minimum version to `2.15`
+* Migration to null-safety
+* `TemTemApiRewards.startDate` & `TemTemApiRewards.endDate` are now `DateTime`
+* Removed `TemTemApiPatch.pathInfo`, replaced it with `TemTemTemApiPatch.fixes`, `TemTemApiPatch.improvements` & `TemTemApiPatch.features` properties
+* `TemTemApiPatch.date` is now `DateTime`
+* `TemTemApiSaipark.startDate` & `TemTemApiSaipark.endDate` are now `DateTime`
+* In method `getTemTems`:
+    - parameter `fields` has been removed
+    - parameter `expand` is now a `List<ExpandableField>`
+
 # 0.1.1+3
 
 * Code format to dartfmt

@@ -33,11 +33,13 @@ class _AllConditionsState extends State<AllConditions>
         return ListView(
           children: [
             ...snapshot.data
-                .map<Widget>((e) => ListTile(
-                      title: Text(e.name),
-                      subtitle:
-                          Text(e.description, overflow: TextOverflow.ellipsis),
-                    ))
+                .map<Widget>(
+                  (e) => ListTile(
+                    title: Text(e.name),
+                    subtitle:
+                        Text(e.description, overflow: TextOverflow.ellipsis),
+                  ),
+                )
                 .toList()
           ],
         );

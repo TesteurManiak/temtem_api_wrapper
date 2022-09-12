@@ -1,37 +1,36 @@
-class _PatchInfo {
-  final List<String> fixes;
-  final List<String> improvements;
-  final List<String> features;
-
-  _PatchInfo({this.fixes, this.improvements, this.features});
-
-  factory _PatchInfo.fromJson(Map<String, dynamic> json) => _PatchInfo(
-        fixes: List<String>.from(json['fixes']),
-        improvements: List<String>.from(json['improvements']),
-        features: List<String>.from(json['features']),
-      );
-}
-
 class TemTemApiPatch {
   final String name;
   final String version;
   final String url;
-  final String date;
-  final _PatchInfo patchInfo;
+  final DateTime date;
+  final List<String> fixes;
+  final List<String> improvements;
+  final List<String> features;
+  final List<String> balance;
 
   TemTemApiPatch({
-    this.name,
-    this.version,
-    this.url,
-    this.date,
-    this.patchInfo,
+    required this.name,
+    required this.version,
+    required this.url,
+    required this.date,
+    required this.fixes,
+    required this.improvements,
+    required this.features,
+    required this.balance,
   });
 
-  factory TemTemApiPatch.fromJson(Map<String, dynamic> json) => TemTemApiPatch(
-        name: json['name'],
-        version: json['version'],
-        url: json['url'],
-        date: json['date'],
-        patchInfo: _PatchInfo.fromJson(json['patchInfo']),
-      );
+  factory TemTemApiPatch.fromJson(Map<String, dynamic> json) {
+    final patchJson = json['patchInfo'] as Map<String, dynamic>;
+    final date = (json['date'] as String).split('-').map(int.parse).toList();
+    return TemTemApiPatch(
+      name: json['name'] as String,
+      version: json['version'] as String,
+      url: json['url'] as String,
+      date: DateTime(date[0], date[1], date[2]),
+      fixes: List<String>.from(patchJson['fixes'] as Iterable),
+      improvements: List<String>.from(patchJson['improvements'] as Iterable),
+      features: List<String>.from(patchJson['features'] as Iterable),
+      balance: List<String>.from(patchJson['balance'] as Iterable),
+    );
+  }
 }

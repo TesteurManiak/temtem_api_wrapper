@@ -12,7 +12,7 @@ import 'package:temtem_api_wrapper/src/model/temtem_api_quest.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_rewards.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_saipark.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_technique.dart';
-import 'package:temtem_api_wrapper/src/model/temtem_api_tem.dart';
+import 'package:temtem_api_wrapper/src/model/temtem_api_tem/temtem_api_tem.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_training_course.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_traits.dart';
 import 'package:temtem_api_wrapper/src/model/temtem_api_type.dart';
@@ -25,80 +25,77 @@ import 'package:temtem_api_wrapper/src/provider/http_provider.dart';
 class TemTemApi {
   final ApiProvider _provider;
 
-  TemTemApi({ApiProvider provider = const HttpProvider()})
-      : _provider = provider;
+  TemTemApi({ApiProvider? provider}) : _provider = provider ?? HttpProvider();
 
   /// Get informations for all available Temtems on the API.
   ///
-  /// [names] : A list of the Temtem names that you want information about.
+  /// - [names] : A list of the Temtem names that you want information about.
+  /// - [expand] : A list of fields you want extended.
   ///
-  /// [fields] : A list of fields you want returned.
-  ///
-  /// [expand] : A list of fields you want extended.
   /// You can extend the trait, technique, and type fields, which then means
   /// they will return an array of data in the shape returned by the endpoints.
   Future<List<TemTemApiTem>> getTemTems({
     List<String> names = const [],
-    List<String> fields = const [],
-    List<String> expand = const [],
+    List<ExpandableField> expand = const [],
+    bool weaknesses = false,
   }) async {
     final response = await _provider.getTemtems(
-        names: names, fields: fields, expand: expand);
-    final parsedData = response as List;
-    return parsedData
-        .map<TemTemApiTem>((e) => TemTemApiTem.fromJson(e))
-        .toList();
+      names: names,
+      expand: expand,
+      weaknesses: weaknesses,
+    );
+    final parsedData = response.cast<Map<String, dynamic>>();
+    return parsedData.map<TemTemApiTem>(TemTemApiTem.fromJson).toList();
   }
 
   /// Get informations for a specific Temtem, specified by its [number].
   ///
-  /// [fields] : A list of fields you want returned.
+  /// - [fields] : A list of fields you want returned.
+  /// - [expand] : A list of fields you want extended.
   ///
-  /// [expand] : A list of fields you want extended.
   /// You can extend the trait, technique, and type fields, which then means
   /// they will return an array of data in the shape returned by the endpoints.
-  Future<TemTemApiTem> getTemTem(int number,
-      {List<String> fields = const [], List<String> expand = const []}) async {
-    assert(number != null);
-    final response =
-        await _provider.getTemtem(number, fields: fields, expand: expand);
+  Future<TemTemApiTem> getTemTem(
+    int number, {
+    List<ExpandableField> expand = const [],
+    bool weaknesses = false,
+  }) async {
+    final response = await _provider.getTemtem(
+      id: number,
+      expand: expand,
+      weaknesses: weaknesses,
+    );
     return TemTemApiTem.fromJson(response);
   }
 
   /// Calculates the Freetem reward for catching a specific Temtem at a certain
   /// [level]. The Temtem parameter is the [name] of the temtem, it is case
   /// insensitive.
-  Future<TemTemApiFreeTem> getFreeTem(String name, int level) async {
-    assert(name != null);
-    assert(level != null);
+  Future<TemTemApiFreetem> getFreeTem(String name, int level) async {
     final response = await _provider.getFreetem(name, level);
-    return TemTemApiFreeTem.fromJson(response);
+    return TemTemApiFreetem.fromJson(response);
   }
 
   /// Get the rewards for the dynamic events of freeing Temtems.
   Future<List<TemTemApiRewards>> getFreeTemRewards() async {
     final response = await _provider.getFreetemRewards();
-    final parsedData = response as List;
-    return parsedData
-        .map<TemTemApiRewards>((e) => TemTemApiRewards.fromJson(e))
-        .toList();
+    final parsedData = response.cast<Map<String, dynamic>>();
+    return parsedData.map<TemTemApiRewards>(TemTemApiRewards.fromJson).toList();
   }
 
   /// Get informations on all available Temtem's types.
   Future<List<TemTemApiType>> getTypes() async {
     final response = await _provider.getTypes();
-    final parsedData = response as List;
-    return parsedData
-        .map<TemTemApiType>((e) => TemTemApiType.fromJson(e))
-        .toList();
+    final parsedData = (response as Iterable).cast<Map<String, dynamic>>();
+    return parsedData.map<TemTemApiType>(TemTemApiType.fromJson).toList();
   }
 
   /// Get informations on all available Temtem's conditions.
   Future<List<TemTemApiCondition>> getConditions() async {
     final response = await _provider.getConditions();
-    final parsedData = response as List;
+    final parsedData = (response as Iterable).cast<Map<String, dynamic>>();
     return parsedData
-        .map<TemTemApiCondition>((e) => TemTemApiCondition.fromJson(e))
+        .map<TemTemApiCondition>(TemTemApiCondition.fromJson)
         .toList();
   }
 
@@ -107,23 +104,24 @@ class TemTemApi {
   /// [names] : A list of technique names that you want information about.
   ///
   /// [fields] : A list of fields you want returned.
-  Future<List<TemTemApiTechnique>> getTechniques(
-      {List<String> names = const [], List<String> fields = const []}) async {
+  Future<List<TemTemApiTechnique>> getTechniques({
+    List<String> names = const [],
+    List<String> fields = const [],
+  }) async {
     final response =
         await _provider.getTechniques(names: names, fields: fields);
-    final parsedData = response as List;
+    final parsedData = (response as Iterable).cast<Map<String, dynamic>>();
     return parsedData
-        .map<TemTemApiTechnique>((e) => TemTemApiTechnique.fromJson(e))
+        .map<TemTemApiTechnique>(TemTemApiTechnique.fromJson)
         .toList();
   }
 
   /// Get informations on all available training courses.
   Future<List<TemTemApiTrainingCourse>> getTrainingCourses() async {
     final response = await _provider.getTrainingCourses();
-    final parsedData = response as List;
+    final parsedData = (response as Iterable).cast<Map<String, dynamic>>();
     return parsedData
-        .map<TemTemApiTrainingCourse>(
-            (e) => TemTemApiTrainingCourse.fromJson(e))
+        .map<TemTemApiTrainingCourse>(TemTemApiTrainingCourse.fromJson)
         .toList();
   }
 
@@ -132,94 +130,82 @@ class TemTemApi {
   /// [names] : A list of trait names that you want information about.
   ///
   /// [fields] : A list of fields you want returned.
-  Future<List<TemTemApiTraits>> getTraits(
-      {List<String> names = const [], List<String> fields = const []}) async {
+  Future<List<TemTemApiTraits>> getTraits({
+    List<String> names = const [],
+    List<String> fields = const [],
+  }) async {
     final response = await _provider.getTraits(names: names, fields: fields);
-    final parsedData = response as List;
-    return parsedData
-        .map<TemTemApiTraits>((e) => TemTemApiTraits.fromJson(e))
-        .toList();
+    final parsedData = (response as Iterable).cast<Map<String, dynamic>>();
+    return parsedData.map<TemTemApiTraits>(TemTemApiTraits.fromJson).toList();
   }
 
   /// Get informations on all available items.
   Future<List<TemTemApiItem>> getItems() async {
     final response = await _provider.getItems();
-    final parsedData = response as List;
-    return parsedData
-        .map<TemTemApiItem>((e) => TemTemApiItem.fromJson(e))
-        .toList();
+    final parsedData = (response as Iterable).cast<Map<String, dynamic>>();
+    return parsedData.map<TemTemApiItem>(TemTemApiItem.fromJson).toList();
   }
 
   /// Get informations on all available gears.
   Future<List<TemTemApiGear>> getGears() async {
     final response = await _provider.getGears();
-    final parsedData = response as List;
-    return parsedData
-        .map<TemTemApiGear>((e) => TemTemApiGear.fromJson(e))
-        .toList();
+    final parsedData = (response as Iterable).cast<Map<String, dynamic>>();
+    return parsedData.map<TemTemApiGear>(TemTemApiGear.fromJson).toList();
   }
 
   /// Get informations on all available quests.
   Future<List<TemTemApiQuest>> getQuests() async {
     final response = await _provider.getQuests();
-    final parsedData = response as List;
-    return parsedData
-        .map<TemTemApiQuest>((e) => TemTemApiQuest.fromJson(e))
-        .toList();
+    final parsedData = (response as Iterable).cast<Map<String, dynamic>>();
+    return parsedData.map<TemTemApiQuest>(TemTemApiQuest.fromJson).toList();
   }
 
   /// Get informations on all available characters.
   Future<List<TemTemApiCharacter>> getCharacters() async {
     final response = await _provider.getCharacters();
-    final parsedData = response as List;
+    final parsedData = (response as Iterable).cast<Map<String, dynamic>>();
     return parsedData
-        .map<TemTemApiCharacter>((e) => TemTemApiCharacter.fromJson(e))
+        .map<TemTemApiCharacter>(TemTemApiCharacter.fromJson)
         .toList();
   }
 
   /// Get informations on all available saipark rotation.
   Future<List<TemTemApiSaipark>> getSaiparks() async {
     final response = await _provider.getSaiparks();
-    final parsedData = response as List;
-    return parsedData
-        .map<TemTemApiSaipark>((e) => TemTemApiSaipark.fromJson(e))
-        .toList();
+    final parsedData = (response as Iterable).cast<Map<String, dynamic>>();
+    return parsedData.map<TemTemApiSaipark>(TemTemApiSaipark.fromJson).toList();
   }
 
   /// Get informations on all available islands.
   Future<List<TemTemApiLocation>> getLocations() async {
     final response = await _provider.getLocations();
-    final parsedData = response as List;
+    final parsedData = (response as Iterable).cast<Map<String, dynamic>>();
     return parsedData
-        .map<TemTemApiLocation>((e) => TemTemApiLocation.fromJson(e))
+        .map<TemTemApiLocation>(TemTemApiLocation.fromJson)
         .toList();
   }
 
   /// Get informations on all available cosmetics.
   Future<List<TemTemApiCosmetic>> getCosmetics() async {
     final response = await _provider.getCosmetics();
-    final parsedData = response as List;
+    final parsedData = (response as Iterable).cast<Map<String, dynamic>>();
     return parsedData
-        .map<TemTemApiCosmetic>((e) => TemTemApiCosmetic.fromJson(e))
+        .map<TemTemApiCosmetic>(TemTemApiCosmetic.fromJson)
         .toList();
   }
 
   /// Get informations on all available dyes.
   Future<List<TemTemApiDye>> getDyes() async {
     final response = await _provider.getDyes();
-    final parsedData = response as List;
-    return parsedData
-        .map<TemTemApiDye>((e) => TemTemApiDye.fromJson(e))
-        .toList();
+    final parsedData = (response as Iterable).cast<Map<String, dynamic>>();
+    return parsedData.map<TemTemApiDye>(TemTemApiDye.fromJson).toList();
   }
 
   /// Get informations on all released patches.
   Future<List<TemTemApiPatch>> getPatches() async {
     final response = await _provider.getPatches();
-    final parsedData = response as List;
-    return parsedData
-        .map<TemTemApiPatch>((e) => TemTemApiPatch.fromJson(e))
-        .toList();
+    final parsedData = (response as Iterable).cast<Map<String, dynamic>>();
+    return parsedData.map<TemTemApiPatch>(TemTemApiPatch.fromJson).toList();
   }
 
   /// Get informations on all calculated weaknesses.
@@ -234,9 +220,10 @@ class TemTemApi {
   ///
   /// [defending] : A list of valid Temtem types to use as the defending values
   Future<TemTemApiWeaknessCalc> calculateWeakness(
-      String attacking, List<String> defending) async {
-    assert(attacking != null);
-    assert(defending != null && defending.isNotEmpty);
+    String attacking,
+    List<String> defending,
+  ) async {
+    assert(defending.isNotEmpty);
     final response = await _provider.calculateWeaknesses(attacking, defending);
     return TemTemApiWeaknessCalc.fromJson(response);
   }
