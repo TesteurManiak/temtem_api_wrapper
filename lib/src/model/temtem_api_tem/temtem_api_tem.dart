@@ -127,7 +127,7 @@ class TemTemApiTem {
       genderRatio:
           GenderRatio.fromJson(json['genderRatio'] as Map<String, dynamic>),
       catchRate: json['catchRate'] as int,
-      hatchMins: json['hatchMins'] as int,
+      hatchMins: (json['hatchMins'] as num).toInt(),
       tvYields: Stats.fromJson(json['tvYields'] as Map<String, dynamic>),
       gameDescription: json['gameDescription'] as String,
       wikiRenderStaticUrl: json['wikiRenderStaticUrl'] as String?,
