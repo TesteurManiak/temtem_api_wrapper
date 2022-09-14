@@ -48,7 +48,7 @@ final TemTemApiFreeTem freetemRewards = await temtemApi.getFreeTem();
 
 ## Dependencies
 
-* [http](https://pub.dev/packages/http) : Used to make HTTP requests
+* [dio](https://pub.dev/packages/dio) : Used to make HTTP requests
 * [collection](https://pub.dev/packages/collection) : Used to manage lists and maps equality
 
 ## TODO
