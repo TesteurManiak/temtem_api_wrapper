@@ -8,7 +8,7 @@ class EvolutionNode {
   final bool? trading;
   final Map<String, dynamic> traitMapping;
 
-  EvolutionNode({
+  const EvolutionNode({
     required this.number,
     required this.name,
     required this.stage,

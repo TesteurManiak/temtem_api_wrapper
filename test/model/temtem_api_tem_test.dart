@@ -26,7 +26,7 @@ void main() {
         expect(temtem.name, 'Ganki');
         expect(
           temtem.types,
-          [Type.fromString('Electric'), Type.fromString('Wind')],
+          [const Type.fromString('Electric'), const Type.fromString('Wind')],
         );
         expect(
           temtem.portraitWikiUrl,
@@ -35,7 +35,7 @@ void main() {
         expect(temtem.wikiUrl, 'https://temtem.gamepedia.com/Ganki');
         expect(
           temtem.stats,
-          Stats(
+          const Stats(
             hp: 38,
             sta: 46,
             spd: 61,
@@ -55,7 +55,7 @@ void main() {
         );
         expect(
           temtem.details,
-          Details(
+          const Details(
             heightCm: 105,
             heightInches: 41,
             weightKg: 14,
@@ -66,7 +66,7 @@ void main() {
         expect(temtem.trivia.length, 4);
         expect(
           temtem.evolution,
-          Evolution(
+          const Evolution(
             stage: 1,
             evolutionTree: [
               EvolutionNode(
@@ -104,12 +104,20 @@ void main() {
           temtem.lumaIcon,
           '/images/portraits/temtem/luma/large/Ganki.png',
         );
-        expect(temtem.genderRatio, GenderRatio(male: 50, female: 50));
+        expect(temtem.genderRatio, const GenderRatio(male: 50, female: 50));
         expect(temtem.catchRate, 120);
         expect(temtem.hatchMins, 21);
         expect(
           temtem.tvYields,
-          Stats(hp: 0, sta: 0, spd: 0, atk: 1, def: 0, spatk: 0, spdef: 0),
+          const Stats(
+            hp: 0,
+            sta: 0,
+            spd: 0,
+            atk: 1,
+            def: 0,
+            spatk: 0,
+            spdef: 0,
+          ),
         );
         expect(
           temtem.gameDescription,
@@ -135,8 +143,11 @@ void main() {
         expect(
           temtem.types,
           [
-            Type(name: 'Electric', icon: '/images/icons/types/Electric.png'),
-            Type(name: 'Wind', icon: '/images/icons/types/Wind.png'),
+            const Type(
+              name: 'Electric',
+              icon: '/images/icons/types/Electric.png',
+            ),
+            const Type(name: 'Wind', icon: '/images/icons/types/Wind.png'),
           ],
         );
         expect(
@@ -147,7 +158,7 @@ void main() {
         expect(temtem.wikiUrl, 'https://temtem.gamepedia.com/Ganki');
         expect(
           temtem.stats,
-          Stats(
+          const Stats(
             hp: 38,
             sta: 46,
             spd: 61,
@@ -165,13 +176,13 @@ void main() {
   group('Details', () {
     group('hashCode', () {
       test('should be the same for 2 classes with same values', () {
-        final details1 = Details(
+        const details1 = Details(
           heightCm: 100,
           heightInches: 100,
           weightKg: 25,
           weightLbs: 25,
         );
-        final details2 = Details(
+        const details2 = Details(
           heightCm: 100,
           heightInches: 100,
           weightKg: 25,
@@ -185,7 +196,7 @@ void main() {
   group('Evolution', () {
     group('hashCode', () {
       test('should be the same for 2 classes with same values', () {
-        final evolution1 = Evolution(
+        const evolution1 = Evolution(
           stage: 1,
           evolutionTree: [
             EvolutionNode(number: 1, name: '', stage: 1, traitMapping: {})
@@ -193,7 +204,7 @@ void main() {
           evolves: true,
           type: 'level',
         );
-        final evolution2 = Evolution(
+        const evolution2 = Evolution(
           stage: 1,
           evolutionTree: [
             EvolutionNode(number: 1, name: '', stage: 1, traitMapping: {})
@@ -209,13 +220,13 @@ void main() {
   group('EvolutionNode', () {
     group('hashCode', () {
       test('should be the same for 2 classes with same values', () {
-        final node1 = EvolutionNode(
+        const node1 = EvolutionNode(
           number: 1,
           name: 'Temtem',
           stage: 1,
           traitMapping: {},
         );
-        final node2 = EvolutionNode(
+        const node2 = EvolutionNode(
           number: 1,
           name: 'Temtem',
           stage: 1,
@@ -229,8 +240,8 @@ void main() {
   group('GenderRatio', () {
     group('hashCode', () {
       test('should be the same for 2 classes with same values', () {
-        final ratio1 = GenderRatio(male: 50, female: 50);
-        final ratio2 = GenderRatio(male: 50, female: 50);
+        const ratio1 = GenderRatio(male: 50, female: 50);
+        const ratio2 = GenderRatio(male: 50, female: 50);
         expect(ratio1.hashCode, ratio2.hashCode);
       });
     });
@@ -241,7 +252,7 @@ void main() {
       test(
           'if indicated, should be calculated from hp, sta, spd, atk, def, spatk, spdef',
           () {
-        final stats = Stats(
+        const stats = Stats(
           hp: 38,
           sta: 46,
           spd: 61,
@@ -256,7 +267,7 @@ void main() {
 
     group('hashCode', () {
       test('should be the same for 2 classes with same values', () {
-        final stats1 = Stats(
+        const stats1 = Stats(
           hp: 38,
           sta: 46,
           spd: 61,
@@ -265,7 +276,7 @@ void main() {
           spatk: 62,
           spdef: 73,
         );
-        final stats2 = Stats(
+        const stats2 = Stats(
           hp: 38,
           sta: 46,
           spd: 61,
@@ -282,7 +293,7 @@ void main() {
   group('Technique', () {
     group('classIconUrl', () {
       test('should return the correct url', () {
-        final technique = Technique(
+        const technique = Technique(
           name: '',
           wikiUrl: '',
           type: '',
@@ -310,13 +321,13 @@ void main() {
   group('Trait', () {
     group('hashCode', () {
       test('should be the same for 2 classes with same values', () {
-        final trait1 = Trait(
+        const trait1 = Trait(
           name: 'Temtem',
           wikiUrl: 'https://temtem.gamepedia.com/Temtem',
           description: '',
           effect: '',
         );
-        final trait2 = Trait(
+        const trait2 = Trait(
           name: 'Temtem',
           wikiUrl: 'https://temtem.gamepedia.com/Temtem',
           description: '',
@@ -328,7 +339,7 @@ void main() {
   });
 
   group('Type', () {
-    final tType = Type(
+    const tType = Type(
       name: 'Electric',
       icon: '/images/icons/types/Electric.png',
     );
@@ -344,7 +355,7 @@ void main() {
 
     group('hashCode', () {
       test('should be the same for 2 classes with same values', () {
-        final type2 = Type(
+        const type2 = Type(
           name: 'Electric',
           icon: '/images/icons/types/Electric.png',
         );

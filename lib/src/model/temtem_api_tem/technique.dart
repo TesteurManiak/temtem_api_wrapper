@@ -52,7 +52,7 @@ class Technique {
   final String source;
   final int? levels;
 
-  Technique({
+  const Technique({
     required this.name,
     required this.wikiUrl,
     required this.type,
@@ -110,6 +110,53 @@ class Technique {
   String? get priorityIconUrl => priorityIcon != null
       ? HttpProvider.baseUri.replace(path: priorityIcon).toString()
       : null;
+
+  @override
+  bool operator ==(covariant Technique other) {
+    if (identical(this, other)) return true;
+    final listEquals = const DeepCollectionEquality().equals;
+
+    return other.name == name &&
+        other.wikiUrl == wikiUrl &&
+        other.type == type &&
+        other.classTouch == classTouch &&
+        other.classIcon == classIcon &&
+        other.damage == damage &&
+        other.staminaCost == staminaCost &&
+        other.hold == hold &&
+        other.priority == priority &&
+        other.priorityIcon == priorityIcon &&
+        other.synergy == synergy &&
+        listEquals(other.synergyEffects, synergyEffects) &&
+        other.targets == targets &&
+        other.description == description &&
+        other.effectText == effectText &&
+        listEquals(other.effects, effects) &&
+        other.source == source &&
+        other.levels == levels;
+  }
+
+  @override
+  int get hashCode {
+    return name.hashCode ^
+        wikiUrl.hashCode ^
+        type.hashCode ^
+        classTouch.hashCode ^
+        classIcon.hashCode ^
+        damage.hashCode ^
+        staminaCost.hashCode ^
+        hold.hashCode ^
+        priority.hashCode ^
+        priorityIcon.hashCode ^
+        synergy.hashCode ^
+        synergyEffects.hashCode ^
+        targets.hashCode ^
+        description.hashCode ^
+        effectText.hashCode ^
+        effects.hashCode ^
+        source.hashCode ^
+        levels.hashCode;
+  }
 }
 
 class SynergyEffect {

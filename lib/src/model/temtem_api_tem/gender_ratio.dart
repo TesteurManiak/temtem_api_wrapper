@@ -4,7 +4,7 @@ class GenderRatio {
   final double male;
   final double female;
 
-  GenderRatio({required this.male, required this.female});
+  const GenderRatio({required this.male, required this.female});
 
   factory GenderRatio.fromJson(Map<String, dynamic> json) => GenderRatio(
         male: double.parse(json['male'].toString()),

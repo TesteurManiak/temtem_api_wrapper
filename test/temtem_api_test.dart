@@ -14,6 +14,10 @@ void main() {
       test('should return a list of temtems', () async {
         final temtems = await temtemApi.getTemTems();
         expect(temtems, isNotEmpty);
+
+        final temtem = temtems.first;
+        expect(temtem.number, 1);
+        expect(temtem.name, 'Mimit');
       });
 
       test('should return a list of temtems with the given names', () async {

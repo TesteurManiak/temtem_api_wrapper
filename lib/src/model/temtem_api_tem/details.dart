@@ -6,7 +6,7 @@ class Details {
   final int weightKg;
   final int weightLbs;
 
-  Details({
+  const Details({
     required this.heightCm,
     required this.heightInches,
     required this.weightKg,

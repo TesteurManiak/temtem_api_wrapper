@@ -6,7 +6,7 @@ class FreeTem {
   final int? minPansuns;
   final int? maxPansuns;
 
-  FreeTem({
+  const FreeTem({
     required this.minLevel,
     required this.maxLevel,
     required this.minPansuns,
@@ -20,5 +20,23 @@ class FreeTem {
       minPansuns: json['minPansuns'] as int?,
       maxPansuns: json['maxPansuns'] as int?,
     );
+  }
+
+  @override
+  bool operator ==(covariant FreeTem other) {
+    if (identical(this, other)) return true;
+
+    return other.minLevel == minLevel &&
+        other.maxLevel == maxLevel &&
+        other.minPansuns == minPansuns &&
+        other.maxPansuns == maxPansuns;
+  }
+
+  @override
+  int get hashCode {
+    return minLevel.hashCode ^
+        maxLevel.hashCode ^
+        minPansuns.hashCode ^
+        maxPansuns.hashCode;
   }
 }

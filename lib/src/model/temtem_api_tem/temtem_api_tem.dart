@@ -45,7 +45,7 @@ class TemTemApiTem {
   final String? renderAnimatedLumaImage;
   final Map<String, dynamic>? weaknesses;
 
-  TemTemApiTem({
+  const TemTemApiTem({
     required this.number,
     required this.name,
     required this.types,
@@ -140,5 +140,78 @@ class TemTemApiTem {
       renderAnimatedLumaImage: json['renderAnimatedLumaImage'] as String?,
       weaknesses: json['weaknesses'] as Map<String, dynamic>?,
     );
+  }
+
+  @override
+  bool operator ==(covariant TemTemApiTem other) {
+    if (identical(this, other)) return true;
+    final collectionEquals = const DeepCollectionEquality().equals;
+
+    return other.number == number &&
+        other.name == name &&
+        collectionEquals(other.types, types) &&
+        other.portraitWikiUrl == portraitWikiUrl &&
+        other.wikiUrl == wikiUrl &&
+        other.stats == stats &&
+        other.lumaPortraitWikiUrl == lumaPortraitWikiUrl &&
+        collectionEquals(other.traits, traits) &&
+        other.details == details &&
+        collectionEquals(other.techniques, techniques) &&
+        collectionEquals(other.trivia, trivia) &&
+        other.evolution == evolution &&
+        other.wikiPortraitUrlLarge == wikiPortraitUrlLarge &&
+        other.lumaWikiPortraitUrlLarge == lumaWikiPortraitUrlLarge &&
+        collectionEquals(other.locations, locations) &&
+        other.icon == icon &&
+        other.lumaIcon == lumaIcon &&
+        other.genderRatio == genderRatio &&
+        other.catchRate == catchRate &&
+        other.hatchMins == hatchMins &&
+        other.tvYields == tvYields &&
+        other.gameDescription == gameDescription &&
+        other.wikiRenderStaticUrl == wikiRenderStaticUrl &&
+        other.wikiRenderAnimatedUrl == wikiRenderAnimatedUrl &&
+        other.wikiRenderStaticLumaUrl == wikiRenderStaticLumaUrl &&
+        other.wikiRenderAnimatedLumaUrl == wikiRenderAnimatedLumaUrl &&
+        other.renderStaticImage == renderStaticImage &&
+        other.renderStaticLumaImage == renderStaticLumaImage &&
+        other.renderAnimatedImage == renderAnimatedImage &&
+        other.renderAnimatedLumaImage == renderAnimatedLumaImage &&
+        collectionEquals(other.weaknesses, weaknesses);
+  }
+
+  @override
+  int get hashCode {
+    return number.hashCode ^
+        name.hashCode ^
+        types.hashCode ^
+        portraitWikiUrl.hashCode ^
+        wikiUrl.hashCode ^
+        stats.hashCode ^
+        lumaPortraitWikiUrl.hashCode ^
+        traits.hashCode ^
+        details.hashCode ^
+        techniques.hashCode ^
+        trivia.hashCode ^
+        evolution.hashCode ^
+        wikiPortraitUrlLarge.hashCode ^
+        lumaWikiPortraitUrlLarge.hashCode ^
+        locations.hashCode ^
+        icon.hashCode ^
+        lumaIcon.hashCode ^
+        genderRatio.hashCode ^
+        catchRate.hashCode ^
+        hatchMins.hashCode ^
+        tvYields.hashCode ^
+        gameDescription.hashCode ^
+        wikiRenderStaticUrl.hashCode ^
+        wikiRenderAnimatedUrl.hashCode ^
+        wikiRenderStaticLumaUrl.hashCode ^
+        wikiRenderAnimatedLumaUrl.hashCode ^
+        renderStaticImage.hashCode ^
+        renderStaticLumaImage.hashCode ^
+        renderAnimatedImage.hashCode ^
+        renderAnimatedLumaImage.hashCode ^
+        weaknesses.hashCode;
   }
 }

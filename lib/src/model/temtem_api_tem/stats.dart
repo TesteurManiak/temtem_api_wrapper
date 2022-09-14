@@ -12,7 +12,7 @@ class Stats {
 
   int get total => _total ?? (hp + sta + spd + atk + def + spatk + spdef);
 
-  Stats({
+  const Stats({
     required this.hp,
     required this.sta,
     required this.spd,
@@ -35,11 +35,10 @@ class Stats {
       );
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(covariant Stats other) {
     if (identical(this, other)) return true;
 
-    return other is Stats &&
-        other.hp == hp &&
+    return other.hp == hp &&
         other.sta == sta &&
         other.spd == spd &&
         other.atk == atk &&

@@ -12,7 +12,7 @@ class Trait {
   /// This field is only filled if the technique has been expanded.
   final String? effect;
 
-  Trait({
+  const Trait({
     required this.name,
     required this.wikiUrl,
     required this.description,
@@ -31,11 +31,10 @@ class Trait {
       );
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(covariant Trait other) {
     if (identical(this, other)) return true;
 
-    return other is Trait &&
-        other.name == name &&
+    return other.name == name &&
         other.wikiUrl == wikiUrl &&
         other.description == description &&
         other.effect == effect;

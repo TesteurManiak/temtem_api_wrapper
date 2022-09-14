@@ -7,7 +7,7 @@ class Evolution {
   final String? type;
   final String? description;
 
-  Evolution({
+  const Evolution({
     required this.stage,
     required this.evolutionTree,
     required this.evolves,

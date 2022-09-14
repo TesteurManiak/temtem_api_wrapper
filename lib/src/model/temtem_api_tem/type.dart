@@ -4,7 +4,7 @@ class Type {
   final String name;
   final String? icon;
 
-  Type({required this.name, required this.icon});
+  const Type({required this.name, required this.icon});
 
   factory Type.fromJson(Map<String, dynamic> json) {
     return Type(
@@ -13,9 +13,9 @@ class Type {
     );
   }
 
-  factory Type.fromString(String type) {
-    return Type(name: type, icon: null);
-  }
+  const Type.fromString(String type)
+      : name = type,
+        icon = null;
 
   String? get iconUrl =>
       icon != null ? HttpProvider.baseUri.replace(path: icon).toString() : null;

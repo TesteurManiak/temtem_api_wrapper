@@ -9,7 +9,7 @@ class TemLocation {
   final String level;
   final FreeTem freeTem;
 
-  TemLocation({
+  const TemLocation({
     required this.location,
     required this.place,
     required this.note,
@@ -29,5 +29,29 @@ class TemLocation {
       level: json['level'] as String,
       freeTem: FreeTem.fromJson(json['freetem'] as Map<String, dynamic>),
     );
+  }
+
+  @override
+  bool operator ==(covariant TemLocation other) {
+    if (identical(this, other)) return true;
+
+    return other.location == location &&
+        other.place == place &&
+        other.note == note &&
+        other.island == island &&
+        other.frequency == frequency &&
+        other.level == level &&
+        other.freeTem == freeTem;
+  }
+
+  @override
+  int get hashCode {
+    return location.hashCode ^
+        place.hashCode ^
+        note.hashCode ^
+        island.hashCode ^
+        frequency.hashCode ^
+        level.hashCode ^
+        freeTem.hashCode;
   }
 }
