@@ -7,7 +7,7 @@ class HttpProvider implements ApiProvider {
 
   final ApiClient _client;
 
-  HttpProvider({ApiClient? client}) : _client = client ?? HttpClient();
+  HttpProvider({ApiClient? client}) : _client = client ?? DioClient();
 
   @override
   Future<Iterable<Map<String, dynamic>>> getTemtems({
