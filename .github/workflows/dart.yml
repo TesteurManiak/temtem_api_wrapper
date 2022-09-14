@@ -1,7 +1,6 @@
 name: Test workflow
 
-on:
-  push
+on: push
 
 jobs:
   analyze:
@@ -17,15 +16,8 @@ jobs:
     needs: analyze
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: dart-lang/setup-dart@v1
-    - run: dart pub get
-    - name: Run Tests
-      run: |
-        dart pub global activate coverage
-        dart pub run test --coverage="coverage"
-        dart pub global run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info --packages=.packages --report-on=lib
-    - name: Collect and report coverage
-      uses: coverallsapp/github-action@v1.1.2
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v2
+      - uses: dart-lang/setup-dart@v1
+      - run: dart pub get
+      - name: Run Tests
+        run: dart pub run test
