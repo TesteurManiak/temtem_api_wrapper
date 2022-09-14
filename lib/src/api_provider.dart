@@ -4,7 +4,7 @@ enum ExpandableField { traits, techniques, types }
 abstract class ApiProvider {
   /// - `names`: List of the Temtem names you want information about.
   /// - `expand`: List of fields you want extended.
-  Future<Iterable> getTemtems({
+  Future<Iterable<Map<String, dynamic>>> getTemtems({
     required List<String> names,
     required List<ExpandableField> expand,
     required bool weaknesses,

@@ -2,7 +2,7 @@ import 'package:temtem_api_wrapper/src/api_provider.dart';
 import 'package:temtem_api_wrapper/src/temtem_api.dart';
 import 'package:test/test.dart';
 
-import 'utils/mock_http_provider.dart';
+import 'mocks/api_provider.dart';
 
 void main() {
   final mockHttpProvider = MockHttpProvider();

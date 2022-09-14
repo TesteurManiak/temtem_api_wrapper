@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:collection/collection.dart';
 import 'package:temtem_api_wrapper/src/api_provider.dart';
 
-import 'fixture_reader.dart';
+import '../utils/fixture_reader.dart';
 
 class MockHttpProvider implements ApiProvider {
   @override
@@ -126,7 +126,7 @@ class MockHttpProvider implements ApiProvider {
   }
 
   @override
-  Future<Iterable> getTemtems({
+  Future<Iterable<Map<String, dynamic>>> getTemtems({
     required List<String> names,
     required List<ExpandableField> expand,
     required bool weaknesses,
@@ -137,19 +137,19 @@ class MockHttpProvider implements ApiProvider {
         expand.isEmpty &&
         !weaknesses) {
       final json = jsonDecode(fixture('temtems_2.json')) as Iterable;
-      return json;
+      return json.cast<Map<String, dynamic>>();
     } else if (listEquality.equals(names, ['Ganki']) &&
         listEquality.equals(expand, ExpandableField.values) &&
         !weaknesses) {
       final json = jsonDecode(fixture('temtems_3.json')) as Iterable;
-      return json;
+      return json.cast<Map<String, dynamic>>();
     } else if (names.isEmpty && expand.isEmpty && weaknesses) {
       final json = jsonDecode(fixture('temtems_4.json')) as Iterable;
-      return json;
+      return json.cast<Map<String, dynamic>>();
     }
 
     final json = jsonDecode(fixture('temtems.json')) as Iterable;
-    return json;
+    return json.cast<Map<String, dynamic>>();
   }
 
   @override

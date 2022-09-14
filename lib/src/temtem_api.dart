@@ -44,8 +44,7 @@ class TemTemApi {
       expand: expand,
       weaknesses: weaknesses,
     );
-    final parsedData = response.cast<Map<String, dynamic>>();
-    return parsedData.map<TemTemApiTem>(TemTemApiTem.fromJson).toList();
+    return response.map<TemTemApiTem>(TemTemApiTem.fromJson).toList();
   }
 
   /// Get informations for a specific Temtem, specified by its [number].
