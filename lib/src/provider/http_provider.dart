@@ -1,22 +1,20 @@
-import 'dart:convert';
-
-import 'package:http/http.dart' as http;
 import 'package:temtem_api_wrapper/src/api_provider.dart';
+import 'package:temtem_api_wrapper/src/provider/api_client.dart';
 
 class HttpProvider implements ApiProvider {
   static const baseUrl = 'https://temtem-api.mael.tech';
   static final baseUri = Uri.parse(baseUrl);
 
-  final http.Client _client;
+  final ApiClient _client;
 
-  HttpProvider({http.Client? client}) : _client = client ?? http.Client();
+  HttpProvider({ApiClient? client}) : _client = client ?? HttpClient();
 
   @override
-  Future<Iterable> getTemtems({
+  Future<Iterable<Map<String, dynamic>>> getTemtems({
     required List<String> names,
     required List<ExpandableField> expand,
     required bool weaknesses,
-  }) {
+  }) async {
     final uri = baseUri.replace(
       pathSegments: ['api', 'temtems'],
       queryParameters: {
@@ -25,7 +23,9 @@ class HttpProvider implements ApiProvider {
         if (weaknesses) 'weaknesses': 'true',
       },
     );
-    return _get(uri.toString());
+    final response = await _client.get(uri);
+    final data = (response as Iterable).cast<Map<String, dynamic>>();
+    return data;
   }
 
   @override
@@ -33,7 +33,7 @@ class HttpProvider implements ApiProvider {
     required int id,
     required List<ExpandableField> expand,
     required bool weaknesses,
-  }) {
+  }) async {
     final uri = baseUri.replace(
       pathSegments: ['api', 'temtems', '$id'],
       queryParameters: {
@@ -41,110 +41,172 @@ class HttpProvider implements ApiProvider {
         if (weaknesses) 'weaknesses': 'true',
       },
     );
-    return _get(uri.toString());
+    final response = await _client.get(uri);
+    final data = response as Map<String, dynamic>;
+    return data;
   }
 
   @override
-  Future<Map<String, dynamic>> getFreetem(String name, int level) {
+  Future<Map<String, dynamic>> getFreetem(String name, int level) async {
     final uri = baseUri.replace(
       pathSegments: ['api', 'freetem', name, '$level'],
     );
-    return _get(uri.toString());
+    final response = await _client.get(uri);
+    final data = response as Map<String, dynamic>;
+    return data;
   }
 
   @override
-  Future<Iterable> getFreetemRewards() => _get('$baseUrl/freetem/rewards');
+  Future<Iterable> getFreetemRewards() async {
+    final uri = baseUri.replace(pathSegments: ['freetem', 'rewards']);
+    final response = await _client.get(uri);
+    final data = (response as Iterable).cast<Map<String, dynamic>>();
+    return data;
+  }
 
   @override
-  Future<dynamic> getTypes() => _get('$baseUrl/types');
+  Future<dynamic> getTypes() async {
+    final uri = baseUri.replace(pathSegments: ['types']);
+    final response = await _client.get(uri);
+    return response;
+  }
 
   @override
-  Future<dynamic> getConditions() => _get('$baseUrl/conditions');
+  Future<dynamic> getConditions() async {
+    final uri = baseUri.replace(pathSegments: ['conditions']);
+    final response = await _client.get(uri);
+    return response;
+  }
 
   @override
   Future<dynamic> getTechniques({
     List<String> names = const [],
     List<String> fields = const [],
   }) {
-    String url = '$baseUrl/techniques?';
-    if (names.isNotEmpty) url += 'names=${names.join(",")}';
-    if (fields.isNotEmpty) {
-      if (names.isNotEmpty) url += '&';
-      url += 'fields=${fields.join(",")}';
-    }
-    return _get(url);
+    final uri = baseUri.replace(
+      pathSegments: ['techniques'],
+      queryParameters: {
+        if (names.isNotEmpty) 'names': names.join(','),
+        if (fields.isNotEmpty) 'fields': fields.join(','),
+      },
+    );
+    return _client.get(uri);
   }
 
   @override
-  Future<dynamic> getTrainingCourses() => _get('$baseUrl/training-courses');
+  Future<dynamic> getTrainingCourses() async {
+    final uri = baseUri.replace(pathSegments: ['training-courses']);
+    final response = await _client.get(uri);
+    return response;
+  }
 
   @override
   Future<dynamic> getTraits({
     List<String> names = const [],
     List<String> fields = const [],
-  }) {
-    final buffer = StringBuffer('$baseUrl/traits?');
-    for (int index = 0; index < names.length; index++) {
-      buffer.write(names[index]);
-      if (index != names.length - 1) buffer.write(',');
-    }
-    return _get(buffer.toString());
+  }) async {
+    final uri = baseUri.replace(
+      pathSegments: ['traits'],
+      queryParameters: {
+        if (names.isNotEmpty) 'names': fields.join(','),
+      },
+    );
+    final response = await _client.get(uri);
+    return response;
   }
 
   @override
-  Future<dynamic> getItems() => _get('$baseUrl/items');
+  Future<dynamic> getItems() async {
+    final uri = baseUri.replace(pathSegments: ['items']);
+    final response = await _client.get(uri);
+    return response;
+  }
 
   @override
-  Future<dynamic> getGears() => _get('$baseUrl/gear');
+  Future<dynamic> getGears() async {
+    final uri = baseUri.replace(pathSegments: ['gears']);
+    final response = await _client.get(uri);
+    return response;
+  }
 
   @override
-  Future<dynamic> getQuests() => _get('$baseUrl/quests');
+  Future<dynamic> getQuests() async {
+    final uri = baseUri.replace(pathSegments: ['quests']);
+    final response = await _client.get(uri);
+    return response;
+  }
 
   @override
-  Future<dynamic> getCharacters() => _get('$baseUrl/characters');
+  Future<dynamic> getCharacters() async {
+    final uri = baseUri.replace(pathSegments: ['characters']);
+    final response = await _client.get(uri);
+    return response;
+  }
 
   @override
-  Future<dynamic> getSaiparks() => _get('$baseUrl/saipark');
+  Future<dynamic> getSaiparks() async {
+    final uri = baseUri.replace(pathSegments: ['saipark']);
+    final response = await _client.get(uri);
+    return response;
+  }
 
   @override
-  Future<dynamic> getLocations() => _get('$baseUrl/locations');
+  Future<dynamic> getLocations() async {
+    final uri = baseUri.replace(pathSegments: ['locations']);
+    final response = await _client.get(uri);
+    return response;
+  }
 
   @override
-  Future<dynamic> getCosmetics() => _get('$baseUrl/cosmetics');
+  Future<dynamic> getCosmetics() async {
+    final uri = baseUri.replace(pathSegments: ['cosmetics']);
+    final response = await _client.get(uri);
+    return response;
+  }
 
   @override
-  Future<dynamic> getDyes() => _get('$baseUrl/dyes');
+  Future<dynamic> getDyes() async {
+    final uri = baseUri.replace(pathSegments: ['dyes']);
+    final response = await _client.get(uri);
+    return response;
+  }
 
   @override
-  Future<dynamic> getPatches() => _get('$baseUrl/patches');
+  Future<dynamic> getPatches() async {
+    final uri = baseUri.replace(pathSegments: ['patches']);
+    final response = await _client.get(uri);
+    return response;
+  }
 
   @override
-  Future<Map<String, dynamic>> getWeaknesses() => _get('$baseUrl/weaknesses');
+  Future<Map<String, dynamic>> getWeaknesses() async {
+    final uri = baseUri.replace(pathSegments: ['weaknesses']);
+    final response = await _client.get(uri);
+    final data = response as Map<String, dynamic>;
+    return data;
+  }
 
   @override
   Future<Map<String, dynamic>> calculateWeaknesses(
     String attacking,
     List<String> defending,
-  ) {
-    const baseRequest = '/weaknesses/calculate?attacking=';
-    return _get(
-      '$baseUrl$baseRequest$attacking&defending=${defending.join(",")}',
+  ) async {
+    final uri = baseUri.replace(
+      pathSegments: ['weaknesses', 'calculate'],
+      queryParameters: {
+        'attacking': attacking,
+        'defending': defending.join(','),
+      },
     );
+    final response = await _client.get(uri);
+    final data = response as Map<String, dynamic>;
+    return data;
   }
 
   @override
-  Future<dynamic> getBreeding() => _get('$baseUrl/breeding');
-
-  Future<T> _get<T>(String request) async {
-    try {
-      final response = await _client.get(Uri.parse(request));
-      if (response.statusCode == 200) {
-        return jsonDecode(response.body) as T;
-      } else {
-        throw Exception('Error GET request: $request');
-      }
-    } catch (e) {
-      throw Exception('Request: $request\nException: $e');
-    }
+  Future<dynamic> getBreeding() async {
+    final uri = baseUri.replace(pathSegments: ['breeding']);
+    final response = await _client.get(uri);
+    return response;
   }
 }

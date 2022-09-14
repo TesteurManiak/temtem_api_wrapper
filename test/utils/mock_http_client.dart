@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:http/http.dart';
 import 'package:http/testing.dart';
 import 'package:temtem_api_wrapper/src/api_provider.dart';
+import 'package:temtem_api_wrapper/src/provider/api_client.dart';
 
 import 'fixture_reader.dart';
 
@@ -50,3 +51,5 @@ final mockClient = MockClient((request) async {
   }
   throw Response('{errorStatus: 404}', 404);
 });
+
+final mockApiClient = HttpClient(mockClient);

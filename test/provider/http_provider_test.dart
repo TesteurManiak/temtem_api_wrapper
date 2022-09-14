@@ -6,7 +6,7 @@ import '../utils/mock_http_client.dart';
 
 void main() {
   group('HttpProvider', () {
-    final httpProvider = HttpProvider(client: mockClient);
+    final httpProvider = HttpProvider(client: mockApiClient);
 
     group('baseUri', () {
       test('return the base uri', () {
