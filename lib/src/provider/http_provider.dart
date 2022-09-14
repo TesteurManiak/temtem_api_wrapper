@@ -11,9 +11,9 @@ class HttpProvider implements ApiProvider {
 
   @override
   Future<Iterable<Map<String, dynamic>>> getTemtems({
-    required List<String> names,
-    required List<ExpandableField> expand,
-    required bool weaknesses,
+    List<String> names = const [],
+    List<ExpandableField> expand = const [],
+    bool weaknesses = false,
   }) async {
     final uri = baseUri.replace(
       pathSegments: ['api', 'temtems'],
@@ -23,8 +23,8 @@ class HttpProvider implements ApiProvider {
         if (weaknesses) 'weaknesses': 'true',
       },
     );
-    final response = await _client.get(uri);
-    final data = (response as Iterable).cast<Map<String, dynamic>>();
+    final response = await _client.get(uri) as Iterable;
+    final data = response.cast<Map<String, dynamic>>();
     return data;
   }
 

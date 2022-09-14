@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:collection/collection.dart';
 import 'package:temtem_api_wrapper/src/api_provider.dart';
 
-import 'fixture_reader.dart';
+import '../utils/fixture_reader.dart';
 
 class MockHttpProvider implements ApiProvider {
   @override

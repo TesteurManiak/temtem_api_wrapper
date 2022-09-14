@@ -4,7 +4,7 @@ import 'package:http/testing.dart';
 import 'package:temtem_api_wrapper/src/api_provider.dart';
 import 'package:temtem_api_wrapper/src/provider/api_client.dart';
 
-import 'fixture_reader.dart';
+import '../utils/fixture_reader.dart';
 
 final mockClient = MockClient((request) async {
   if (request.method == 'GET') {
