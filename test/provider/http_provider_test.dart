@@ -53,21 +53,18 @@ void main() {
     });
 
     group('getTemtem', () {
+      const tId = 113;
+
       test('return info for temtem 113', () async {
-        final temtem = await httpProvider.getTemtem(
-          id: 113,
-          expand: [],
-          weaknesses: false,
-        );
+        final temtem = await httpProvider.getTemtem(id: tId);
         expect(temtem, isNotNull);
         expect(temtem['number'], 113);
       });
 
-      test('return expanded info for temtem 113', () async {
+      test('return expanded info for temtem $tId', () async {
         final temtem = await httpProvider.getTemtem(
           id: 113,
           expand: ExpandableField.values,
-          weaknesses: false,
         );
         expect(temtem, isNotNull);
         expect(temtem['number'], 113);

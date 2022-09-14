@@ -31,8 +31,8 @@ class HttpProvider implements ApiProvider {
   @override
   Future<Map<String, dynamic>> getTemtem({
     required int id,
-    required List<ExpandableField> expand,
-    required bool weaknesses,
+    List<ExpandableField> expand = const [],
+    bool weaknesses = false,
   }) async {
     final uri = baseUri.replace(
       pathSegments: ['api', 'temtems', '$id'],
